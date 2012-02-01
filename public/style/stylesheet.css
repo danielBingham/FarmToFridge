@@ -1,0 +1,66 @@
+a {
+  color: #317500;
+  text-decoration: none;
+}
+#header #titles {
+  float: left;
+}
+#header #navigation {
+  float: left;
+}
+#header #information {
+  float: right;
+}
+#header #userControls {
+  float: right;
+}
+#header #search {
+  text-align: center;
+}
+#main {
+  margin: 50px auto;
+  font: normal 14px 'Lucida Grande', Verdana, Arial, sans-serif;
+}
+#main .product {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  border: thin solid black;
+  margin: 10px;
+  float: left;
+  text-align: center;
+}
+#main .product .title {
+  clear: both;
+  font-size: 12px;
+  height: 15px;
+}
+#main .product .farm {
+  clear: both;
+  font-size: 10px;
+  height: 15px;
+}
+#main .product .price {
+  float: left;
+  margin-top: 140px;
+  padding: 8px 0;
+  width: 50px;
+  height: 30px;
+}
+#main .product .available {
+  float: left;
+  width: 55px;
+  padding: 0 10px;
+  margin-top: 140px;
+}
+#main .product .available span {
+  display: inline-block;
+  clear: left;
+  font-size: 10px;
+}
+#main .product .category {
+  float: left;
+  width: 75px;
+  padding: 8px 0;
+  margin-top: 140px;
+}

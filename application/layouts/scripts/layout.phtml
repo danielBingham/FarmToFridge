@@ -2,18 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <title>Open Source Online Farm Market</title>	
+    <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
 </head>
 <body>
 <div id="header">
+	<div id="userControls">
+        <a href="/buyer/cart">View Cart</a> | 
+        <a href="/buyer/account">Your Account</a>
+    </div>
+
     <div id="title">Open Source Farm Market</div>
 
-	<div id="navigation"> </div>
+    <div id="information">
+        <a href="/about">About</a> |
+        <a href="/grower/login">Grower Login</a>
+    </div>
 
-	<div id="userControls"></div>
+    <div id="navigation"> 
+        <a href="/product/browse">Browse Products</a> |
+        <a href="/farm/browse">Browse Farms</a>
+    </div>
+
+  
     
 
     <div id="search">
         <select name="cat">
+        <?php 
+            $categories = Application_Model_Query_Category::getInstance()->fetchAll();
+            foreach($categories as $category) { ?>
+                <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+            <?php } ?>
         </select>
         <input type="text" name="q" /> 
         <input type="submit" value="Search" />

@@ -6,8 +6,9 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
     
     public function __construct() {
         $this->_haveBuilt = array(
-            'category'=>false
-        );
+            'category'=>false,
+            'farm'=>false 
+          );
     }
 
     // }}}
@@ -19,7 +20,13 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
     }
 
     // }}}
+    // {{{ buildFarm(Application_Model_Product $product):                   public void
 
+    public function buildFarm(Application_Model_Product $product) {
+        $product->setFarm(Application_Model_Query_Farm::getInstance()->get($product->farmID));
+    }
+    
+    // }}}
 }
 
 ?>

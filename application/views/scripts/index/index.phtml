@@ -2,10 +2,11 @@
 
     <?php foreach($this->products as $product) { ?>
         <div class="product"> 
-            <div class="name"><?php echo $product->name; ?>
-            <div class="price"><?php echo $product->price; ?>
-            <div class="available"><?php echo $product->amount; ?>
-            <div class="category"><?php echo $product->getCategory()->name; ?>
+            <div class="name"><?php echo $product->name; ?></div>
+            <div class="farm">from <?php echo $product->getFarm()->name; ?></div>
+            <div class="price"><?php printf("$%.2f", $product->price); ?></div>
+            <div class="available"><?php echo $product->amount; ?><span>available</span></div>
+            <div class="category"><?php echo $product->getCategory()->name; ?></div>
         </div>
     <?php } ?>
 

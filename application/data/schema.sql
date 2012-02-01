@@ -63,3 +63,60 @@ CREATE TABLE `categories` (
     FULLTEXT `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+CREATE TABLE `images` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `height` int,
+    `width` int,
+    `growerID` int unsigned,
+    PRIMARY KEY (`id`),
+    KEY `growerID` (`growerID`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `farm_images` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `imageID` int unsigned,
+    `farmID` int unsigned,
+    `primary` tinyint,
+    PRIMARY KEY (`id`),
+    KEY `imageID` (`imageID`),
+    KEY `farmID` (`farmID`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `product_images` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `imageID` int unsigned,
+    `productID` int unsigned,
+    `primary` tinyint,
+    PRIMARY KEY (`id`),
+    KEY `imageID` (`imageID`),
+    KEY `farmID` (`farmID`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `tags` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255),
+    PRIMARY KEY (`id`),
+    KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `product_tags` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `tagID` int unsigned,
+    `productID` int unsigned,
+    PRIMARY KEY (`id`),
+    KEY `tagID` (`tagID`),
+    KEY `productID` (`productID`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+
+
+
+
+
+
+
+
+
+
+
+
