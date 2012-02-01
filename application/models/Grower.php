@@ -11,7 +11,7 @@ class Application_Model_Grower extends Application_Model_Abstract {
 	    $this->_fields = array('id', 'email', 'password');	
         $this->id = false;
         if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Farm())
+			$this->setBuilder(new Application_Model_Builder_Grower())
 				->allowLazyLoad();
 		}
     }

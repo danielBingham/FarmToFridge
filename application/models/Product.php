@@ -9,7 +9,7 @@ class Application_Model_Product extends Application_Model_Abstract {
 
     public function __construct($lazy=true) {
 	    $this->_fields = array('id', 'name', 'categoryID', 'price', 'amount');	
-        $this->_id = false;
+        $this->id = false;
 		if($lazy) {
 			$this->setBuilder(new Application_Model_Builder_Product())
 				->allowLazyLoad();

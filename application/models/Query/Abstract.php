@@ -28,14 +28,19 @@ abstract class Application_Model_Query_Abstract {
     protected $_model;
     protected $_mapper;
     protected $_builder;
-    protected static $_instance;
 
     // Instantiation methods to instantiate the various model related
     // classes we'll need.
     // {{{ getInstance():                                                   public Application_Model_Query_{$model}
 
-    public static function getInstance() {
-        $class = 'Application_Model_Query_' . $this->_model;
+    /**
+    * We need to be able to call this statically, but that means it could 
+    * be potentially called from the base class and before $this->_model has
+    * been set.  To get around this, we're going to make it protected and
+    * then override it in the child.
+    */
+    protected static function getInstance($model) {
+        $class = 'Application_Model_Query_' . $model;
         if(empty($class::$_instance)) {
             $class::$_instance = new $class();
         }

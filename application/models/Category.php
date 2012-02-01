@@ -11,7 +11,7 @@ class Application_Model_Category extends Application_Model_Abstract {
 	    $this->_fields = array('id', 'name');	
         $this->id = false;   
         if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Recipe())
+			$this->setBuilder(new Application_Model_Builder_Category())
 				->allowLazyLoad();
 		}
     }

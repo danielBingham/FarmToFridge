@@ -29,18 +29,18 @@ abstract class Application_Model_Abstract {
 	}
 		
     public function __get($name) {
-        if(in_array($this->_fields, $name)) {
+        if(in_array($name, $this->_fields)) {
             return $this->_data[$name];
         } else {
-            throw new RuntimeException('Attempt to access non-existent member!');
+            throw new RuntimeException('Attempt to get non-existent member!');
         }
     }
 
     public function __set($name, $value) {
-        if(in_array($this->_fields, $name)) {
+        if(in_array($name, $this->_fields)) {
             $this->_data[$name] = $value;
         } else {
-            throw new RuntimeException('Attempt to access a non-existent member!');
+            throw new RuntimeException('Attempt to set a non-existent member!');
         } 
     }		
 

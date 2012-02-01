@@ -12,7 +12,7 @@ class Application_Model_Order extends Application_Model_Abstract {
 	    $this->_fields = array('id', 'buyerID', 'orderedOn', 'confirmed');	
         $this->id = false;
         if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Farm())
+			$this->setBuilder(new Application_Model_Builder_Order())
 				->allowLazyLoad();
 		}
     }

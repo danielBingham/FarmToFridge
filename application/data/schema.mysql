@@ -5,11 +5,11 @@ CREATE TABLE `farms` (
     `description` text,
     `growerID` int unsigned,
     PRIMARY KEY (`id`),
-    KEY `growerID` (`growerID)
+    KEY `growerID` (`growerID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `growers` (
-    `id` int unsigned AUTO_INCREMENT NOT NULL,
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
     `email` varchar(255),
     `password` varchar(32),
     PRIMARY KEY (`id`),

@@ -10,7 +10,7 @@ class Application_Model_OrderProduct extends Application_Model_Abstract {
 
     public function __construct($lazy=true) {
 	    $this->_fields = array('id', 'productID', 'orderID', 'amount');	
-        $this->_id = false;
+        $this->id = false;
 		if($lazy) {
 			$this->setBuilder(new Application_Model_Builder_OrderProduct())
 				->allowLazyLoad();
