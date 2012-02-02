@@ -31,6 +31,34 @@ class Application_Model_FarmImage extends Application_Model_Abstract {
     }
     
     // }}}
+    // {{{ setImage(Application_Model_Image $image):                        public void
+
+    public function setImage(Application_Model_Image $image) {
+        $this->_image = $image;
+        $this->imageID = $image->id;
+        return $this;
+    }
+
+    // }}} 
+    // {{{ getFarm():                                                       public Application_Model_Farm
+    
+    public function getFarm() {
+        if(empty($this->_farm) && $this->loadLazy()) {
+            $this->getBuilder()->build('farm', $this);
+        }
+        return $this->_farm;
+    }
+
+    // }}}
+    // {{{ setFarm(Application_Model_Farm $farm):                           public void
+
+    public function setFarm(Application_Model_Farm $farm) {
+        $this->_farm = $farm;
+        $this->farmID = $farm->id;
+        return $this;
+    }
+
+    // }}}
 }
 
 ?>

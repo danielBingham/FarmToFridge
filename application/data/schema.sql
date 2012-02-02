@@ -28,8 +28,7 @@ CREATE TABLE `products` (
     KEY `farmID` (`farmID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
-CREATE TABLE `order_products` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `order_products` ( `id` int unsigned NOT NULL AUTO_INCREMENT,
     `productID` int unsigned,
     `orderID` int unsigned,
     `amount` int,
@@ -89,12 +88,13 @@ CREATE TABLE `product_images` (
     `primary` tinyint,
     PRIMARY KEY (`id`),
     KEY `imageID` (`imageID`),
-    KEY `farmID` (`farmID`)
+    KEY `productID` (`productID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `tags` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255),
+    `symbol` varchar(255), /* This will eventually be a path name.  For now, two characters. */
     PRIMARY KEY (`id`),
     KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;

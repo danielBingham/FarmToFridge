@@ -5,6 +5,8 @@ class Application_Model_Product extends Application_Model_Abstract {
     // Associations
     private $_category;
     private $_farm;
+    private $_productTags;
+    private $_productImages;
 
     // {{{ __construct($lazy=true)
 
@@ -57,6 +59,55 @@ class Application_Model_Product extends Application_Model_Abstract {
         return $this;
     }
 
+    // }}}
+    // {{{ getProductTags():                                                public array
+    
+    public function getProductTags() {
+        if(empty($this->_productTags) && $this->loadLazy()) {
+            $this->getBuilder()->build('productTags', $this);
+        }
+        return $this->_productTags;
+    }
+
+    // }}}
+    // {{{ setProductTags(array $productTags):                              public void
+
+    public function setProductTags(array $productTags) {
+        $this->_productTags = $productTags;
+        return $this;
+    }
+
+    // }}}
+    // {{{ getProductImages():                                              public array
+
+    public function getProductImages() {
+        if(empty($this->_productImages) && $this->loadLazy()) {
+            $this->getBuilder()->build('productImages', $this);
+        }
+        return $this->_productImages;
+    }
+
+    // }}}
+    // {{{ setProductImages(array $productImages):                          public void
+
+    public function setProductImages(array $productImages) {
+        $this->_productImages = $productImages;
+        return $this;
+    }
+
+    // }}}
+    // {{{ getPrimaryProductImage():                                        public void Application_Model_Image
+
+    public function getPrimaryProductImage() {
+        $productImages = $this->getProductImages();
+        foreach($productImages as $productImage) {
+            if($productImage->primary) {
+                return $productImage->getImage();
+            }
+        }
+        return $productImages[0]->getImage();
+    }
+    
     // }}}
 }
 
