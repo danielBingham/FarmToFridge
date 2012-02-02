@@ -1,6 +1,6 @@
 
 INSERT INTO `growers` (`email`, `password`) 
-        VALUES ('dummy@theroadgoeson.com', 'dummyAccount'); /* 1 */
+        VALUES ('dummy@theroadgoeson.com', 'md5(dummyAccount)'); /* 1 */
 
 INSERT INTO `farms` (`name`, `description`, `growerID`) 
         VALUES ('Daniel\'s Dummy Farm', 'This is a test farm.  This is only a test.  Please disregard the test.', 1); /* 1 */
