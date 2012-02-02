@@ -8,7 +8,7 @@
 
     <?php foreach($this->products as $product) { ?>
         <div class="product" 
-            style="background-image: url(<?php echo 'http://img.farmtofridge.test/medium/' . $product->getPrimaryProductImage()->id . '.jpg'; ?>);
+            style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $product->getPrimaryProductImage()->id . '.jpg'; ?>);
                     background-repeat: no-repeat;
                     background-position: 0px 40px;"> 
             <div class="name"><a href="/product/view/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></div>
