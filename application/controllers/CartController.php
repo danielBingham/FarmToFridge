@@ -1,7 +1,7 @@
 <?php
 
 class CartController extends Zend_Controller_Action {
-    $private $_session; 
+    private $_session; 
      
     private function getSession() {
         if(empty($this->_session)) {
@@ -35,7 +35,7 @@ class CartController extends Zend_Controller_Action {
         if(empty($this->getSession()->order)) {
             $order = new Application_Model_Order();
             $order->buyerID = $this->getSession()->buyer->id;
-
+            $order->orderedOn = Zend_Date::Now();
             $persistor = new Application_Model_Persistor_Order();
             $persistor->save($order);
             $this->getSession()->order = $order; 
@@ -47,13 +47,17 @@ class CartController extends Zend_Controller_Action {
         $orderProduct->amount = $amount;
         $persistor = new Application_Model_Persistor_OrderProduct();
         $persistor->save($orderProduct);
-        $this->getSession()->order->addProduct($orderProduct); 
+        $this->getSession()->order->addOrderProduct($orderProduct); 
         
     }
 
     public function viewAction() {
+        if(empty($this->getSession()->buyer) || empty($this->getSession()->order)) {
+            $this->view->products = array();
+            return;
+        }
 
-
+        $this->view->order = $this->getSession()->order;
     }
 
     public function checkoutAction() {

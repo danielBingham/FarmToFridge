@@ -12,7 +12,7 @@ abstract class Application_Model_Abstract {
     }
 	
 	protected function loadLazy() {
-		return $this->_lazy;
+		return ($this->_lazy && $this->id !== false);
 	}
 	
 	protected function allowLazyLoad() {

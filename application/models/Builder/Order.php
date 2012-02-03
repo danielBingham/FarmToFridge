@@ -5,7 +5,7 @@ class Application_Model_Builder_Order extends Application_Model_Builder_Abstract
     // {{{ __construct()
     
     public function __construct() {
-        $this->haveBuilt = array(
+        $this->_haveBuilt = array(
             'orderProducts'=>false,
             'buyer'=>false
         );

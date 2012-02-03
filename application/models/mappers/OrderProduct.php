@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_Mapper_OrderProductProduct extends Application_Model_Mapper_Abstract {
+class Application_Model_Mapper_OrderProduct extends Application_Model_Mapper_Abstract {
 
     // {{{ getDbTable():                                                    public Application_Model_DbTable_OrderProduct
 	

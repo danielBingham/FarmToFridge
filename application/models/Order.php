@@ -50,6 +50,13 @@ class Application_Model_Order extends Application_Model_Abstract {
     }
 
     // }}}
+    // {{{ addOrderProduct(Application_Model_OrderProduct $orderProduct)    public void
+
+    public function addOrderProduct(Application_Model_OrderProduct $orderProduct) {
+        $this->getOrderProducts();
+        $this->_orderProducts[] = $orderProduct;
+    }
+
     // {{{ getBuyer():                                                      public Application_Model_Buyer
 
     public function getBuyer() {

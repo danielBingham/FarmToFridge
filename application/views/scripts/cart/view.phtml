@@ -1,0 +1,14 @@
+<div id="cartView">
+    <table class="products">
+        <?php foreach($this->order->getOrderProducts() as $orderProduct) { ?>
+            <tr>
+                <td><?php echo $orderProduct->getProduct()->name; ?></td>
+                <td><input type="text" name="amount" value="<?php echo $orderProduct->amount; ?>" /></td>
+                <td>
+                    <a href="/cart/remove/id/<?php echo $orderProduct->id; ?>">Remove from Cart</a>
+                </td>
+            </tr>
+        <?php } ?> 
+    </table>
+    <a href="/cart/checkout">Checkout</a>
+</div>

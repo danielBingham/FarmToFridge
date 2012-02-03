@@ -28,7 +28,8 @@ class Application_Model_Mapper_Order extends Application_Model_Mapper_Abstract {
         $data = $model->getAll();
         if(!empty($data['orderedOn']) && $data['orderedOn'] instanceof Zend_Date) {
             $data['orderedOn'] = $data['orderedOn']->toString('yyyy-MM-dd HH:mm:ss');
-        } 
+        }
+        return $data; 
     }
     
     // }}}
