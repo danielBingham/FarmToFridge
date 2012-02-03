@@ -1,0 +1,11 @@
+<div id="farmBrowse">
+    <?php foreach($this->farms as $farm) { ?>
+        <div class="farm">
+            <div class="name"><?php echo $farm->name; ?></div>
+            <div class="description"><?php echo $farm->description; ?></div>
+            <div class="products"><?php echo count($farm->getProducts()); ?></div>
+        </div>
+    <?php } ?>
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="product" 
+        style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $this->product->getPrimaryProductImage()->id . '.jpg'; ?>);
+            background-repeat: no-repeat;
+            background-position: 0px 40px;"> 
+    <div class="name"><a href="/product/view/id/<?php echo $this->product->id; ?>"><?php echo $this->product->name; ?></a></div>
+    <div class="farm">from <a href="/farm/view/id/<?php echo $this->product->getFarm()->id; ?>"><?php echo $this->product->getFarm()->name; ?></a></div>
+    <div class="tags">
+        <?php foreach($this->product->getProductTags() as $this->productTag) { ?>
+        <span class="tag"><?php echo $this->productTag->getTag()->symbol; ?></span>
+        <?php } ?>
+    </div> 
+    <div class="left">
+        <p class="text"><?php printf("$%.2f", $this->product->price); ?></p>
+    </div>
+    <div class="center">
+        <p class="text"><?php echo $this->product->amount; ?></p>
+    </div>
+    <div class="right">
+        <p class="text"><a href="/buyer/addtocart"><img src="/img/addtocart.png" width="24" height="24" /></a>
+    </div>
+</div>
+

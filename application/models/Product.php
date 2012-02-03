@@ -11,7 +11,7 @@ class Application_Model_Product extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'name', 'categoryID', 'farmID', 'price', 'amount');	
+	    $this->_fields = array('id', 'name', 'description', 'categoryID', 'farmID', 'price', 'amount');	
         $this->id = false;
 		if($lazy) {
 			$this->setBuilder(new Application_Model_Builder_Product())

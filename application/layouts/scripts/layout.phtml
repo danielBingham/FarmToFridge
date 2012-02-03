@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <title>Open Source Online Farm Market</title>	
-    <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="/style/stylesheet.css" />
 </head>
 <body>
 <div id="header">
@@ -27,7 +27,9 @@
     
 
     <div id="search">
+        <form method="GET" action="/search/">
         <select name="cat">
+        <option value="all">All</option> 
         <?php 
             $categories = Application_Model_Query_Category::getInstance()->fetchAll();
             foreach($categories as $category) { ?>
@@ -36,6 +38,7 @@
         </select>
         <input type="text" name="q" /> 
         <input type="submit" value="Search" />
+        </form>
     </div>	
 </div>
 <div id="main">

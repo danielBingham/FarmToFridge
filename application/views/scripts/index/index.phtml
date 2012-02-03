@@ -11,8 +11,8 @@
             style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $product->getPrimaryProductImage()->id . '.jpg'; ?>);
                     background-repeat: no-repeat;
                     background-position: 0px 40px;"> 
-            <div class="name"><a href="/product/view/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></div>
-            <div class="farm">from <a href="/farm/view/<?php echo $product->getFarm()->id; ?>"><?php echo $product->getFarm()->name; ?></a></div>
+            <div class="name"><a href="/product/view/id/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></div>
+            <div class="farm">from <a href="/farm/view/id/<?php echo $product->getFarm()->id; ?>"><?php echo $product->getFarm()->name; ?></a></div>
             <div class="tags">
                 <?php foreach($product->getProductTags() as $productTag) { ?>
                 <span class="tag"><?php echo $productTag->getTag()->symbol; ?></span>

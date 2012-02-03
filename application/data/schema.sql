@@ -19,6 +19,7 @@ CREATE TABLE `growers` (
 CREATE TABLE `products` (
     `id` int unsigned AUTO_INCREMENT NOT NULL,
     `name` varchar(255),
+    `description` text,
     `categoryID` int unsigned,
     `price` float,
     `amount` int,
