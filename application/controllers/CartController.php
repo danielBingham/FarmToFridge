@@ -13,14 +13,42 @@ class CartController extends Zend_Controller_Action {
 
     public function addAction() {
         $id = $this->getRequest()->getParam('id', null);
+        $amount = $this->getRequest()->getParam('amount', 1);
+
 
         if($id === null) {
             throw new RuntimeException('You cannot add something to your cart with out an id!');
         }
 
+        $product = Application_Model_Query_Product::getInstance()->get($id);
+        if($product === null) {
+            throw new RuntimeException('Attempt to add a non-existent product to cart.');
+        }
+
         if(empty($this->getSession()->buyer)) {
-            // create a buyer
+            $buyer = new Application_Model_Buyer();
+            $persistor = new Application_Model_Persistor_Buyer();
+            $persistor->save($buyer);
+            $this->getSession()->buyer = $buyer; 
         } 
+
+        if(empty($this->getSession()->order)) {
+            $order = new Application_Model_Order();
+            $order->buyerID = $this->getSession()->buyer->id;
+
+            $persistor = new Application_Model_Persistor_Order();
+            $persistor->save($order);
+            $this->getSession()->order = $order; 
+        } 
+
+        $orderProduct = new Application_Model_OrderProduct();
+        $orderProduct->orderID = $this->getSession()->order->id;
+        $orderProduct->productID = $product->id;
+        $orderProduct->amount = $amount;
+        $persistor = new Application_Model_Persistor_OrderProduct();
+        $persistor->save($orderProduct);
+        $this->getSession()->order->addProduct($orderProduct); 
+        
     }
 
     public function viewAction() {
