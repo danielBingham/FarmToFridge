@@ -25,7 +25,7 @@ class Application_Model_Persistor_Product extends Application_Model_Persistor_Ab
     // {{{ save(Application_Model_Product $product):                          public void
     
     public function save(Application_Model_Product $product) {
-        if(!empty($product->id)) {
+        if($product->id !== false) {
             $this->update($product);
         } else {
             $this->insert($product);

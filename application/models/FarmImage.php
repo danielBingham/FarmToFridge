@@ -8,14 +8,8 @@ class Application_Model_FarmImage extends Application_Model_Abstract {
 
     // {{{ __construct()
 
-    public function __construct() {
-        $this->_fields = array('id', 'imageID', 'farmID', 'primary');
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_FarmImage())
-				->allowLazyLoad();
-		}
-
+    public function __construct($lazy=true) {
+        parent::__construct('FarmImage', array('id', 'imageID', 'farmID', 'primary'), $lazy);
     }
 
     // }}}

@@ -25,7 +25,7 @@ class Application_Model_Persistor_ProductTag extends Application_Model_Persistor
     // {{{ save(Application_Model_ProductTag $productTag):                          public void
     
     public function save(Application_Model_ProductTag $productTag) {
-        if(!empty($productTag->id)) {
+        if($productTag->id !== false) {
             $this->update($productTag);
         } else {
             $this->insert($productTag);

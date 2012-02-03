@@ -25,7 +25,7 @@ class Application_Model_Persistor_ProductImage extends Application_Model_Persist
     // {{{ save(Application_Model_ProductImage $productImage):                          public void
     
     public function save(Application_Model_ProductImage $productImage) {
-        if(!empty($productImage->id)) {
+        if($productImage->id !== false) {
             $this->update($productImage);
         } else {
             $this->insert($productImage);

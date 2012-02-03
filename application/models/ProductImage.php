@@ -9,13 +9,7 @@ class Application_Model_ProductImage extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
     
     public function __construct($lazy=true) {
-        $this->_fields = array('id', 'imageID', 'productID', 'primary');
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_ProductImage())
-				->allowLazyLoad();
-		}
-
+        parent::__construct('ProductImage', array('id', 'imageID', 'productID', 'primary'), $lazy);
     }
 
     // }}}

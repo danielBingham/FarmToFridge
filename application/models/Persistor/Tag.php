@@ -25,7 +25,7 @@ class Application_Model_Persistor_Tag extends Application_Model_Persistor_Abstra
     // {{{ save(Application_Model_Tag $tag):                          public void
     
     public function save(Application_Model_Tag $tag) {
-        if(!empty($tag->id)) {
+        if($tag->id !== false) {
             $this->update($tag);
         } else {
             $this->insert($tag);

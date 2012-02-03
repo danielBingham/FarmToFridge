@@ -8,13 +8,7 @@ class Application_Model_Buyer extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        $this->_fields = array('id', 'email', 'password');	
-        $this->id = false;
-    	if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Buyer())
-				->allowLazyLoad();
-		}
-  
+        parent::__construct('Buyer', array('id', 'email', 'password'), $lazy); 
     }
 
     // }}}

@@ -9,12 +9,7 @@ class Application_Model_OrderProduct extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'productID', 'orderID', 'amount');	
-        $this->id = false;
-		if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_OrderProduct())
-				->allowLazyLoad();
-		}
+        parent::__construct('OrderProduct', array('id', 'productID', 'orderID', 'amount'), $lazy); 
     }
 
     // }}}

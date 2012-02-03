@@ -36,24 +36,18 @@ class CartController extends Zend_Controller_Action {
             $order = new Application_Model_Order();
             $order->buyerID = $this->getSession()->buyer->id;
             $order->orderedOn = Zend_Date::Now();
-            $persistor = new Application_Model_Persistor_Order();
-            $persistor->save($order);
             $this->getSession()->order = $order; 
         } 
-
+        
         $orderProduct = new Application_Model_OrderProduct();
-        $orderProduct->orderID = $this->getSession()->order->id;
         $orderProduct->productID = $product->id;
         $orderProduct->amount = $amount;
-        $persistor = new Application_Model_Persistor_OrderProduct();
-        $persistor->save($orderProduct);
         $this->getSession()->order->addOrderProduct($orderProduct); 
-        
     }
 
     public function viewAction() {
         if(empty($this->getSession()->buyer) || empty($this->getSession()->order)) {
-            $this->view->products = array();
+            $this->view->order= null;
             return;
         }
 
@@ -61,8 +55,35 @@ class CartController extends Zend_Controller_Action {
     }
 
     public function checkoutAction() {
+        if(empty($this->getSession()->order)) {
+            return $this->_helper->redirector('view');
+        }
+        $post = $this->getRequest()->getPost();
+
+
+        if($post['submit'] != 'Checkout') {
+            foreach($this->getSession()->order->getOrderProducts() as $orderProduct) {
+                $orderProduct->amount = $post['amount'][$orderProduct->getProduct()->id];
+            }
+            return $this->_helper->redirector('view');
+        }
 
     }
+
+    public function removeAction() {
+        $id = $this->getRequest()->getParam('id', null);
+        if($id === null) {
+            throw new RuntimeException('You must have an id to remove an item from your cart.'); 
+        }
+
+        if(empty($this->getSession()->order)) {
+            throw new RuntimeException('You can not remove an item from an empty order!');
+        }
+
+        $this->getSession()->order->removeOrderProduct($id);
+        return $this->_helper->redirector('view');
+    }
+
 
 }
 

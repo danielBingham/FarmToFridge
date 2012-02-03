@@ -8,12 +8,7 @@ class Application_Model_Grower extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'email', 'password');	
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Grower())
-				->allowLazyLoad();
-		}
+        parent::__construct('Grower', array('id', 'email','password'), $lazy); 
     }
 
     // }}}

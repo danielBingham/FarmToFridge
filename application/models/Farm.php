@@ -12,12 +12,7 @@ class Application_Model_Farm extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'name', 'description', 'growerID');	
-        $this->id = false;  
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Farm())
-				->allowLazyLoad();
-		}
+        parent::__construct('Farm', array('id', 'name', 'description', 'growerID'), $lazy); 
     }
 
     // }}}

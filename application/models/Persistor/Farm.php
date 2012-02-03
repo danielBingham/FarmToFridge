@@ -25,7 +25,7 @@ class Application_Model_Persistor_Farm extends Application_Model_Persistor_Abstr
     // {{{ save(Application_Model_Farm $farm):                          public void
     
     public function save(Application_Model_Farm $farm) {
-        if(!empty($farm->id)) {
+        if($farm->id !== false) {
             $this->update($farm);
         } else {
             $this->insert($farm);

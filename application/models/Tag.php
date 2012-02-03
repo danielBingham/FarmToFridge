@@ -8,13 +8,7 @@ class Application_Model_Tag extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        $this->_fields = array('id', 'name', 'symbol');
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Tag())
-				->allowLazyLoad();
-		}
-
+        parent::__construct('Tag', array('id', 'name', 'symbol'), $lazy);
     }
 
     // }}}

@@ -9,12 +9,7 @@ class Application_Model_Order extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'buyerID', 'orderedOn', 'confirmed');	
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Order())
-				->allowLazyLoad();
-		}
+        parent::__construct('Order', array('id', 'buyerID', 'orderedOn', 'confirmed'), $lazy); 
     }
 
     // }}}
@@ -35,8 +30,10 @@ class Application_Model_Order extends Application_Model_Abstract {
     // {{{ getOrderProducts():                                              public array(Application_Model_OrderProduct)
 
     public function getOrderProducts() {
-        if(empty($this->_orderProducts) && $this->loadLazy()) {
+        if(empty($this->_orderProducts) && $this->loadLazy() && $this->id !== false) {
             $this->getBuilder()->build('orderProducts', $this);
+        } else if(empty($this->_orderProducts) && $this->id === false) {
+           $this->_orderProducts = array(); 
         }
         return $this->_orderProducts;
     }
@@ -53,10 +50,28 @@ class Application_Model_Order extends Application_Model_Abstract {
     // {{{ addOrderProduct(Application_Model_OrderProduct $orderProduct)    public void
 
     public function addOrderProduct(Application_Model_OrderProduct $orderProduct) {
-        $this->getOrderProducts();
+        foreach($this->getOrderProducts() as $op) {
+            if($orderProduct->productID == $op->productID) {
+                $op->amount += $orderProduct->amount;
+                return;
+            }
+        } 
         $this->_orderProducts[] = $orderProduct;
     }
 
+    // }}}
+    // {{{ removeOrderProduct(int $productID):                                     public void
+    
+    public function removeOrderProduct($productID) {
+        foreach($this->getOrderProducts() as $key=>$orderProduct) {
+            if($orderProduct->getProduct()->id == $productID) {
+                unset($this->_orderProducts[$key]);
+            }
+        }
+    }
+    
+    // }}}
+    
     // {{{ getBuyer():                                                      public Application_Model_Buyer
 
     public function getBuyer() {
@@ -76,6 +91,7 @@ class Application_Model_Order extends Application_Model_Abstract {
     }
 
     // }}}
+
 }
 
 ?>

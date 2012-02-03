@@ -10,12 +10,7 @@ class Application_Model_ProductTag extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
     
     public function __construct($lazy=true) {
-        $this->_fields = array('id', 'tagID', 'productID');
-        $this->id = false;
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_ProductTag())
-				->allowLazyLoad();
-		}
+        parent::__construct('ProductTag', array('id', 'tagID', 'productID'), $lazy); 
     }
 
     // }}}

@@ -25,7 +25,7 @@ class Application_Model_Persistor_Buyer extends Application_Model_Persistor_Abst
     // {{{ save(Application_Model_Buyer $buyer):                          public void
     
     public function save(Application_Model_Buyer $buyer) {
-        if(!empty($buyer->id)) {
+        if($buyer->id !== false) {
             $this->update($buyer);
         } else {
             $this->insert($buyer);

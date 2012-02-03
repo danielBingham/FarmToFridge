@@ -25,7 +25,7 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
     // {{{ save(Application_Model_Category $category):                          public void
     
     public function save(Application_Model_Category $category) {
-        if(!empty($category->id)) {
+        if($category->id !== false) {
             $this->update($category);
         } else {
             $this->insert($category);

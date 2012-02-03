@@ -25,10 +25,16 @@ class Application_Model_Persistor_Order extends Application_Model_Persistor_Abst
     // {{{ save(Application_Model_Order $order):                          public void
     
     public function save(Application_Model_Order $order) {
-        if(!empty($order->id)) {
+        if($order->id !== false) {
             $this->update($order);
         } else {
             $this->insert($order);
+        }
+        
+        $persistor = new Application_Model_Persistor_OrderProduct();
+        foreach($order->getOrderProducts() as $orderProduct) {
+            $orderProduct->orderID = $order->id;
+            $persistor->save($orderProduct); 
         }
    }
 

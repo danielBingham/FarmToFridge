@@ -25,7 +25,7 @@ class Application_Model_Persistor_OrderProduct extends Application_Model_Persist
     // {{{ save(Application_Model_OrderProduct $orderProduct):                          public void
     
     public function save(Application_Model_OrderProduct $orderProduct) {
-        if(!empty($orderProduct->id)) {
+        if($orderProduct->id !== false) {
             $this->update($orderProduct);
         } else {
             $this->insert($orderProduct);

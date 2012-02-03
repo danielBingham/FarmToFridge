@@ -25,7 +25,7 @@ class Application_Model_Persistor_FarmImage extends Application_Model_Persistor_
     // {{{ save(Application_Model_FarmImage $farmImage):                          public void
     
     public function save(Application_Model_FarmImage $farmImage) {
-        if(!empty($farmImage->id)) {
+        if($farmImage->id !== false) {
             $this->update($farmImage);
         } else {
             $this->insert($farmImage);

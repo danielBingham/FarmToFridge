@@ -1,6 +1,7 @@
 <?php
 class Application_Model_Builder_Abstract {
-	
+    // An array that provides protection against
+    // loading on the same object multiple times.	
 	protected $_haveBuilt;
 	
 	public function build($association, $model) {
@@ -17,7 +18,5 @@ class Application_Model_Builder_Abstract {
 		$method = 'build' . ucfirst($association);
         $this->$method($model);
 	}
-
-	
 }
 ?>

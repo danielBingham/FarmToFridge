@@ -25,7 +25,7 @@ class Application_Model_Persistor_Grower extends Application_Model_Persistor_Abs
     // {{{ save(Application_Model_Grower $grower):                          public void
     
     public function save(Application_Model_Grower $grower) {
-        if(!empty($grower->id)) {
+        if($grower->id !== false) {
             $this->update($grower);
         } else {
             $this->insert($grower);

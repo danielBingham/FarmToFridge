@@ -1,14 +1,31 @@
 <div id="cartView">
-    <table class="products">
-        <?php foreach($this->order->getOrderProducts() as $orderProduct) { ?>
+    <form method="POST" action="/cart/checkout"> 
+     <table class="products">
+        <?php
+            $total = 0;
+            if(!empty($this->order)) { 
+                foreach($this->order->getOrderProducts() as $orderProduct) {
+                    $total += ($orderProduct->getProduct()->price * $orderProduct->amount);
+        ?>
             <tr>
                 <td><?php echo $orderProduct->getProduct()->name; ?></td>
-                <td><input type="text" name="amount" value="<?php echo $orderProduct->amount; ?>" /></td>
+                <td><?php echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
+                <td><input type="text" name="amount[<?php echo $orderProduct->getProduct()->id; ?>]" value="<?php echo $orderProduct->amount; ?>" /></td>
+                <td><?php echo sprintf('$%.2f', ($orderProduct->getProduct()->price * $orderProduct->amount)); ?></td>
                 <td>
-                    <a href="/cart/remove/id/<?php echo $orderProduct->id; ?>">Remove from Cart</a>
+                    <a href="/cart/remove/id/<?php echo $orderProduct->getProduct()->id; ?>">Remove from Cart</a>
                 </td>
+                
             </tr>
-        <?php } ?> 
+        <?php  
+                 
+                }
+            } else {
+                echo '<p>Your cart is empty.</p>';
+            } 
+        ?>
+        <tr><td>Total</td><td></td><td><input type="submit" name="submit" value="Update Totals" /></td><td><?php echo sprintf('$%.2f', $total); ?></td><td></td></tr>
     </table>
-    <a href="/cart/checkout">Checkout</a>
+    <input type="submit" name="submit" value="Checkout" />
+    </form>
 </div>

@@ -8,12 +8,7 @@ class Application_Model_Category extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-	    $this->_fields = array('id', 'name');	
-        $this->id = false;   
-        if($lazy) {
-			$this->setBuilder(new Application_Model_Builder_Category())
-				->allowLazyLoad();
-		}
+        parent::__construct('Category', array('id', 'name'), $lazy); 
     }
 
     // }}}

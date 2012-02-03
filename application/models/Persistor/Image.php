@@ -25,7 +25,7 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
     // {{{ save(Application_Model_Image $image):                          public void
     
     public function save(Application_Model_Image $image) {
-        if(!empty($image->id)) {
+        if($image->id !== false) {
             $this->update($image);
         } else {
             $this->insert($image);
