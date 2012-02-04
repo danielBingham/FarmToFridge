@@ -6,20 +6,20 @@ class Application_Model_Builder_Farm extends Application_Model_Builder_Abstract 
  
     public function __construct() {
         $this->_haveBuilt = array(
-            'grower'=>false,
+            'user'=>false,
             'products'=>false 
         );
     }
 
     // }}}
     
-    // {{{ buildGrower(Application_Model_Farm $farm):                       public void
+    // {{{ buildUser(Application_Model_Farm $farm):                         public void
     
-    public function buildGrower(Application_Model_Farm $farm) {
-        if($farm->growerID === false) {
-            throw new RuntimeException('Farm->growerID must be set in order to load Grower.');
+    public function buildUser(Application_Model_Farm $farm) {
+        if($farm->userID === false) {
+            throw new RuntimeException('Farm->userID must be set in order to load User.');
         }
-        $farm->setGrower(Application_Model_Query_Grower::getInstance()->get($farm->growerID));
+        $farm->setUser(Application_Model_Query_User::getInstance()->get($farm->userID));
     }
 
     // }}}

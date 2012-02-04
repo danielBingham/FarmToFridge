@@ -11,14 +11,14 @@
             $session = new Zend_Session_Namespace('buyer');
         ?>
         <a href="/cart/view">View Cart</a> <?php echo ($session->order ? '(' . count($session->order->getOrderProducts()) . ')' : ''); ?>  | 
-        <a href="/buyer/account">Your Account</a>
+        <a href="/buyer/account">Your Account</a> <?php echo (Zend_Auth::getInstance()->hasIdentity() ? '(' . Zend_Auth::getInstance()->getIdentity()->email . ')' : ''); ?>
     </div>
 
     <div id="title">Open Source Farm Market</div>
 
     <div id="information">
         <a href="/about">About</a> |
-        <a href="/grower/login">Grower Login</a>
+        <a href="/user/login">Grower Login</a>
     </div>
 
     <div id="navigation"> 

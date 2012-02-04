@@ -1,8 +1,9 @@
 
-INSERT INTO `growers` (`email`, `password`) 
-        VALUES ('dummy@theroadgoeson.com', 'md5(dummyAccount)'); /* 1 */
+INSERT INTO `users` (`email`, `password`, `isGrower`) 
+        VALUES ('grower@theroadgoeson.com', MD5('dummyAccount'), 1), /* 1 */
+                ('buyer@theroadgoeson.com', MD5('anotherdummy'), 0); /* 2 */
 
-INSERT INTO `farms` (`name`, `description`, `growerID`) 
+INSERT INTO `farms` (`name`, `description`, `userID`) 
         VALUES ('Daniel\'s Dummy Farm', 'This is a test farm.  This is only a test.  Please disregard the test.', 1); /* 1 */
 
 INSERT INTO `products` (`name`, `description`, `price`, `amount`, `farmID`, `categoryID`) 
@@ -35,7 +36,7 @@ INSERT INTO `tags` (`name`, `symbol`)
 INSERT INTO `product_tags` (`productID`, `tagID`) 
         VALUES (1,6), (2, 2), (2, 3), (3, 6), (4, 1), (4, 3), (5, 6), (6, 6), (7, 1), (8, 2), (8, 4); 
 
-INSERT INTO `images` (`width`, `height`, `growerID`)
+INSERT INTO `images` (`width`, `height`, `userID`)
         VALUES (1600, 1067, 1), /* tomato: 1 */
                 (1600, 1067, 1), /* broccoli: 2 */
                 (2428, 1095, 1), /* cabbage: 3 */
