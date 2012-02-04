@@ -4,14 +4,16 @@ class Application_Model_Product extends Application_Model_Abstract {
 
     // Associations
     private $_category;
+    private $_unit; 
     private $_farm;
     private $_productTags;
     private $_productImages;
+    
 
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('Product', array('id', 'name', 'description', 'categoryID', 'farmID', 'price', 'amount'), $lazy); 
+        parent::__construct('Product', array('id', 'name', 'description', 'categoryID', 'unitID', 'farmID', 'price', 'amount'), $lazy); 
     }
 
     // }}}
@@ -36,6 +38,26 @@ class Application_Model_Product extends Application_Model_Abstract {
     }
 
     // }}}
+    // {{{ getUnit():                                                       public Application_Model_Unit
+    
+    public function getUnit() {
+        if(empty($this->_unit) && $this->loadLazy()) {
+            $this->getBuilder()->build('unit', $this);
+        }
+        return $this->_unit;
+    }
+
+    // }}}
+    // {{{ setUnit(Application_Model_Unit $unit):                           public void
+
+    public function setUnit(Application_Model_Unit $unit) {
+        $this->_unit = $unit;
+        $this->unitID = $unit->id;
+        return $this; 
+    }
+
+    // }}} 
+
     // {{{ getFarm():                                                       public Application_Model_Farm
     
     public function getFarm() {

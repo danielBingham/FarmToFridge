@@ -44,6 +44,30 @@ class CartController extends Zend_Controller_Action {
         $orderProduct->amount = $amount;
         $this->getSession()->order->addOrderProduct($orderProduct); 
     }
+    
+    public function removeAction() {
+        $id = $this->getRequest()->getParam('id', null);
+        if($id === null) {
+            throw new RuntimeException('You must have an id to remove an item from your cart.'); 
+        }
+
+        if(empty($this->getSession()->order)) {
+            throw new RuntimeException('You can not remove an item from an empty order!');
+        }
+
+        $this->getSession()->order->removeOrderProduct($id);
+        return $this->_helper->redirector('view');
+    }
+        
+    public function emptyAction() {
+        if(empty($this->getSession()->order)) {
+            return $this->_helper->redirector('view');
+        }
+
+        $this->getSession()->order->setOrderProducts(array());
+        return $this->_helper->redirector('view');
+
+    }
 
     public function viewAction() {
         if(empty($this->getSession()->buyer) || empty($this->getSession()->order)) {
@@ -66,23 +90,22 @@ class CartController extends Zend_Controller_Action {
                 $orderProduct->amount = $post['amount'][$orderProduct->getProduct()->id];
             }
             return $this->_helper->redirector('view');
+        } else {
+            $persistor = new Application_Model_Persistor_Order();
+            $persistor->save($this->getSession()->order);
+            if($this->getSession()->buyer->email === false) {
+                $this->getSession()->checkout = true;
+                return $this->_helper->redirector('register', 'buyer');
+            } else {
+                return $this->_helper->redirector('confirm');
+            } 
         }
+    }
+
+    public function confirmAction() {
 
     }
 
-    public function removeAction() {
-        $id = $this->getRequest()->getParam('id', null);
-        if($id === null) {
-            throw new RuntimeException('You must have an id to remove an item from your cart.'); 
-        }
-
-        if(empty($this->getSession()->order)) {
-            throw new RuntimeException('You can not remove an item from an empty order!');
-        }
-
-        $this->getSession()->order->removeOrderProduct($id);
-        return $this->_helper->redirector('view');
-    }
 
 
 }

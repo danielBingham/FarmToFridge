@@ -23,10 +23,18 @@ CREATE TABLE `products` (
     `categoryID` int unsigned,
     `price` float,
     `amount` int,
+    `unitID` int unsigned,
     `farmID` int unsigned,
     PRIMARY KEY(`id`),
     KEY `categoryID` (`categoryID`),
     KEY `farmID` (`farmID`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `units` (
+    `id` int unsigned AUTO_INCREMENT NOT NULL,
+    `name` varchar(32),
+    `abbreviation` varchar(16),
+    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `order_products` ( `id` int unsigned NOT NULL AUTO_INCREMENT,

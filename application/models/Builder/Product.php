@@ -9,7 +9,8 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
             'category'=>false,
             'farm'=>false,
             'productTags'=>false, 
-            'productImages'=>false 
+            'productImages'=>false,
+            'unit'=>false
         );
     }
 
@@ -25,6 +26,16 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
     }
 
     // }}}
+    // {{{ buildUnit(Application_Model_Product $product):                   public void
+
+    public function buildUnit(Application_Model_Product $product) {
+        if($product->unitID === false) {
+            throw new RuntimeException('Product->unitID must be set in order to load Unit.');
+        }
+        $product->setUnit(Application_Model_Query_Unit::getInstance()->get($product->unitID));
+    }
+
+    // }}} 
     // {{{ buildFarm(Application_Model_Product $product):                   public void
 
     public function buildFarm(Application_Model_Product $product) {
@@ -55,6 +66,8 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
     }
 
     // }}}
+
+
 }
 
 ?>

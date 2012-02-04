@@ -24,7 +24,7 @@
                 echo '<p>Your cart is empty.</p>';
             } 
         ?>
-        <tr><td>Total</td><td></td><td><input type="submit" name="submit" value="Update Totals" /></td><td><?php echo sprintf('$%.2f', $total); ?></td><td></td></tr>
+        <tr><td>Total</td><td></td><td><input type="submit" name="submit" value="Update Totals" /></td><td><?php echo sprintf('$%.2f', $total); ?></td><td><a href="/cart/empty">Empty Your Cart</a></td></tr>
     </table>
     <input type="submit" name="submit" value="Checkout" />
     </form>

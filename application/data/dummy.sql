@@ -5,15 +5,15 @@ INSERT INTO `growers` (`email`, `password`)
 INSERT INTO `farms` (`name`, `description`, `growerID`) 
         VALUES ('Daniel\'s Dummy Farm', 'This is a test farm.  This is only a test.  Please disregard the test.', 1); /* 1 */
 
-INSERT INTO `products` (`name`, `description`, `price`, `amount`, `farmID`, `categoryID`) 
-        VALUES ('tomatoes', 'This is a tomato.', 4.00, '200', 1, 1), /* 1 */
-                ('broccoli', 'This is broccoli, a brassica', 2.00, '300', 1, 2),/* 2 */
-                ('cabbage', 'This is a cabbage.', 2.00, '300', 1, 3), /* 3 */
-                ('romaine', 'This is romaine.', 1.50, '200', 1, 4), /* 4 */
-                ('deer tongue', 'This is lettuce.', 1.50, '200', 1, 4), /* 5 */
-                ('red peppers', 'This is a red pepper.', 2.00, '300', 1, 5), /* 6 */
-                ('green peppers', 'This is a green pepper.', 2.00, '300', 1, 5), /* 7 */
-                ('potatoes', 'This is a potato.', 1.00, '600', 1, 6); /* 8 */
+INSERT INTO `products` (`name`, `description`, `price`, `amount`, `unitID`, `farmID`, `categoryID`) 
+        VALUES ('tomatoes', 'This is a tomato.', 4.00, '200', 1, 1, 1), /* 1 */
+                ('broccoli', 'This is broccoli, a brassica', 2.00, '300', 1, 1, 2),/* 2 */
+                ('cabbage', 'This is a cabbage.', 2.00, '300', 2, 1, 3), /* 3 */
+                ('romaine', 'This is romaine.', 1.50, '200', 2, 1, 4), /* 4 */
+                ('deer tongue', 'This is lettuce.', 1.50, '200', 1, 1, 4), /* 5 */
+                ('red peppers', 'This is a red pepper.', 2.00, '300', 3, 1, 5), /* 6 */
+                ('green peppers', 'This is a green pepper.', 2.00, '300',3, 1, 5), /* 7 */
+                ('potatoes', 'This is a potato.', 1.00, '600',1, 1, 6); /* 8 */
 
 INSERT INTO `categories` (`name`) 
         VALUES ('tomato'), /* 1 */
@@ -22,6 +22,11 @@ INSERT INTO `categories` (`name`)
                 ('lettuce'), /* 4 */
                 ('pepper'), /* 5 */ 
                 ('potato'); /* 6 */ 
+
+INSERT INTO `units` (`name`, `abbreviation`)
+        VALUES ('pound', 'lb'), /* 1 */
+                ('head', 'head'), /* 2 */
+                ('each', 'each'); /* 3 */
 
 INSERT INTO `tags` (`name`, `symbol`) 
         VALUES ('no-pesticides', 'np'), /* 1 */ 
