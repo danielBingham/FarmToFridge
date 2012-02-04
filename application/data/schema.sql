@@ -3,18 +3,20 @@ CREATE TABLE `farms` (
     `id` int unsigned AUTO_INCREMENT NOT NULL,
     `name` varchar(255),
     `description` text,
-    `growerID` int unsigned,
+    `userID` int unsigned,
     PRIMARY KEY (`id`),
-    KEY `growerID` (`growerID`)
+    KEY `userID` (`userID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
-CREATE TABLE `growers` (
+CREATE TABLE `users` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `email` varchar(255),
     `password` varchar(32),
+    `isGrower` tinyint,
     PRIMARY KEY (`id`),
     KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
 
 CREATE TABLE `products` (
     `id` int unsigned AUTO_INCREMENT NOT NULL,
@@ -48,21 +50,14 @@ CREATE TABLE `order_products` ( `id` int unsigned NOT NULL AUTO_INCREMENT,
 
 CREATE TABLE `orders` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `buyerID` int unsigned,
+    `userID` int unsigned,
     `orderedOn` datetime,
     `confirmed` tinyint,
     `filled` tinyint,
     PRIMARY KEY (`id`),
-    KEY `buyerID` (`buyerID`)
+    KEY `userID` (`userID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
-CREATE TABLE `buyers` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
-    `email` varchar(255),
-    `password` varchar(32),
-    PRIMARY KEY (`id`),
-    KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `categories` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -75,9 +70,9 @@ CREATE TABLE `images` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `height` int,
     `width` int,
-    `growerID` int unsigned,
+    `userID` int unsigned,
     PRIMARY KEY (`id`),
-    KEY `growerID` (`growerID`)
+    KEY `userID` (`userID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `farm_images` (

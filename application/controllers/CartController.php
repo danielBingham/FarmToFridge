@@ -26,8 +26,8 @@ class CartController extends Zend_Controller_Action {
         }
 
         if(empty($this->getSession()->buyer)) {
-            $buyer = new Application_Model_Buyer();
-            $persistor = new Application_Model_Persistor_Buyer();
+            $buyer = new Application_Model_User();
+            $persistor = new Application_Model_Persistor_User();
             $persistor->save($buyer);
             $this->getSession()->buyer = $buyer; 
         } 

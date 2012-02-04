@@ -4,35 +4,34 @@
 */
 
 class Application_Model_Farm extends Application_Model_Abstract {
-
     // Associations
-    private $_grower;
+    private $_user;
     private $_products;
 
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('Farm', array('id', 'name', 'description', 'growerID'), $lazy); 
+        parent::__construct('Farm', array('id', 'name', 'description', 'userID'), $lazy); 
     }
 
     // }}}
 
     // Association Methods
-    // {{{ getGrower():                                                     public Application_Model_Grower
+    // {{{ getUser():                                                       public Application_Model_User
     
-    public function getGrower() {
-        if(empty($this->_grower) && $this->loadLazy()) {
-			$this->getBuilder()->build('grower', $this);
+    public function getUser() {
+        if(empty($this->_user) && $this->loadLazy()) {
+			$this->getBuilder()->build('user', $this);
 		}
-		return $this->_grower;
+		return $this->_user;
     }
 
     // }}}
-    // {{{ setGrower(Application_Model_Grower $grower):                     public $this
+    // {{{ setUser(Application_Model_User $user):                           public $this
 
-    public function setGrower(Application_Model_Grower $grower) {
-        $this->_grower = $grower;
-        $this->_growerID = $grower->id; 
+    public function setUser(Application_Model_User $user) {
+        $this->_user = $user;
+        $this->_userID = $user->id; 
         return $this;
     }
     

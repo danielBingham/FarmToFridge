@@ -1,12 +1,12 @@
 <?php
 
-class Application_Model_Mapper_Grower extends Application_Model_Mapper_Abstract {
+class Application_Model_Mapper_User extends Application_Model_Mapper_Abstract {
 
-    // {{{ getDbTable():                                                    public Application_Model_DbTable_Grower
+    // {{{ getDbTable():                                                    public Application_Model_DbTable_User
 	
 	public function getDbTable() {
 		if(empty($this->_dbTable)) {
-			$this->_dbTable = new Application_Model_DbTable_Grower();
+			$this->_dbTable = new Application_Model_DbTable_User();
 		}
 		return $this->_dbTable;
 	}
