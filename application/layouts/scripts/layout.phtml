@@ -18,7 +18,11 @@
 
     <div id="information">
         <a href="/about">About</a> |
-        <a href="/user/login">Grower Login</a>
+        <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
+            <a href="/grower/dashboard">Grower Dashboard</a>
+        <?php } else { ?> 
+            <a href="/user/login">Growers Signup and Signin</a>
+        <?php } ?>
     </div>
 
     <div id="navigation"> 

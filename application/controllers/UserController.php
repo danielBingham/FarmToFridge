@@ -2,7 +2,10 @@
 
 class UserController extends Zend_Controller_Action {
     private $_authAdapter;
-    
+   
+
+    // {{{ getAuthAdapter():                                                private Zend_Auth_Adapter_DbTable
+ 
     private function getAuthAdapter() {
        if(empty($this->_authAdapter)) { 
             $this->_authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
@@ -13,11 +16,13 @@ class UserController extends Zend_Controller_Action {
         }
         return $this->_authAdapter;
     } 
-    
+
+    // }}}
+    // {{{ loginAction()    
 
     public function loginAction() {
         if(Zend_Auth::getInstance()->hasIdentity()) {
-            return $this->_helper->redirector('browse', 'products');
+            return $this->_helper->redirector('browse', 'product');
         }
 
         if(!$this->getRequest()->isPost()) {
@@ -35,28 +40,41 @@ class UserController extends Zend_Controller_Action {
 
             $session = new Zend_Session_Namespace('buyer');
             $session->buyer = $user;
-            return $this->_helper->redirector('browse', 'products');
+            if(!empty($session->order)) {
+                $session->order->userID = $user->id;
+            }
+            return $this->_helper->redirector('browse', 'product');
         }  else {
             $this->view->error = 'Login failed.  Please check your username and password.';
         } 
-
-        
-
     }
 
+    // }}}
+    // {{{ registerAction()
 
     public function registerAction() {
 
     }
 
+    // }}}
+    // {{{ dashboardAction()
+
     public function dashboardAction() {
+        if(!Zend_Auth::getInstance()->hasIdentity()) {
+            return $this->_helper->redirector('browse', 'product');
+        } 
+
         
     }
+
+    // }}}
+    // {{{ accountAction()
 
     public function accountAction() {
 
     }
 
+    // }}}
 
 }
 

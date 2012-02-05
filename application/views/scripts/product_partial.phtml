@@ -1,7 +1,9 @@
-<div class="product" 
+<div class="product"
+        <?php if($this->product->getPrimaryProductImage() !== false) { ?> 
         style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $this->product->getPrimaryProductImage()->id . '.jpg'; ?>);
             background-repeat: no-repeat;
-            background-position: 0px 40px;"> 
+            background-position: 0px 40px;" 
+        <?php } ?>>
     <div class="name"><a href="/product/view/id/<?php echo $this->product->id; ?>"><?php echo $this->product->name; ?></a></div>
     <div class="farm">from <a href="/farm/view/id/<?php echo $this->product->getFarm()->id; ?>"><?php echo $this->product->getFarm()->name; ?></a></div>
     <div class="tags">

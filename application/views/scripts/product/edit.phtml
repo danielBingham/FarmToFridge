@@ -1,0 +1,24 @@
+<div id="productEdit">
+    <form method="POST" action="/product/edit<?php echo ($this->product->id ? '/id/' . $this->product->id : '/farmID/' . $this->product->farmID); ?>">
+        <label for="name">Name</label><input type="text" name="name" value="<?php echo $this->product->name; ?>" /><br />
+        <label for="category">Category</label>
+            <select name="category" >
+                <?php foreach(Application_Model_Query_Category::getInstance()->fetchAll() as $category) { ?>
+                    <option value="<?php echo $category->id; ?>" <?php echo ($this->product->categoryID == $category->id ? 'selected="selected"' : ''); ?>><?php echo $category->name; ?></option>
+                <?php } ?>
+            </select><br />
+        <label for="description">Description</label><textarea name="description"><?php echo $this->product->description; ?></textarea><br />
+        <label for="price">Price</label><input type="text" name="price" value="<?php echo $this->product->price; ?>" /><br />
+        <label for="amount">Amount</label><input type="text" name="amount" value="<?php echo $this->product->amount; ?>" /><br />
+        <label for="unit">Unit</label>
+            <select name="unit">
+                <?php foreach(Application_Model_Query_Unit::getInstance()->fetchAll() as $unit) { ?>
+                    <option value="<?php echo $unit->id; ?>" <?php echo ($this->product->unitID == $unit->id ? 'selected="selected"' : ''); ?>>
+                        <?php echo $unit->name; ?> ( <?php echo $unit->abbreviation; ?> )
+                    </option>
+                <?php } ?>
+            </select><br />
+        <input type="submit" value="<?Php echo ($this->product->id ? 'Edit Product' : 'Add Product'); ?>" /> 
+    </form>
+
+</div>

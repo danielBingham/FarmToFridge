@@ -12,6 +12,14 @@ class Application_Model_Mapper_User extends Application_Model_Mapper_Abstract {
 	}
 
     // }}}
+
+    // {{{ fromDbArray($model, $data)                                       public void
+    
+    public function fromDbArray($model, array $data) {
+        parent::fromDbArray($model, $data);
+        $model->isGrower = ($model->isGrower == 1 ? true : false); 
+    }
+    // }}}
     // {{{ toDbArray($model):                                               public array
 
     public function toDbArray($model) {

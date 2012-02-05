@@ -1,0 +1,25 @@
+<div id="growerDashboard">
+    <div class="controls">
+        <a href="/farm/edit">Add a Farm</a>
+    </div>
+    <div class="farms">
+        <?php foreach($this->farms as $farm) { ?>
+            <div class="farm">
+                <div class="name"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></div>
+                <div class="productControls"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></div>
+                <table class="products">
+                    <?php foreach($farm->getProducts() as $product) { ?>
+                    <tr>
+                        <td><?php echo $product->name; ?></td>
+                        <td><?php echo $product->amount; ?></td>
+                        <td><?php echo $product->price; ?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        <?php } ?>
+    </div>
+
+
+
+</div>

@@ -122,7 +122,7 @@ class Application_Model_Product extends Application_Model_Abstract {
                 return $productImage->getImage();
             }
         }
-        return $productImages[0]->getImage();
+        return (isset($productImages[0]) ? $productImages[0]->getImage() : false);
     }
     
     // }}}

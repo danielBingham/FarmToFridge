@@ -32,6 +32,19 @@ class Application_Model_User extends Application_Model_Abstract {
     }
 
     // }}}
+    // {{{ addFarm(Application_Model_Farm $farm):                           public void
+
+    public function addFarm(Application_Model_Farm $farm) {
+        $this->getFarms();
+        if(empty($this->_farms)) {
+            $this->_farms = array($farm);
+        } else {
+            $this->_farms[] = $farm;
+        }
+    }
+
+    // }}}
+
     // {{{ getOrders():                                                     public array(Application_Model_Order)
 
     /**
