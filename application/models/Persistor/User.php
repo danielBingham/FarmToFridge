@@ -30,6 +30,10 @@ class Application_Model_Persistor_User extends Application_Model_Persistor_Abstr
         } else {
             $this->insert($user);
         }
+
+        if($user->password !== false) {
+           $this->getMapper()->setPassword($user); 
+        }
    }
 
     // }}}

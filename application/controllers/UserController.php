@@ -75,6 +75,16 @@ class UserController extends Zend_Controller_Action {
     }
 
     // }}}
+    // {{{ logoutAction()
+    
+    public function logoutAction() {
+    	if(Zend_Auth::getInstance()->hasIdentity()) {
+    		Zend_Auth::getInstance()->clearIdentity();
+    	}
+    	$this->_helper->redirector('browse', 'product');
+    }
+
+    // }}}
 
 }
 

@@ -9,7 +9,7 @@
         ?>
             <tr>
                 <td><?php echo $orderProduct->getProduct()->name; ?></td>
-                <td><?php echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
+                <td><?php echo sprintf('$%.2f/%s', $orderProduct->getProduct()->price, ($orderProduct->getProduct()->getUnit()->abbreviation == 'ea' ? '' : $orderProduct->getProduct()->getUnit()->abbreviation)); ?></td>
                 <td><input type="text" name="amount[<?php echo $orderProduct->getProduct()->id; ?>]" value="<?php echo $orderProduct->amount; ?>" /></td>
                 <td><?php echo sprintf('$%.2f', ($orderProduct->getProduct()->price * $orderProduct->amount)); ?></td>
                 <td>

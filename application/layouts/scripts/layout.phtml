@@ -10,36 +10,39 @@
         <?php
             $session = new Zend_Session_Namespace('buyer');
         ?>
-        <a href="/cart/view">View Cart</a> <?php echo ($session->order ? '(' . count($session->order->getOrderProducts()) . ')' : ''); ?>  | 
-        <a href="/buyer/account">Your Account</a> <?php echo (Zend_Auth::getInstance()->hasIdentity() ? '(' . Zend_Auth::getInstance()->getIdentity()->email . ')' : ''); ?>
+        <?php if(!Zend_Auth::getInstance()->hasIdentity()) { ?>
+            <a href="/user/login">Sign in</a> |
+            <a href="/customer/register">Customer Signup</a> | 
+        <?php } else { ?>
+            <a href="/customer/dashboard">Customer Dashboard</a> |
+        <?php } ?>
+        <a href="/cart/view">View Cart</a> <?php echo ($session->order ? '(' . count($session->order->getOrderProducts()) . ')' : ''); ?>  
     </div>
 
     <div id="title">Open Source Farm Market</div>
 
     <div id="information">
-        <a href="/about">About</a> |
         <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
-            <a href="/grower/dashboard">Grower Dashboard</a>
-        <?php } else { ?> 
-            <a href="/user/login">Growers Signup and Signin</a>
+            <a href="/grower/dashboard">Grower Dashboard</a> |
+            <a href="/user/logout">Logout</a> | 
+        <?php } else if(Zend_Auth::getInstance()->hasIdentity()) { ?>
+            <a href="/user/logout">Logout</a> |
+        <?php } else if(!Zend_Auth::getInstance()->hasIdentity()) { ?> 
+            <a href="/grower/regster">Growers Signup</a> |
         <?php } ?>
+        <a href="/about">About</a> 
     </div>
 
     <div id="navigation"> 
         <a href="/product/browse">Browse Products</a> |
         <a href="/farm/browse">Browse Farms</a>
     </div>
-
-  
     
-
     <div id="search">
         <form method="GET" action="/search/">
         <select name="cat">
         <option value="all">All</option> 
-        <?php 
-            $categories = Application_Model_Query_Category::getInstance()->fetchAll();
-            foreach($categories as $category) { ?>
+            <?php foreach(Application_Model_Query_Category::getInstance()->fetchAll() as $category) { ?>
                 <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
             <?php } ?>
         </select>

@@ -26,8 +26,8 @@ INSERT INTO `categories` (`name`)
 
 INSERT INTO `units` (`name`, `abbreviation`)
         VALUES ('pound', 'lb'), /* 1 */
-                ('head', 'head'), /* 2 */
-                ('each', 'each'); /* 3 */
+                ('head', 'hd'), /* 2 */
+                ('each', 'ea'); /* 3 */
 
 INSERT INTO `tags` (`name`, `symbol`) 
         VALUES ('no-pesticides', 'np'), /* 1 */ 

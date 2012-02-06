@@ -8,8 +8,8 @@
                 <div class="tag"><?php echo $productTag->getTag()->symbol; ?></div>
             <?php } ?>
         </div> 
-        <div class="price">$<?php echo sprintf('%.2f', $this->product->price); ?></div>
-        <div class="amount"><?php echo $this->product->amount; ?></div>
+        <div class="price">$<?php echo sprintf('%.2f/%s', $this->product->price, ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation)); ?></div>
+        <div class="amount"><?php echo $this->product->amount; ?> <?php echo $this->product->getUnit()->abbreviation; ?></div>
         <div class="category"><?php echo $this->product->getCategory()->name; ?></div>
         <div class="name"><?php echo $this->product->name; ?></div>
         <div class="description"><?php echo $this->product->description; ?></div> 

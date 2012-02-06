@@ -14,7 +14,30 @@ class GrowerController extends Zend_Controller_Action {
     }
 
     // }}}
+    // {{{ registerAction() 
 
+    public function registerAction() {
+        if(Zend_Auth::getInstance()->hasIdentity()) {
+            throw new RuntimeException('Attempting to register while logged in!  This should not happen.');
+        }
+    
+        if($this->getRequest()->isPost()) {
+            $translator = new Application_Service_Translator_Grower();
+
+            $user = new Application_Model_User();
+            if(!$translator->translate($user, $this->getRequest()->getPost())) {
+                $this->view->errors = $translator->getErrors();
+            } else {
+                $persistor = new Application_Model_Persistor_User();
+                $persistor->save($user);
+
+                return $this->_helper->redirector('dashboard', 'grower');
+            }
+        }
+
+    }
+
+    // }}}
 }
 
 ?>
