@@ -51,5 +51,5 @@ INSERT INTO `images` (`width`, `height`, `userID`)
                 (1452, 1062, 1), /* green pepper: 7 */
                 (800, 520, 1); /* potato: 8 */
 
-INSERT INTO `product_images` (`imageID`, `productID`, `primary`) 
+INSERT INTO `product_images` (`imageID`, `productID`, `main`) 
         VALUES (1, 1, 1), (2, 2, 1), (3, 3, 1), (4, 4, 1), (5, 5, 1), (6, 6, 1), (7, 7, 1), (8, 8, 1);

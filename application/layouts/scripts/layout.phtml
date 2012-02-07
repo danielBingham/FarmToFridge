@@ -3,6 +3,15 @@
 <head>
     <title>Open Source Online Farm Market</title>	
     <link rel="stylesheet" type="text/css" href="/style/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="/style/jquery.Jcrop.css" />   
+ 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.Jcrop.js"></script>
+    <?php if(isset($this->js)) { ?>
+         <?php foreach($this->js as $script) { ?>
+                <script type="text/javascript" src="/js/<?php echo $script; ?>.js"></script>
+        <?php } ?>
+    <?php } ?>
 </head>
 <body>
 <div id="header">
@@ -28,7 +37,7 @@
         <?php } else if(Zend_Auth::getInstance()->hasIdentity()) { ?>
             <a href="/user/logout">Logout</a> |
         <?php } else if(!Zend_Auth::getInstance()->hasIdentity()) { ?> 
-            <a href="/grower/regster">Growers Signup</a> |
+            <a href="/grower/register">Growers Signup</a> |
         <?php } ?>
         <a href="/about">About</a> 
     </div>

@@ -52,15 +52,72 @@ class ProductController extends Zend_Controller_Action {
             if(!$translator->translate($product, $this->getRequest()->getPost())) {
                 $this->view->errors = $translator->getErrors();
             } else {
-                $persistor = new Application_Model_Persistor_Product();
-                $persistor->save($product);
+                $imageUploader = new Application_Service_ImageUploader();
+                if(!$imageUploader->upload()) {
+                    $this->errors = $imageUploader->getErrors();
+                    return;
+                } else {
+                    
 
-                return $this->_helper->redirector('dashboard', 'grower');
+                    $persistor = new Application_Model_Persistor_Product();
+                    $persistor->save($product);
+                    
+                    return $this->_helper->redirector('crop', 'product', null, array('image'=>$imageUploader->getImage()->id, 'product'=>$product->id));
+                }
             }
         }
 
         $this->view->product = $product;
         
+    }
+
+    // }}}
+    // {{{ cropAction()
+
+    public function cropAction() {
+        $this->view->js = array('crop');
+
+        $imageID = $this->getRequest()->getParam('image', null);
+        if($imageID === null) {
+            throw new RuntimeException('We need an image to crop!');
+        }
+
+        $productID = $this->getRequest()->getParam('product', null);
+        if($productID === null) {
+            throw new RuntimeException('We need a product to attach that image to.');
+        }
+
+        $image = Application_Model_Query_Image::getInstance()->get($imageID);
+        $product = Application_Model_Query_Product::getInstance()->get($productID);
+
+        if($this->getRequest()->isPost()) {
+            $imageUploader = new Application_Service_ImageUploader();
+            $imageUploader->crop($image, $this->getRequest()->getPost());
+            
+            $persistor = new Application_Model_Persistor_ProductImage();
+            
+            $main = Application_Model_Query_ProductImage::getInstance()->findOne(array('productID'=>$product->id, 'main'=>1));
+            if(!empty($main)) {
+                $main->main = 0;
+                $persistor->save($main);
+            }   
+
+ 
+            $productImage = new Application_Model_ProductImage();
+            $productImage->imageID = $image->id;
+            $productImage->productID = $product->id;
+            $productImage->main= 1;
+            
+            $persistor->save($productImage);
+ 
+            //return $this->_helper->redirector('browse', 'product');
+        }
+
+        $this->view->image = $image;
+        $this->view->product = $product; 
+ 
+         
+   
     }
 
     // }}}

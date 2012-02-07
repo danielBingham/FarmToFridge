@@ -1,5 +1,5 @@
 <div id="productEdit">
-    <form method="POST" action="/product/edit<?php echo ($this->product->id ? '/id/' . $this->product->id : '/farmID/' . $this->product->farmID); ?>">
+    <form enctype="multipart/form-data" method="POST" action="/product/edit<?php echo ($this->product->id ? '/id/' . $this->product->id : '/farmID/' . $this->product->farmID); ?>">
         <label for="name">Name</label><input type="text" name="name" value="<?php echo $this->product->name; ?>" /><br />
         <label for="category">Category</label>
             <select name="category" >
@@ -18,6 +18,8 @@
                     </option>
                 <?php } ?>
             </select><br />
+        <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+        <label for="image">Image</label><input type="file" name="image" />
         <input type="submit" value="<?Php echo ($this->product->id ? 'Edit Product' : 'Add Product'); ?>" /> 
     </form>
 

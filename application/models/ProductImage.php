@@ -9,7 +9,7 @@ class Application_Model_ProductImage extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
     
     public function __construct($lazy=true) {
-        parent::__construct('ProductImage', array('id', 'imageID', 'productID', 'primary'), $lazy);
+        parent::__construct('ProductImage', array('id', 'imageID', 'productID', 'main'), $lazy);
     }
 
     // }}}

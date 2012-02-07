@@ -1,7 +1,9 @@
 <div id="growerRegister">
     <div class="errors">
-        <?php foreach($this->errors as $error) { ?>
-            <p><?php echo $error; ?></p>
+        <?php if(!empty($this->errors)) { ?>
+            <?php foreach($this->errors as $error) { ?>
+                <p><?php echo $error; ?></p>
+            <?php } ?>
         <?php } ?>
     </div>
     <form method="POST" action="/grower/register">

@@ -2,8 +2,7 @@
 
 
 class Application_Service_Translator_Product {
-    private $errrors;
-
+    private $errors = array();
 
     // {{{ translate(Application_Model_Product $product, array $post):      public boolean
 
@@ -14,7 +13,6 @@ class Application_Service_Translator_Product {
         $product->price = $post['price'];
         $product->amount = $post['amount'];
         $product->unitID = $post['unit'];
-
         return true;
     }
 
@@ -22,7 +20,7 @@ class Application_Service_Translator_Product {
     // {{{ getErrors():                                                     public array
 
     public function getErrors() {
-        return array();
+        return $this->errors;
     }
 
     // }}}

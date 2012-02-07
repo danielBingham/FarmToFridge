@@ -118,7 +118,7 @@ class Application_Model_Product extends Application_Model_Abstract {
     public function getPrimaryProductImage() {
         $productImages = $this->getProductImages();
         foreach($productImages as $productImage) {
-            if($productImage->primary) {
+            if($productImage->main) {
                 return $productImage->getImage();
             }
         }

@@ -79,7 +79,7 @@ CREATE TABLE `farm_images` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `imageID` int unsigned,
     `farmID` int unsigned,
-    `primary` tinyint,
+    `main` tinyint,
     PRIMARY KEY (`id`),
     KEY `imageID` (`imageID`),
     KEY `farmID` (`farmID`)
@@ -89,7 +89,7 @@ CREATE TABLE `product_images` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `imageID` int unsigned,
     `productID` int unsigned,
-    `primary` tinyint,
+    `main` tinyint,
     PRIMARY KEY (`id`),
     KEY `imageID` (`imageID`),
     KEY `productID` (`productID`)

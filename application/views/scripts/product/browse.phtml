@@ -1,3 +1,10 @@
+<div id="tagLegend">
+    <?php foreach(Application_Model_Query_Tag::getInstance()->fetchAll() as $tag) { ?>
+        <span class="tag"><?php echo $tag->name; ?> = <?php echo $tag->symbol; ?></span>,
+    <?php } ?>
+</div>
+
+
 <div id="productBrowse">
     <?php 
         foreach($this->products as $product) {

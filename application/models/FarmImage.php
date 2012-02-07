@@ -9,7 +9,7 @@ class Application_Model_FarmImage extends Application_Model_Abstract {
     // {{{ __construct()
 
     public function __construct($lazy=true) {
-        parent::__construct('FarmImage', array('id', 'imageID', 'farmID', 'primary'), $lazy);
+        parent::__construct('FarmImage', array('id', 'imageID', 'farmID', 'main'), $lazy);
     }
 
     // }}}
