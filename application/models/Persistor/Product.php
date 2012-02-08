@@ -30,7 +30,20 @@ class Application_Model_Persistor_Product extends Application_Model_Persistor_Ab
         } else {
             $this->insert($product);
         }
-   }
+        
+        $persistor = new Application_Model_Persistor_ProductTag();
+        $old = Application_Model_Query_ProductTag::getInstance()->fetchAll(array('productID'=>$product->id));
+        
+        $toDelete= array_diff($old, $product->getProductTags()); 
+        foreach($toDelete as $productTag) {
+            $persistor->delete($productTag);
+        }
+
+        $toSave = array_diff($product->getProductTags(), $old);
+        foreach($toSave as $productTag) {
+            $persistor->save($productTag);
+        }
+    }
 
     // }}}
 

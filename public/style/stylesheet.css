@@ -2,6 +2,14 @@ a {
   color: #317500;
   text-decoration: none;
 }
+.clear {
+  clear: both;
+}
+.browser {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0;
+}
 #header #titles {
   float: left;
 }
@@ -121,4 +129,25 @@ a {
 #main .product .right .text {
   margin-top: 1px;
   font-size: 12px;
+}
+#main #growerDashboard .name {
+  display: inline-block;
+  float: left;
+  margin-left: 50px;
+}
+#main #growerDashboard .productControls {
+  display: inline-block;
+  float: right;
+  margin-right: 50px;
+}
+#main #growerDashboard .products {
+  clear: both;
+  margin: 10px auto;
+  width: 1000px;
+}
+#main #growerDashboard .products td {
+  padding: 5px;
+}
+#main #growerDashboard .products .columns {
+  font-weight: bold;
 }

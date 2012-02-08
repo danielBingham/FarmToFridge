@@ -4,6 +4,12 @@ a {
     color: #317500;
     text-decoration: none;
 }
+.clear { clear: both; }
+.browser { 
+    width: 960px; 
+    margin: 0 auto;
+    padding: 0; 
+}
 
 #header {
 
@@ -137,5 +143,30 @@ a {
                 font-size: 12px;
             }
         }
+    }
+
+    #growerDashboard {
+        .name { 
+            display: inline-block;
+            float: left;
+            margin-left: 50px;
+        }
+        .productControls {
+            display: inline-block;
+            float: right;
+            margin-right: 50px;
+        }
+        .products { 
+            clear: both;
+            margin: 10px auto;
+            width: 1000px;
+            td {
+                padding: 5px;
+            }
+            .columns {
+                font-weight: bold;
+            }
+        }
+
     } 
 }

@@ -27,10 +27,19 @@ class ProductController extends Zend_Controller_Action {
             throw new RuntimeException('Only logged in growers may edit products.');
         }
 
+        // First determine if we're editing a product or creating
+        // a new one.
         $id = $this->getRequest()->getParam('id', null);
         if($id !== null) {
+            // We're editing a product.  The product will have everthing
+            // we need. 
             $product = Application_Model_Query_Product::getInstance()->get($id); 
+
+            if($product->getFarm()->userID != Zend_Auth::getInstance()->getIdentity()->id) {
+                throw new RuntimeException('You may only edit products for farms that you own!');
+            }
         } else {
+            // New product, we need to assign it to a farm. 
             $product = new Application_Model_Product();
             $farmID = $this->getRequest()->getParam('farmID', null);
             if($farmID === null) {
@@ -46,23 +55,26 @@ class ProductController extends Zend_Controller_Action {
         }
 
         
-
+        // Now process the input from the form.
         if($this->getRequest()->isPost()) {
             $translator = new Application_Service_Translator_Product();
             if(!$translator->translate($product, $this->getRequest()->getPost())) {
                 $this->view->errors = $translator->getErrors();
             } else {
                 $imageUploader = new Application_Service_ImageUploader();
-                if(!$imageUploader->upload()) {
+                if($imageUploader->haveUpload() && !$imageUploader->upload()) {
                     $this->errors = $imageUploader->getErrors();
                     return;
                 } else {
-                    
-
                     $persistor = new Application_Model_Persistor_Product();
                     $persistor->save($product);
-                    
-                    return $this->_helper->redirector('crop', 'product', null, array('image'=>$imageUploader->getImage()->id, 'product'=>$product->id));
+                   
+                    if($imageUploader->haveUpload()) { 
+                        return $this->_helper->redirector('crop', 'product', null, 
+                            array('image'=>$imageUploader->getImage()->id, 'product'=>$product->id));
+                    } else {
+                        return $this->_helper->redirector('view', 'product', null, array('id'=>$product->id));
+                    }
                 }
             }
         }

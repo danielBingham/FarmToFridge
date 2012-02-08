@@ -5,16 +5,30 @@
     <div class="farms">
         <?php foreach($this->farms as $farm) { ?>
             <div class="farm">
-                <div class="name"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></div>
-                <div class="productControls"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></div>
                 <table class="products">
-                    <?php foreach($farm->getProducts() as $product) { ?>
-                    <tr>
-                        <td><?php echo $product->name; ?></td>
-                        <td><?php echo $product->amount; ?></td>
-                        <td><?php echo sprintf('%.2f', $product->price); ?></td>
-                        <td><a href="/product/edit/id/<?php echo $product->id; ?>">Edit</a></td>
+                    <tr class="header">
+                        <td colspan="2"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></a></th>
+                        <td colspan="2"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></th>
                     </tr>
+                    <tr class="columns"><td>Name</td><td>Amount Available</td><td>Price</td><td>Tags</td><td></td></tr>
+                    <?php foreach($farm->getProducts() as $product) { ?>
+                        <tr>
+                            <td><?php echo $product->name; ?></td>
+                            <td><?php echo $product->amount; ?> <?php echo ($product->getUnit()->abbreviation == 'ea' ? '' : $product->getUnit()->abbreviation); ?></td>
+                            <td><?php echo sprintf('%.2f / %s', $product->price, $product->getUnit()->abbreviation); ?></td>
+                            <td>
+                                <?php 
+                                    $tags = '';
+                                    foreach($product->getProductTags() as $productTag) {
+                                        $tags .= $productTag->getTag()->symbol . ' ';
+                                    }
+                                    echo $tags;
+                                ?>
+                            <td>
+                                <a href="/product/edit/id/<?php echo $product->id; ?>">Edit</a> 
+                                <a href="/product/delete/id/<?php echo $product->id; ?>">Delete</a> 
+                            </td>
+                        </tr>
                     <?php } ?>
                 </table>
             </div>

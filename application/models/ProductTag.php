@@ -6,6 +6,19 @@ class Application_Model_ProductTag extends Application_Model_Abstract {
     protected $_tag;
     protected $_product;
 
+    // Magic Methods
+    // {{{ __toString()
+   
+    /**
+    *  This gets called in object comprison contexts,
+    * so we need it to output equal strings for equal
+    * objects.
+    */ 
+    public function __toString() {
+        return 'Application_Model_ProductTag::tagID=' . $this->tagID . 'productID=' . $this->productID;
+    }
+
+    // }}}
 
     // {{{ __construct($lazy=true)
     

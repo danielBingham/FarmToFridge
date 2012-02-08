@@ -18,6 +18,14 @@
                     </option>
                 <?php } ?>
             </select><br />
+        <label for="tags[]">Tags</label>
+            <select name="tags[]" multiple="multiple">
+                <?php foreach(Application_Model_Query_Tag::getInstance()->fetchAll() as $tag) { ?>
+                    <option value="<?php echo $tag->id; ?>" <?php echo ($this->product->hasTag($tag) ? 'selected="selected"' : ''); ?>>
+                        <?php echo $tag->name; ?>
+                    </option>
+                <?php } ?>
+            </select><br />
         <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
         <label for="image">Image</label><input type="file" name="image" />
         <input type="submit" value="<?Php echo ($this->product->id ? 'Edit Product' : 'Add Product'); ?>" /> 

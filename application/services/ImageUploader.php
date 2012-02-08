@@ -33,6 +33,14 @@ class Application_Service_ImageUploader {
     }
 
     // }}}
+    // {{{ haveUpload():                                                     public boolean
+    
+    public function haveUpload() {
+        $uploader = new Zend_File_Transfer();
+        return $uploader->isUploaded();
+    }
+
+    // }}} 
     // {{{ upload():                                                        public boolean
 
     public function upload() {
