@@ -6,7 +6,7 @@ class Application_Model_Query_ProductTag extends Application_Model_Query_Abstrac
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('ProductTag');
+        return parent::getInstanceForModel('ProductTag');
     }
 
 

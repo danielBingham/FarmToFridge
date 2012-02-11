@@ -6,7 +6,7 @@ class Application_Model_Query_Order extends Application_Model_Query_Abstract {
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('Order');
+        return parent::getInstanceForModel('Order');
     }
 
 

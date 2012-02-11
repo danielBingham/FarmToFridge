@@ -39,7 +39,10 @@ abstract class Application_Model_Query_Abstract {
     * been set.  To get around this, we're going to make it protected and
     * then override it in the child.
     */
-    protected static function getInstance($model) {
+    protected static function getInstanceForModel($model) {
+        if($model === null) {
+            throw new RuntimeException('You must pass a model to query.');
+        }
         $class = 'Application_Model_Query_' . $model;
         if(empty($class::$_instance)) {
             $class::$_instance = new $class();

@@ -5,7 +5,7 @@ class Application_Model_Query_FarmImageImage extends Application_Model_Query_Abs
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('FarmImage');
+        return parent::getInstanceForModel('FarmImage');
     }
 
 

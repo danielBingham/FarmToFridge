@@ -6,7 +6,7 @@ class Application_Model_Query_OrderProduct extends Application_Model_Query_Abstr
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('OrderProduct');
+        return parent::getInstanceForModel('OrderProduct');
     }
 
 }

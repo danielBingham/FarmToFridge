@@ -6,7 +6,7 @@ class Application_Model_Query_Farm extends Application_Model_Query_Abstract {
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('Farm');
+        return parent::getInstanceForModel('Farm');
     }
 
 }

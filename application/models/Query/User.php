@@ -5,7 +5,7 @@ class Application_Model_Query_User extends Application_Model_Query_Abstract {
     protected static $_instance;
 
     public static function getInstance() {
-        return parent::getInstance('User');
+        return parent::getInstanceForModel('User');
     }
 
 

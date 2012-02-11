@@ -7,7 +7,7 @@ class Application_Model_Query_Product extends Application_Model_Query_Abstract {
 
 
     public static function getInstance() {
-        return parent::getInstance('Product');
+        return parent::getInstanceForModel('Product');
     }
 }
 
