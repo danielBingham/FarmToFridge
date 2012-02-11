@@ -4,17 +4,20 @@ INSERT INTO `users` (`email`, `password`, `isGrower`)
                 ('buyer@theroadgoeson.com', MD5('anotherdummy'), 0); /* 2 */
 
 INSERT INTO `farms` (`name`, `description`, `userID`) 
-        VALUES ('Daniel\'s Dummy Farm', 'This is a test farm.  This is only a test.  Please disregard the test.', 1); /* 1 */
+        VALUES (
+                'Nottareal Farm', 
+                'This farm is nestled on ten acres of beautiful hill country in Donottaexist, Indiana.  Run by the team of 
+                Wishi Wasreal and Ifi Wasreal using only sustainable growing practices that build soil for long term fertility.
+                The ten acres support a wide variety of food crops, all of which are entirely chemical free.
 
-INSERT INTO `products` (`name`, `description`, `price`, `amount`, `unitID`, `farmID`, `categoryID`) 
-        VALUES ('tomatoes', 'This is a tomato.', 4.00, '200', 1, 1, 1), /* 1 */
-                ('broccoli', 'This is broccoli, a brassica', 2.00, '300', 1, 1, 2),/* 2 */
-                ('cabbage', 'This is a cabbage.', 2.00, '300', 2, 1, 3), /* 3 */
-                ('romaine', 'This is romaine.', 1.50, '200', 2, 1, 4), /* 4 */
-                ('deer tongue', 'This is lettuce.', 1.50, '200', 1, 1, 4), /* 5 */
-                ('red peppers', 'This is a red pepper.', 2.00, '300', 3, 1, 5), /* 6 */
-                ('green peppers', 'This is a green pepper.', 2.00, '300',3, 1, 5), /* 7 */
-                ('potatoes', 'This is a potato.', 1.00, '600',1, 1, 6); /* 8 */
+                Also available are eggs and soup hens.', 1), /* 1 */
+                ('Mitabeen Farm',
+                'A farm that might have sprung up on a beautiful 5 acres just south west of Bloomington, Indiana, had circumstances
+                been right.  In some alternate universe farmers Coulda Woulda and Shoulda Woulda are growing beautiful heirloom vegetables
+                with only minimal application of some organic fertilizers and natural pesticides.  Sadly, that alternate universe is not
+                this one.
+
+                And yet, by some fluke of space and time, their produce is available in our online market.', 1); /* 2 */
 
 INSERT INTO `categories` (`name`) 
         VALUES ('tomato'), /* 1 */
@@ -38,18 +41,3 @@ INSERT INTO `tags` (`name`, `symbol`)
                                     ('chemical-free', 'cf'), /* 6 */
                                     ('antibiotic-free', 'af'); /* 7 */
 
-INSERT INTO `product_tags` (`productID`, `tagID`) 
-        VALUES (1,6), (2, 2), (2, 3), (3, 6), (4, 1), (4, 3), (5, 6), (6, 6), (7, 1), (8, 2), (8, 4); 
-
-INSERT INTO `images` (`width`, `height`, `userID`)
-        VALUES (1600, 1067, 1), /* tomato: 1 */
-                (1600, 1067, 1), /* broccoli: 2 */
-                (2428, 1095, 1), /* cabbage: 3 */
-                (2526, 2136, 1), /* romaine: 4 */
-                (1600, 1200, 1), /* deer tongue: 5 */
-                (1600, 1067, 1), /* red pepper: 6 */
-                (1452, 1062, 1), /* green pepper: 7 */
-                (800, 520, 1); /* potato: 8 */
-
-INSERT INTO `product_images` (`imageID`, `productID`, `main`) 
-        VALUES (1, 1, 1), (2, 2, 1), (3, 3, 1), (4, 4, 1), (5, 5, 1), (6, 6, 1), (7, 7, 1), (8, 8, 1);

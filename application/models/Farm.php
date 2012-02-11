@@ -31,7 +31,7 @@ class Application_Model_Farm extends Application_Model_Abstract {
 
     public function setUser(Application_Model_User $user) {
         $this->_user = $user;
-        $this->_userID = $user->id; 
+        $this->userID = $user->id; 
         return $this;
     }
     

@@ -151,3 +151,39 @@ a {
 #main #growerDashboard .products .columns {
   font-weight: bold;
 }
+#main #productEdit {
+  width: 1000px;
+  margin: 0 auto;
+}
+#main #productEdit input {
+  margin: 5px;
+  padding: 5px;
+}
+#main #productEdit input[type=text] {
+  width: 600px;
+}
+#main #productEdit input[type=submit] {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+#main #productEdit textarea {
+  margin: 5px;
+  padding: 5px;
+  width: 600px;
+  height: 200px;
+}
+#main #productEdit select {
+  margin: 5px;
+  padding: 5px;
+}
+#main #productEdit select[multiple=multiple] {
+  height: 150px;
+}
+#main #productEdit label {
+  display: inline-block;
+  margin: 5px;
+  width: 200px;
+  padding: 5px;
+  vertical-align: top;
+}

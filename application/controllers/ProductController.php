@@ -40,7 +40,7 @@ class ProductController extends Zend_Controller_Action {
             }
         } else {
             // New product, we need to assign it to a farm. 
-            $product = new Application_Model_Product();
+            $product = new Application_Model_Product(false);
             $farmID = $this->getRequest()->getParam('farmID', null);
             if($farmID === null) {
                 throw new RuntimeException('No farm given, no farm to add this product to.');
@@ -130,6 +130,30 @@ class ProductController extends Zend_Controller_Action {
  
          
    
+    }
+
+    // }}}
+    // {{{ deleteAction()
+    
+    public function deleteAction() {
+        if(!Zend_Auth::getInstance()->hasIdentity()) {
+            throw new RuntimeException('You cannot delete a product with out being logged in.');
+        }
+
+        $id = $this->getRequest()->getParam('id', null);
+        if($id === null) {
+            throw new RuntimeException('You cannot delete a product with out providing the id of the product to be deleted.');
+        }
+
+        $product = Application_Model_Query_Product::getInstance()->get($id);
+        if(Zend_Auth::getInstance()->getIdentity()->id !== $product->getFarm()->getUser()->id) {
+           throw new RuntimeException('You may only delete a product that you own!'); 
+        } 
+
+        $persistor = new Application_Model_Persistor_Product();
+        $persistor->delete($product);
+
+        $this->_helper->redirector('dashboard', 'grower');
     }
 
     // }}}

@@ -98,10 +98,13 @@ class Application_Model_Product extends Application_Model_Abstract {
     // {{{ hasTag(Application_Model_Tag $tag):                              public boolean
     
     public function hasTag(Application_Model_Tag $tag) {
-        foreach($this->getProductTags() as $productTag) {
-            if($tag->id == $productTag->tagID) {
-                return true;
-            } 
+        $tags = $this->getProductTags();
+        if(!empty($tags)) { 
+            foreach($tags as $productTag) {
+                if($tag->id == $productTag->tagID) {
+                    return true;
+                } 
+            }
         }
         return false;
     }
