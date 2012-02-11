@@ -61,6 +61,8 @@ class ProductController extends Zend_Controller_Action {
             if(!$translator->translate($product, $this->getRequest()->getPost())) {
                 $this->view->errors = $translator->getErrors();
             } else {
+                // TODO Gracefully handle image upload fail, especially as
+                // caused by images that are too large. 
                 $imageUploader = new Application_Service_ImageUploader();
                 if($imageUploader->haveUpload() && !$imageUploader->upload()) {
                     $this->errors = $imageUploader->getErrors();
@@ -122,7 +124,7 @@ class ProductController extends Zend_Controller_Action {
             
             $persistor->save($productImage);
  
-            //return $this->_helper->redirector('browse', 'product');
+            return $this->_helper->redirector('browse', 'product');
         }
 
         $this->view->image = $image;

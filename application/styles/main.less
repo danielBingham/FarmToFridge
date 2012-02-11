@@ -206,5 +206,45 @@ a {
             vertical-align: top;
         }
         
+    }
+
+    .formWrapper {
+
+        width: 1000px;
+        margin: 0 auto;
+        input {
+            margin: 5px;
+            padding: 5px;
+            &[type=text] {
+                width: 600px;
+            }
+            &[type=submit] {
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+            }
+        }
+        textarea {
+            margin: 5px;
+            padding: 5px;
+            width: 600px;
+            height: 200px;
+        }
+        select {
+            margin: 5px;
+            padding: 5px;
+            &[multiple=multiple] {
+                height: 150px;
+            }
+        }
+        label {
+            display: inline-block;
+            margin: 5px;
+            width: 200px;
+            padding: 5px;
+            vertical-align: top;
+        }
+
+
     } 
 }
