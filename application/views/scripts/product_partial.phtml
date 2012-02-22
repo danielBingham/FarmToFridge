@@ -15,7 +15,7 @@
         <p class="text"><?php printf("$%.2f/%s", $this->product->price, $this->product->getUnit()->abbreviation); ?></p>
     </div>
     <div class="center">
-        <p class="text"><?php echo $this->product->amount . ' ' . ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation); ?></p>
+        <p class="text"><?php echo $this->product->getAmountCurrentlyAvailable() . ' ' . ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation); ?></p>
     </div>
     <div class="right">
         <p class="text"><a href="/cart/add/id/<?php echo $this->product->id; ?>"><img src="/img/addtocart.png" width="24" height="24" /></a>

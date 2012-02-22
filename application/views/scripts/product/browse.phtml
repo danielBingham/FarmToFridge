@@ -8,9 +8,12 @@
 <div id="productBrowse">
     <div class="browser">
         <?php 
-            foreach($this->products as $product) {
+            foreach($this->paginator as $product) {
                 echo $this->partial('product_partial.phtml', array('product'=>$product));
             }
+            echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    'pagination_controls.phtml');
         ?>
         <div class="clear"></div>
     </div>

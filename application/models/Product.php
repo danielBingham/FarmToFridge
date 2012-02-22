@@ -8,7 +8,20 @@ class Application_Model_Product extends Application_Model_Abstract {
     private $_farm;
     private $_productTags;
     private $_productImages;
-    
+
+    // Virtual Methods
+    // {{{ getAmountCurrentlyAvailable():                                   public int
+
+    /**
+    * Get the amount of product currently available, accounting for
+    * existing orders.  This needs to be up to date, so we're going
+    * to recalculate it on every call.
+    */
+    public function getAmountCurrentlyAvailable() {
+        return Application_Model_Query_Product::getInstance()->calculateAmountCurrentlyAvailableForProduct($this); 
+    }
+
+    // }}}
 
     // {{{ __construct($lazy=true)
 

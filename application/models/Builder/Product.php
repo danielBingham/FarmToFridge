@@ -10,7 +10,7 @@ class Application_Model_Builder_Product extends Application_Model_Builder_Abstra
             'farm'=>false,
             'productTags'=>false, 
             'productImages'=>false,
-            'unit'=>false
+            'unit'=>false,
         );
     }
 

@@ -1,0 +1,62 @@
+<?php
+
+// We're going to need the query string if it exists.
+// So lets build it.
+
+class QueryBuilder {
+    private $_qs = '?';
+    
+    public function __construct() {
+        $request = new Zend_Controller_Request_Http();
+
+        foreach($request->getQuery() as $key=>$value) {
+            $this->_qs .= ($this->_qs == '?' ? '' : '&') . urlencode($key) . '=' . urlencode($value);
+        }
+    }
+
+    public function getQueryString() {
+        return ($this->_qs == '?' ? '' : $this->_qs);
+    }
+}
+$qb = new QueryBuilder();
+
+?>
+
+
+<?php if ($this->pageCount) { ?>
+<div class="pageChooser">
+	<!-- First page link -->
+	<span><a href="<?php echo $this->url(array('page'=>$this->first)) . $qb->getQueryString(); ?>">&lt; &lt;</a></span>
+	<!-- Previous page link -->
+	<?php if (isset($this->previous)) { ?>
+	  <span class="prev"><a href="<?php echo $this->url(array('page' => $this->previous)) . $qb->getQueryString(); ?>">
+	    &lt;
+	  </a></span>
+	<?php } else { ?>
+	  <span class="disabled">&lt; </span> 
+	<?php } ?>
+ 
+	<!-- Numbered page links -->
+	<?php foreach ($this->pagesInRange as $page) { ?>
+		  <?php if ($page != $this->current) { ?>
+			    <span><a href="<?php echo $this->url(array('page' => $page)) . $qb->getQueryString(); ?>">
+			        <?php echo $page; ?>
+			    </a></span> 
+		  <?php } else { ?>
+		    	<span class='current'><?php echo $page; ?></span> 
+		  <?php } ?>
+	<?php } ?>
+ 
+	<!-- Next page link -->
+	<?php if (isset($this->next)) { ?>
+	  <span class="next"><a href="<?php echo $this->url(array('page' => $this->next)) . $qb->getQueryString(); ?>">
+	    &gt;
+	  </a></span>
+	<?php } else { ?>
+	  <span class="disabled">&gt;</span>
+	<?php } ?>
+	<!-- Last page link -->
+	<span><a href="<?php echo $this->url(array('page'=>$this->last)) . $qb->getQueryString(); ?>">&gt; &gt;</a></span>
+</div>
+<?php } ?>
+
