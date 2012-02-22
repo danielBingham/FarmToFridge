@@ -44,7 +44,7 @@ class Application_Model_Persistor_Order extends Application_Model_Persistor_Abst
     // {{{ delete(Application_Model_Order $order):                        public void
 
     public function delete(Application_Model_Order $order) {
-        parent::delete($order->id);
+        parent::deleteRaw($order->id);
     }
 
     // }}}
@@ -52,7 +52,7 @@ class Application_Model_Persistor_Order extends Application_Model_Persistor_Abst
     
     protected function insert(Application_Model_Order $order) {
         $data = $this->getMapper()->toDbArray($order);
-        $order->id = parent::insert($data);
+        $order->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -60,7 +60,7 @@ class Application_Model_Persistor_Order extends Application_Model_Persistor_Abst
 
     protected function update(Application_Model_Order $order) {
         $data = $this->getMapper()->toDbArray($order);
-        parent::update($data, $order->id);
+        parent::updateRaw($data, $order->id);
     }
 
     // }}}

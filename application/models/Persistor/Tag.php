@@ -38,7 +38,7 @@ class Application_Model_Persistor_Tag extends Application_Model_Persistor_Abstra
     // {{{ delete(Application_Model_Tag $tag):                        public void
 
     public function delete(Application_Model_Tag $tag) {
-        parent::delete($tag->id);
+        parent::deleteRaw($tag->id);
     }
 
     // }}}
@@ -46,7 +46,7 @@ class Application_Model_Persistor_Tag extends Application_Model_Persistor_Abstra
     
     protected function insert(Application_Model_Tag $tag) {
         $data = $this->getMapper()->toDbArray($tag);
-        $tag->id = parent::insert($data);
+        $tag->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -54,7 +54,7 @@ class Application_Model_Persistor_Tag extends Application_Model_Persistor_Abstra
 
     protected function update(Application_Model_Tag $tag) {
         $data = $this->getMapper()->toDbArray($tag);
-        parent::update($data, $tag->id);
+        parent::updateRaw($data, $tag->id);
     }
 
     // }}}

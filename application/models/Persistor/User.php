@@ -42,7 +42,7 @@ class Application_Model_Persistor_User extends Application_Model_Persistor_Abstr
     // {{{ delete(Application_Model_User $user):                        public void
 
     public function delete(Application_Model_User $user) {
-        parent::delete($user->id);
+        parent::deleteRaw($user->id);
     }
 
     // }}}
@@ -50,7 +50,7 @@ class Application_Model_Persistor_User extends Application_Model_Persistor_Abstr
     
     protected function insert(Application_Model_User $user) {
         $data = $this->getMapper()->toDbArray($user);
-        $user->id = parent::insert($data);
+        $user->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -58,7 +58,7 @@ class Application_Model_Persistor_User extends Application_Model_Persistor_Abstr
 
     protected function update(Application_Model_User $user) {
         $data = $this->getMapper()->toDbArray($user);
-        parent::update($data, $user->id);
+        parent::updateRaw($data, $user->id);
     }
 
     // }}}

@@ -38,7 +38,7 @@ class Application_Model_Persistor_Farm extends Application_Model_Persistor_Abstr
     // {{{ delete(Application_Model_Farm $farm):                        public void
 
     public function delete(Application_Model_Farm $farm) {
-        parent::delete($farm->id);
+        parent::deleteRaw($farm->id);
     }
 
     // }}}
@@ -46,7 +46,7 @@ class Application_Model_Persistor_Farm extends Application_Model_Persistor_Abstr
     
     protected function insert(Application_Model_Farm $farm) {
         $data = $this->getMapper()->toDbArray($farm);
-        $farm->id = parent::insert($data);
+        $farm->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -54,7 +54,7 @@ class Application_Model_Persistor_Farm extends Application_Model_Persistor_Abstr
 
     protected function update(Application_Model_Farm $farm) {
         $data = $this->getMapper()->toDbArray($farm);
-        parent::update($data, $farm->id);
+        parent::updateRaw($data, $farm->id);
     }
 
     // }}}

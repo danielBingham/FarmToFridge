@@ -51,7 +51,7 @@ class Application_Model_Persistor_Product extends Application_Model_Persistor_Ab
     // {{{ delete(Application_Model_Product $product):                        public void
 
     public function delete(Application_Model_Product $product) {
-        parent::delete($product->id);
+        parent::deleteRaw($product->id);
     }
 
     // }}}
@@ -59,7 +59,7 @@ class Application_Model_Persistor_Product extends Application_Model_Persistor_Ab
     
     protected function insert(Application_Model_Product $product) {
         $data = $this->getMapper()->toDbArray($product);
-        $product->id = parent::insert($data);
+        $product->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -67,7 +67,7 @@ class Application_Model_Persistor_Product extends Application_Model_Persistor_Ab
 
     protected function update(Application_Model_Product $product) {
         $data = $this->getMapper()->toDbArray($product);
-        parent::update($data, $product->id);
+        parent::updateRaw($data, $product->id);
     }
 
     // }}}

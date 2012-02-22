@@ -38,7 +38,7 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
     // {{{ delete(Application_Model_Category $category):                        public void
 
     public function delete(Application_Model_Category $category) {
-        parent::delete($category->id);
+        parent::deleteRaw($category->id);
     }
 
     // }}}
@@ -46,7 +46,7 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
     
     protected function insert(Application_Model_Category $category) {
         $data = $this->getMapper()->toDbArray($category);
-        $category->id = parent::insert($data);
+        $category->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -54,7 +54,7 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
 
     protected function update(Application_Model_Category $category) {
         $data = $this->getMapper()->toDbArray($category);
-        parent::update($data, $category->id);
+        parent::updateRaw($data, $category->id);
     }
 
     // }}}

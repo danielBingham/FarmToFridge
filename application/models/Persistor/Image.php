@@ -38,7 +38,7 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
     // {{{ delete(Application_Model_Image $image):                        public void
 
     public function delete(Application_Model_Image $image) {
-        parent::delete($image->id);
+        parent::deleteRaw($image->id);
     }
 
     // }}}
@@ -46,7 +46,7 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
     
     protected function insert(Application_Model_Image $image) {
         $data = $this->getMapper()->toDbArray($image);
-        $image->id = parent::insert($data);
+        $image->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -54,7 +54,7 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
 
     protected function update(Application_Model_Image $image) {
         $data = $this->getMapper()->toDbArray($image);
-        parent::update($data, $image->id);
+        parent::updateRaw($data, $image->id);
     }
 
     // }}}

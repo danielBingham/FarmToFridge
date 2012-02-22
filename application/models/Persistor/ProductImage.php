@@ -38,7 +38,7 @@ class Application_Model_Persistor_ProductImage extends Application_Model_Persist
     // {{{ delete(Application_Model_ProductImage $productImage):                        public void
 
     public function delete(Application_Model_ProductImage $productImage) {
-        parent::delete($productImage->id);
+        parent::deleteRaw($productImage->id);
     }
 
     // }}}
@@ -46,7 +46,7 @@ class Application_Model_Persistor_ProductImage extends Application_Model_Persist
     
     protected function insert(Application_Model_ProductImage $productImage) {
         $data = $this->getMapper()->toDbArray($productImage);
-        $productImage->id = parent::insert($data);
+        $productImage->id = parent::insertRaw($data);
     }
 
     // }}}
@@ -54,7 +54,7 @@ class Application_Model_Persistor_ProductImage extends Application_Model_Persist
 
     protected function update(Application_Model_ProductImage $productImage) {
         $data = $this->getMapper()->toDbArray($productImage);
-        parent::update($data, $productImage->id);
+        parent::updateRaw($data, $productImage->id);
     }
 
     // }}}
