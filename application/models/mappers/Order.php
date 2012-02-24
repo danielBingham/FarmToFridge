@@ -14,7 +14,7 @@ class Application_Model_Mapper_Order extends Application_Model_Mapper_Abstract {
     // }}}
     // {{{ fromDbArray($model, $data):                                      public void
 
-    public function fromDbArray($model, $data) {
+    public function fromDbArray($model, array $data) {
         $model->setAll($data);
         $model->orderedOn = new Zend_Date($data['orderedOn'], Zend_Date::ISO_8601);
         $model->confirmed = ($data['confirmed'] == 1 ? true : false);

@@ -7,7 +7,7 @@ class Application_Model_Builder_Order extends Application_Model_Builder_Abstract
     public function __construct() {
         $this->_haveBuilt = array(
             'orderProducts'=>false,
-            'buyer'=>false
+            'user'=>false
         );
     }
 
@@ -23,13 +23,13 @@ class Application_Model_Builder_Order extends Application_Model_Builder_Abstract
     }
 
     // }}}
-    // {{{ buildBuyer(Application_Model_Order $order):                      public void
+    // {{{ buildUser(Application_Model_Order $order):                      public void
 
-    public function buildBuyer(Application_Model_Order $order) {
-        if($order->buyerID === false) {
-            throw new RuntimeException('Order->buyerID must be set in order to load Buyer.');
+    public function buildUser(Application_Model_Order $order) {
+        if($order->userID === false) {
+            throw new RuntimeException('Order->userID must be set in order to load User.');
         }
-        $order->setBuyer(Application_Model_Query_Buyer::getInstance()->get($order->buyerID));
+        $order->setUser(Application_Model_Query_User::getInstance()->get($order->userID));
     }
 
     // }}}

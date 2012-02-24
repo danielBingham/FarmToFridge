@@ -4,12 +4,27 @@ class Application_Model_Order extends Application_Model_Abstract {
 
     // Associations
     private $_orderProducts;
-    private $_buyer;
+    private $_user;
+
+    // {{{ getTotal():                                                      public float
+
+    /**
+    * Get the total cost of this order.
+    */ 
+    public function getTotal() {
+        $total = 0;
+        foreach($this->getOrderProducts() as $orderProduct) {
+            $total += $orderProduct->amount*$orderProduct->getProduct()->price; 
+        }
+        return $total;
+    }
+
+    // }}}
     
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('Order', array('id', 'buyerID', 'orderedOn', 'confirmed'), $lazy); 
+        parent::__construct('Order', array('id', 'userID', 'orderedOn', 'confirmed', 'filled'), $lazy); 
     }
 
     // }}}
@@ -72,21 +87,21 @@ class Application_Model_Order extends Application_Model_Abstract {
     
     // }}}
     
-    // {{{ getBuyer():                                                      public Application_Model_Buyer
+    // {{{ getUser():                                                      public Application_Model_User
 
-    public function getBuyer() {
-        if(empty($this->_buyer) && $this->loadLazy()) {
-            $this->getBuilder()->build('buyer', $this);
+    public function getUser() {
+        if(empty($this->_user) && $this->loadLazy()) {
+            $this->getBuilder()->build('user', $this);
         }
-        return $this->_buyer;
+        return $this->_user;
     }
 
     // }}}
-    // {{{ setBuyer(Application_Model_Buyer $buyer):                        public void
+    // {{{ setUser(Application_Model_User $user):                        public void
 
-    public function setBuyer(Application_Model_Buyer $buyer) {
-        $this->_buyer = $buyer;
-        $this->buyerID = $buyer->id;
+    public function setUser(Application_Model_User $user) {
+        $this->_user = $user;
+        $this->userID = $user->id;
         return $this;
     }
 
