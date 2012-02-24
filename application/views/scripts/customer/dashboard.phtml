@@ -4,5 +4,32 @@
         <a href="/customer/history">Order History</a>
     </div>
 
+    <div id="pendingOrder">
+    <table class="products">
+        <?php
+            $total = 0;
+            if(!empty($this->pendingOrder)) { 
+                foreach($this->pendingOrder->getOrderProducts() as $orderProduct) {
+                    $total += ($orderProduct->getProduct()->price * $orderProduct->amount);
+        ?>
+            <tr>
+                <td><?php echo $orderProduct->getProduct()->name; ?></td>
+                <td><?php echo sprintf('$%.2f/%s', $orderProduct->getProduct()->price, ($orderProduct->getProduct()->getUnit()->abbreviation == 'ea' ? '' : $orderProduct->getProduct()->getUnit()->abbreviation)); ?></td>
+                <td><?php echo $orderProduct->amount; ?></td>
+                <td><?php echo sprintf('$%.2f', ($orderProduct->getProduct()->price * $orderProduct->amount)); ?></td>
+                <td>
+                </td>
+                
+            </tr>
+        <?php  
+                 
+                }
+            } else {
+                echo '<p>You do not have a pending order.</p>';
+            } 
+        ?>
+        <tr><td>Total</td><td></td><td></td><td><?php echo sprintf('$%.2f', $total); ?></td><td></td></tr>
+    </table>
+    </div>
 
 </div>
