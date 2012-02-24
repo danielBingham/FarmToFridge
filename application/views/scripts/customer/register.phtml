@@ -1,5 +1,5 @@
 <div id="customerRegister">
-    <form method="POST" action="/customer/register">
+    <form method="POST" action="<?php echo $this->url(); ?>">
         <label for="email">Email</label><input type="text" name="email" /><br />
         <label for="password">Password</label><input type="password" name="password" /><br />
         <label for="confirm">Confirm Password</label><input type="password" name="confirm" /><br />

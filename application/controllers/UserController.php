@@ -81,6 +81,9 @@ class UserController extends Zend_Controller_Action {
     	if(Zend_Auth::getInstance()->hasIdentity()) {
     		Zend_Auth::getInstance()->clearIdentity();
     	}
+        $session = new Zend_Session_Namespace('cart');
+        unset($session->order);
+        unset($session->customer);
     	$this->_helper->redirector('browse', 'product');
     }
 

@@ -17,7 +17,7 @@
 <div id="header">
 	<div id="userControls">
         <?php
-            $session = new Zend_Session_Namespace('buyer');
+            $session = new Zend_Session_Namespace('cart');
         ?>
         <?php if(!Zend_Auth::getInstance()->hasIdentity()) { ?>
             <a href="/user/login">Sign in</a> |
