@@ -1,6 +1,7 @@
 <div id="growerDashboard">
     <div class="controls">
         <a href="/farm/edit">Add a Farm</a>
+        <a href="/grower/pending">View Pending Orders</a> ( <?php echo $this->ordersPending; ?> )
     </div>
     <div class="farms">
         <?php foreach($this->farms as $farm) { ?>
