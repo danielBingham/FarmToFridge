@@ -22,8 +22,8 @@ class Application_Service_Translator_Grower {
         $grower->email = $post['email']; 
         $grower->password = $post['password'];
         $grower->isGrower = true; 
-        return true;
-    }
+        return $success;
+     }
 
     // }}}
     // {{{ getErrors():                                                     public array

@@ -22,7 +22,7 @@ class Application_Service_Translator_Customer {
         $customer->email = $post['email']; 
         $customer->password = $post['password'];
         $customer->isGrower = false; 
-        return true;
+        return $success;
     }
 
     // }}}
