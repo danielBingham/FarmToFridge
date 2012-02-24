@@ -1,0 +1,21 @@
+<div id="growerPending">
+    <?php foreach($this->orders as $order) { ?>
+    <div class="order">
+        <div class="customer">
+            <div class="email"><?php echo $order->getUser()->email; ?></div>
+        </div>
+        <table class="products">
+        <?php 
+            foreach($order->getOrderProducts() as $orderProduct) { 
+                if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
+                    continue;
+                }
+        ?>
+                <tr>
+                    <td><?php echo $orderProduct->getProduct()->name; ?></td>
+                    <td><?php echo $orderProduct->amount; ?></td>
+                </tr>
+        <?php } ?>
+        </table>
+    <?php } ?>
+</div>
