@@ -1,0 +1,18 @@
+<div id="paypalSuccess">
+    
+    <table id="order">
+    <?php foreach($this->order->getOrderProducts() as $orderProduct) { ?>
+        <tr>
+            <td><?php echo $orderProduct->getProduct()->name; ?></td>
+            <td><?php echo $orderProduct->amount; ?> <?php echo $orderProduct->getProduct()->getUnit()->name; ?></td>
+            <td><?php echo sprintf('$%.2f', $orderProduct->amount * $orderProduct->getProduct()->price); ?></td>
+        </tr>
+    <?php } ?>
+        <tr><td></td><td></td><td><?php echo sprintf('$%.2f', $this->order->getTotal()); ?></td></tr>
+    </table>
+    <form method="POST" action="/paypal/success">
+        <input type="hidden" name="token" value="<?php echo $this->response['TOKEN']; ?>" />
+        <input type="hidden" name="payerID" value="<?php echo $this->response['PAYERID']; ?>" />
+        <input type="submit" value="Confirm Order" />
+   </form> 
+</div>

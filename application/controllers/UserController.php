@@ -38,8 +38,8 @@ class UserController extends Zend_Controller_Action {
             $user = Application_Model_Query_User::getInstance()->get($this->getAuthAdapter()->getResultRowObject()->id);
             Zend_Auth::getInstance()->getStorage()->write($user);
 
-            $session = new Zend_Session_Namespace('buyer');
-            $session->buyer = $user;
+            $session = new Zend_Session_Namespace('cart');
+            $session->customer= $user;
             if(!empty($session->order)) {
                 $session->order->userID = $user->id;
             }
