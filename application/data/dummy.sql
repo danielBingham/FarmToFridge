@@ -92,4 +92,9 @@ INSERT INTO `users`
 				(2,'buyer@theroadgoeson.com','3be928357bda6967870bcd8afb400365',0),
 				(3,'dbingham@theroadgoeson.com','340511c3c30e3e06e28257e6980af6e9',1);
 
-
+INSERT INTO `configurations`
+        VALUES (1, 'paypal_username', ''), /* blank for commitment purposes */
+                (2, 'paypal_password', ''), /* blank for commitment purposes */
+                (3, 'paypal_signature', ''), /* blank for commitment purposes */
+                (4, 'paypal_version', '86.0'),
+                (5, 'paypal_test', 'true');

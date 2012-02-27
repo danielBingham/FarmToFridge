@@ -13,6 +13,7 @@ CREATE TABLE `users` (
     `email` varchar(255),
     `password` varchar(32),
     `isGrower` tinyint,
+    `isAdmin` tinyint,
     PRIMARY KEY (`id`),
     KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
@@ -112,7 +113,13 @@ CREATE TABLE `product_tags` (
     KEY `productID` (`productID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
-
+CREATE TABLE `configurations` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255),
+    `value` varchar(1024),
+    PRIMARY KEY (`id`),
+    KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
 
 

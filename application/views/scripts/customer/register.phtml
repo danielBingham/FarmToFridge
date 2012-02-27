@@ -1,4 +1,10 @@
 <div id="customerRegister">
+
+    <div id="errors">
+        <?php foreach($this->errors as $error) { ?>
+            <p><?php echo $error; ?></p>
+        <?php } ?>
+    </div>
     <form method="POST" action="<?php echo $this->url(); ?>">
         <label for="email">Email</label><input type="text" name="email" /><br />
         <label for="password">Password</label><input type="password" name="password" /><br />

@@ -8,7 +8,7 @@ class Application_Model_User extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('User', array('id', 'email','password', 'isGrower'), $lazy); 
+        parent::__construct('User', array('id', 'email','password', 'isGrower', 'isAdmin'), $lazy); 
     }
 
     // }}}
