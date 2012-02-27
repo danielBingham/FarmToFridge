@@ -1,23 +1,27 @@
 Open Source Farm Market
 =======================
 
-The Open Source Farm Market is a project to develop and release open source Farm Market software.  The 
-Software is being developed by Daniel Bingham (http://www.theroadgoeson.com) in concert with the
-Bloomington Local Growers Guild (http://www.localgrowers.org).  We're hoping to have a beta version
-ready for this market season to serve the Bloomington Community as an online supplement to the existing
-Farmer's market.  We hope the market will serve both individual buyers who cannot make the market, but
-still want local produce and local restaurants who wish to purchase local produce wholesale.
+The Open Source Farm Market is a project to develop and release open source
+Farm Market software.  The Software is being developed by Daniel Bingham
+(http://www.theroadgoeson.com) in concert with the Bloomington Local Growers
+Guild (http://www.localgrowers.org).  We're hoping to have a beta version ready
+for this market season to serve the Bloomington Community as an online
+supplement to the existing Farmer's market.  We hope the market will serve both
+individual buyers who cannot make the market, but still want local produce and
+local restaurants who wish to purchase local produce wholesale.
 
-Initially the software will be developed to serve the needs of the Bloomington market.  However,
-if sufficient support can be found, we intend to develop it to serve general needs.  It is my
-hope to eventually develop software that can be configured to serve any of the following
-purposes:
+Initially the software will be developed to serve the needs of the Bloomington
+market.  However, if sufficient support can be found, we intend to develop it
+to serve general needs.  It is my hope to eventually develop software that can
+be configured to serve any of the following purposes:
 
     - As a single farm's online market, with either pickup or delivery
-    - As a communities online farmer's market supporting multiple farms, with either pickup or delivery
-    - As an online wholesale distributor to allow local growers to sell their products to local restaurants
-        and food service providers
-    - And as anything else anyone can bend it into doing to service local foods and support local growers
+    - As a communities online farmer's market supporting multiple farms, with
+      either pickup or delivery
+    - As an online wholesale distributor to allow local growers to sell their
+      products to local restaurants and food service providers
+    - And as anything else anyone can bend it into doing to service local foods
+      and support local growers
 
-It will be released under the fully permissive MIT License and -- again, depending upon support -- continuously
-developed and updated.
+It will be released under the fully permissive MIT License and -- again,
+depending upon support -- continuously developed and updated.
