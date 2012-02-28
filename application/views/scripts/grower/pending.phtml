@@ -1,10 +1,14 @@
-<div id="growerPending">
+<div id="growerPending" class="inner">
+    <div class="controls">
+        <a href="/grower/dashboard">Back to Dashboard</a>
+    </div>
     <?php foreach($this->orders as $order) { ?>
     <div class="order">
         <div class="customer">
             <div class="email"><?php echo $order->getUser()->email; ?></div>
         </div>
         <table class="products">
+            <tr><td>Product Name</td><td>Amount Ordered</td><td>Price</td><td>Total Sale for this Product</td></tr>
         <?php 
             foreach($order->getOrderProducts() as $orderProduct) { 
                 if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
@@ -14,8 +18,11 @@
                 <tr>
                     <td><?php echo $orderProduct->getProduct()->name; ?></td>
                     <td><?php echo $orderProduct->amount; ?></td>
+                    <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
+                    <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price*$orderProduct->amount); ?></td>
                 </tr>
         <?php } ?>
+            <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $order->getTotal()); ?></td></tr>
         </table>
     <?php } ?>
 </div>

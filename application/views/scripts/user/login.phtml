@@ -1,9 +1,9 @@
-<div id="userLogin">
+<div id="userLogin" class="inner formWrapper">
     <p>Don't have an account yet?  Register as a customer here: <a href="/customer/register">Customer Signup</a>.</p>
-    <p>Are you a grower?  Regsiter for a grower account here: <a href="/grower/regsiter">Grower Signup</a>.</p> 
+    <p>Are you a grower?  Regsiter for a grower account here: <a href="/grower/register">Grower Signup</a>.</p> 
     <form method="POST" action="/user/login">
-        <input type="text" name="email" value="" />
-        <input type="password" name="password" value="" />
+        <label for="email">Email Address</label><input type="text" name="email" value="" />
+        <label for="password">Password</label><input type="password" name="password" value="" />
         <input type="submit" value="Login" />
     </form>
 

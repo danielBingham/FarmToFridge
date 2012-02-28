@@ -73,6 +73,7 @@ class CartController extends Zend_Controller_Action {
         $orderProduct->productID = $product->id;
         $orderProduct->amount = $amount;
         $this->getSession()->order->addOrderProduct($orderProduct); 
+        $this->_helper->redirector('browse', 'product');
     }
 
     // }}}

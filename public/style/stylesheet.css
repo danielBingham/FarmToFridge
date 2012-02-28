@@ -2,6 +2,19 @@ a {
   color: #317500;
   text-decoration: none;
 }
+table {
+  margin: 0 auto;
+}
+td {
+  padding: 5px 25px;
+  text-align: center;
+}
+img {
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
 .clear {
   clear: both;
 }
@@ -23,7 +36,23 @@ a {
   float: right;
 }
 #header #search {
+  clear: both;
+  padding: 10px;
   text-align: center;
+}
+#header #search input {
+  margin: 5px;
+  padding: 5px;
+}
+#header #search input[type=text] {
+  width: 400px;
+}
+#header #search input[type=submit] {
+  text-align: center;
+}
+#header #search select {
+  margin: 5px;
+  padding: 5px;
 }
 #main {
   margin: 50px auto;
@@ -33,13 +62,17 @@ a {
   margin: 10px auto;
   text-align: center;
 }
-#main .product {
+#main .inner {
+  width: 1024px;
+  margin: 0 auto;
+}
+#main .inner .product {
+  float: left;
   position: relative;
   width: 200px;
   height: 290px;
   padding: 0;
   margin: 20px;
-  float: left;
   text-align: center;
   -moz-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -49,22 +82,22 @@ a {
   -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-#main .product .name,
-#main .product .farm,
-#main .product .tags,
-#main .product .left,
-#main .product .right,
-#main .product .center {
+#main .inner .product .name,
+#main .inner .product .farm,
+#main .inner .product .tags,
+#main .inner .product .left,
+#main .inner .product .right,
+#main .inner .product .center {
   background-color: white;
   margin: 0;
   color: #444444;
   opacity: 0.80;
 }
-#main .product .name {
+#main .inner .product .name {
   clear: both;
-  font-size: 13px;
   height: 14px;
   padding: 3px 0;
+  font-size: 13px;
   -moz-border-radius-topright: 10px;
   -khtml-border-top-right-radius: 10px;
   -webkit-border-top-right-radius: 10px;
@@ -74,20 +107,20 @@ a {
   -webkit-border-top-left-radius: 10px;
   border-top-left-radius: 10px;
 }
-#main .product .farm {
+#main .inner .product .farm {
   clear: both;
   font-size: 10px;
   height: 10px;
   padding: 5px 0;
 }
-#main .product .tags {
+#main .inner .product .tags {
   clear: both;
   height: 12px;
   font-size: 12px;
   margin-top: 200px;
   padding: 4px 0;
 }
-#main .product .left {
+#main .inner .product .left {
   position: absolute;
   bottom: 0;
   width: 66px;
@@ -98,11 +131,11 @@ a {
   -webkit-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-#main .product .left .text {
+#main .inner .product .left .text {
   margin-top: 5px;
   font-size: 12px;
 }
-#main .product .center {
+#main .inner .product .center {
   position: absolute;
   bottom: 0;
   left: 66px;
@@ -110,11 +143,11 @@ a {
   height: 30px;
   text-align: center;
 }
-#main .product .center .text {
+#main .inner .product .center .text {
   margin-top: 5px;
   font-size: 12px;
 }
-#main .product .right {
+#main .inner .product .right {
   position: absolute;
   bottom: 0;
   left: 134px;
@@ -126,9 +159,48 @@ a {
   -webkit-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-#main .product .right .text {
+#main .inner .product .right .text {
   margin-top: 1px;
   font-size: 12px;
+}
+#main .formWrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+#main .formWrapper input {
+  margin: 5px;
+  padding: 5px;
+}
+#main .formWrapper input[type=text] {
+  width: 600px;
+}
+#main .formWrapper input[type=password] {
+  width: 600px;
+}
+#main .formWrapper input[type=submit] {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+#main .formWrapper textarea {
+  margin: 5px;
+  padding: 5px;
+  width: 600px;
+  height: 200px;
+}
+#main .formWrapper select {
+  margin: 5px;
+  padding: 5px;
+}
+#main .formWrapper select[multiple=multiple] {
+  height: 150px;
+}
+#main .formWrapper label {
+  display: inline-block;
+  margin: 5px;
+  width: 200px;
+  padding: 5px;
+  vertical-align: top;
 }
 #main #growerDashboard .name {
   display: inline-block;
@@ -151,39 +223,9 @@ a {
 #main #growerDashboard .products .columns {
   font-weight: bold;
 }
-#main #productEdit {
-  width: 1000px;
-  margin: 0 auto;
-}
-#main #productEdit input {
-  margin: 5px;
-  padding: 5px;
-}
-#main #productEdit input[type=text] {
-  width: 600px;
-}
-#main #productEdit input[type=submit] {
-  display: block;
-  margin: 10px auto;
+#main #userLogin p {
   text-align: center;
 }
-#main #productEdit textarea {
-  margin: 5px;
-  padding: 5px;
-  width: 600px;
-  height: 200px;
-}
-#main #productEdit select {
-  margin: 5px;
-  padding: 5px;
-}
-#main #productEdit select[multiple=multiple] {
-  height: 150px;
-}
-#main #productEdit label {
-  display: inline-block;
-  margin: 5px;
-  width: 200px;
-  padding: 5px;
-  vertical-align: top;
+#main #cartView input[type=text] {
+  width: 100px;
 }

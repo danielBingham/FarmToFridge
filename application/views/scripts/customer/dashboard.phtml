@@ -1,11 +1,11 @@
-<div id="customerDashboard">
+<div id="customerDashboard" class="inner" >
     <div class="controls">
-        <a href="/customer/orders">Orders In Progress</a>
-        <a href="/customer/history">Order History</a>
     </div>
 
     <div id="pendingOrder">
+    <p>Order pending for this week's cycle.</p> 
     <table class="products">
+        <tr><td></td><td>Name</td><td>Price</td><td>Amount Ordered</td><td>Total Cost for Product</td></tr>
         <?php
             $total = 0;
             if(!empty($this->pendingOrder)) { 
@@ -13,6 +13,7 @@
                     $total += ($orderProduct->getProduct()->price * $orderProduct->amount);
         ?>
             <tr>
+                <td><img src="<?PHP echo $orderProduct->getProduct()->getPrimaryProductImage()->getImageURL('small'); ?>" /></td>
                 <td><?php echo $orderProduct->getProduct()->name; ?></td>
                 <td><?php echo sprintf('$%.2f/%s', $orderProduct->getProduct()->price, ($orderProduct->getProduct()->getUnit()->abbreviation == 'ea' ? '' : $orderProduct->getProduct()->getUnit()->abbreviation)); ?></td>
                 <td><?php echo $orderProduct->amount; ?></td>
@@ -21,14 +22,11 @@
                 </td>
                 
             </tr>
-        <?php  
-                 
-                }
-            } else {
-                echo '<p>You do not have a pending order.</p>';
-            } 
-        ?>
-        <tr><td>Total</td><td></td><td></td><td><?php echo sprintf('$%.2f', $total); ?></td><td></td></tr>
+            <?PHP } ?>
+        <?PHP } else { ?>
+            <tr><td colspan="5">You do not have a pending order.</td></tr>
+        <?PHP } ?>
+        <tr><td></td><td>Total</td><td></td><td></td><td><?php echo sprintf('$%.2f', $total); ?></td><td></td></tr>
     </table>
     </div>
 

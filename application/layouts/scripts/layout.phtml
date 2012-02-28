@@ -25,7 +25,20 @@
         <?php } else { ?>
             <a href="/customer/dashboard">Customer Dashboard</a> |
         <?php } ?>
-        <a href="/cart/view">View Cart</a> <?php echo ($session->order ? '(' . count($session->order->getOrderProducts()) . ')' : ''); ?>  
+        <a href="/cart/view">View Cart</a> 
+            <?php
+                if($session->order) { 
+                    $totalItems = 0;
+                    foreach($session->order->getOrderProducts() as $orderProduct) {
+                        $totalItems += $orderProduct->amount;
+                    }
+                    echo '(' 
+                        . count($session->order->getOrderProducts()) . ' products, ' 
+                        . $totalItems . ' items, '
+                        . sprintf('$%.2f', $session->order->getTotal()) 
+                        . ')'; 
+                }
+            ?>  
     </div>
 
     <div id="title">Open Source Farm Market</div>

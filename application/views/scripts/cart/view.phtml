@@ -1,31 +1,41 @@
-<div id="cartView">
+<div id="cartView" class="inner formWrapper">
     <form method="POST" action="/cart/checkout"> 
      <table class="products">
-        <?php
+        <tr class="header"><td></td><td>Name</td><td>Price per Item</td><td>Amount Ordered</td><td>Total Price</td><td></td></tr>
+       <?php
             $total = 0;
             if(!empty($this->order)) { 
                 foreach($this->order->getOrderProducts() as $orderProduct) {
                     $total += ($orderProduct->getProduct()->price * $orderProduct->amount);
         ?>
             <tr>
+                <td><img src="<?php echo $orderProduct->getProduct()->getPrimaryProductImage()->getImageURL('small'); ?>" /></td> 
                 <td><?php echo $orderProduct->getProduct()->name; ?></td>
                 <td><?php echo sprintf('$%.2f/%s', $orderProduct->getProduct()->price, ($orderProduct->getProduct()->getUnit()->abbreviation == 'ea' ? '' : $orderProduct->getProduct()->getUnit()->abbreviation)); ?></td>
                 <td><input type="text" name="amount[<?php echo $orderProduct->getProduct()->id; ?>]" value="<?php echo $orderProduct->amount; ?>" /></td>
                 <td><?php echo sprintf('$%.2f', ($orderProduct->getProduct()->price * $orderProduct->amount)); ?></td>
-                <td>
-                    <a href="/cart/remove/id/<?php echo $orderProduct->getProduct()->id; ?>">Remove from Cart</a>
-                </td>
-                
+                <td><a href="/cart/remove/id/<?php echo $orderProduct->getProduct()->id; ?>">Remove from Cart</a></td>
             </tr>
-        <?php  
-                 
-                }
-            } else {
-                echo '<p>Your cart is empty.</p>';
-            } 
-        ?>
-        <tr><td>Total</td><td></td><td><input type="submit" name="submit" value="Update Totals" /></td><td><?php echo sprintf('$%.2f', $total); ?></td><td><a href="/cart/empty">Empty Your Cart</a></td></tr>
+            <?PHP } ?>
+        <?PHP } else { ?>
+            <tr><td colspan="5">Your cart is currently empty!</td></tr>        
+        <?PHP } ?> 
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td><input type="submit" name="submit" value="Update Totals" /></td>
+            <td><?php echo sprintf('$%.2f', $total); ?></td>
+            <td><a href="/cart/empty">Empty Your Cart</a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="submit" name="submit" value="Checkout" /></td>
+        </tr>
     </table>
-    <input type="submit" name="submit" value="Checkout" />
     </form>
 </div>

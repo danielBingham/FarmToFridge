@@ -11,7 +11,7 @@ class ProductController extends Zend_Controller_Action {
         
         $paginator = new Zend_Paginator(new Application_Service_Paginator_Adapter_Product_All($order));
         $paginator->setCurrentPageNumber($page);
-        $paginator->setItemCountPerPage(16); 
+        $paginator->setItemCountPerPage(8); 
 
         $this->view->paginator = $paginator;
     }

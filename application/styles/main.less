@@ -1,250 +1,95 @@
 
 
-a {
-    color: #317500;
-    text-decoration: none;
-}
+a { color: #317500; text-decoration: none; }
+
+table { margin: 0 auto; }
+td { padding: 5px 25px; text-align: center; }
+img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+
 .clear { clear: both; }
-.browser { 
-    width: 960px; 
-    margin: 0 auto;
-    padding: 0; 
-}
+.browser {  width: 960px; margin: 0 auto; padding: 0; }
 
 #header {
-
-    #titles {
-        float: left;
-    }
-
-    #navigation {
-        float: left;
-    }
-
-    #information {
-        float: right; 
-    }
-
-    #userControls {
-        float: right;
-    }
-
+    #titles { float: left; }
+    #navigation { float: left; }
+    #information { float: right; }
+    #userControls { float: right; }
     #search { 
-        //margin: 0 auto; 
-        text-align: center;
+        clear: both; padding: 10px; text-align: center;  
+        input {
+            margin: 5px; padding: 5px; 
+            &[type=text] { width: 400px; }
+            &[type=submit] { text-align: center; }
+        }
+        select { margin: 5px; padding: 5px; }
     }
-
 }
 
 #main {
-    margin: 50px auto;
-    font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif;
+    margin: 50px auto; font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif; #tagLegend { margin: 10px auto; text-align: center; }
 
-    #tagLegend {
-        margin: 10px auto;
-        text-align: center; 
-    }
-
-    .product {
-        position: relative;
-        width: 200px;
-        height: 290px;
-        padding: 0; 
-        margin: 20px;
-        float: left;
-        text-align: center;
-        -moz-border-radius: 10px; 
-        -khtml-border-radius: 10px; 
-        -webkit-border-radius: 10px; 
-        border-radius: 10px; 
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-        -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-        -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);       
-       
-        .name, .farm, .tags, .left, .right, .center{
-            background-color: white;
-            margin: 0;
-            color: #444444; 
-            //filter: alpha(opacity: 80); 
-            opacity: 0.80;
-        }
- 
-        .name {
-            clear: both; 
-            font-size: 13px;
-            height: 14px;
-            padding: 3px 0; 
-            -moz-border-radius-topright: 10px; 
-            -khtml-border-top-right-radius: 10px; 
-            -webkit-border-top-right-radius: 10px;
-             border-top-right-radius: 10px; 
-            -moz-border-radius-topleft: 10px; 
-            -khtml-border-top-left-radius: 10px; 
-            -webkit-border-top-left-radius: 10px; 
-            border-top-left-radius: 10px; 
-        }
-        .farm {
-            clear: both;
-            font-size: 10px;
-            height: 10px;
-            padding: 5px 0;
-        }
-
-        .tags {
-            clear: both;
-            height: 12px;
-            font-size: 12px;
-            margin-top:200px;
-            padding: 4px 0; 
-        }
-
-        .left {
-            position: absolute; 
-            bottom: 0; 
-            width: 66px; 
-            height: 30px; 
-            text-align: center; 
-            -moz-border-radius-bottomleft: 10px; 
-            -khtml-border-bottom-left-radius: 10px; 
-            -webkit-border-bottom-left-radius: 10px; 
-            border-bottom-left-radius: 10px; 
-
-            .text {
-                margin-top: 5px; 
-                font-size: 12px;
+    .inner { 
+        width: 1024px; margin: 0 auto;        
+        .product {
+            float: left; position: relative; width: 200px; height: 290px; padding: 0; margin: 20px; text-align: center;
+            -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5); -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5); -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);           
+            .name, .farm, .tags, .left, .right, .center { background-color: white; margin: 0; color: #444444; opacity: 0.80; }
+            .name {
+                clear: both; height: 14px; padding: 3px 0; font-size: 13px;
+                -moz-border-radius-topright: 10px; -khtml-border-top-right-radius: 10px;
+                -webkit-border-top-right-radius: 10px; border-top-right-radius: 10px;
+                -moz-border-radius-topleft: 10px; -khtml-border-top-left-radius: 10px;
+                -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px;
             }
-        }
-        .center {
-            position: absolute; 
-            bottom: 0; 
-            left: 66px; 
-            width: 68px; 
-            height: 30px; 
-            text-align: center; 
-            .text {
-                margin-top: 5px; 
-                font-size: 12px;
+            .farm { clear: both; font-size: 10px; height: 10px; padding: 5px 0; }
+            .tags { clear: both; height: 12px; font-size: 12px; margin-top:200px; padding: 4px 0; }
+            .left {
+                position: absolute; bottom: 0; width: 66px; height: 30px; text-align: center;
+                -moz-border-radius-bottomleft: 10px; -khtml-border-bottom-left-radius: 10px;
+                -webkit-border-bottom-left-radius: 10px; border-bottom-left-radius: 10px;
+                .text { margin-top: 5px; font-size: 12px; }
             }
-        }
-
-        .right {
-            position: absolute; 
-            bottom: 0; 
-            left: 134px; 
-            width: 66px; 
-            height: 30px; 
-            text-align: center; 
-            -moz-border-radius-bottomright: 10px; 
-            -khtml-border-bottom-right-radius: 10px; 
-            -webkit-border-bottom-right-radius: 10px; 
-            border-bottom-right-radius: 10px; 
-            .text {
-                margin-top: 1px; 
-                font-size: 12px;
+            .center {
+                position: absolute; bottom: 0; left: 66px; width: 68px; height: 30px; text-align: center;
+                .text { margin-top: 5px; font-size: 12px; }
+            }
+            .right {
+                position: absolute; bottom: 0; left: 134px; width: 66px; height: 30px; text-align: center;
+                -moz-border-radius-bottomright: 10px; -khtml-border-bottom-right-radius: 10px;
+                -webkit-border-bottom-right-radius: 10px; border-bottom-right-radius: 10px;
+                .text { margin-top: 1px; font-size: 12px; }
             }
         }
     }
-
-    #growerDashboard {
-        .name { 
-            display: inline-block;
-            float: left;
-            margin-left: 50px;
-        }
-        .productControls {
-            display: inline-block;
-            float: right;
-            margin-right: 50px;
-        }
-        .products { 
-            clear: both;
-            margin: 10px auto;
-            width: 1000px;
-            td {
-                padding: 5px;
-            }
-            .columns {
-                font-weight: bold;
-            }
-        }
-
-    }
-
-    #productEdit {
-        width: 1000px;
-        margin: 0 auto;
-        input {
-            margin: 5px;
-            padding: 5px;
-            &[type=text] {
-                width: 600px;
-            }
-            &[type=submit] {
-                display: block;
-                margin: 10px auto;
-                text-align: center;
-            }
-        }
-        textarea {
-            margin: 5px;
-            padding: 5px;
-            width: 600px;
-            height: 200px;
-        }
-        select {
-            margin: 5px;
-            padding: 5px;
-            &[multiple=multiple] {
-                height: 150px;
-            }
-        }
-        label {
-            display: inline-block;
-            margin: 5px;
-            width: 200px;
-            padding: 5px;
-            vertical-align: top;
-        }
-        
-    }
-
     .formWrapper {
-
-        width: 1000px;
-        margin: 0 auto;
+        width: 1000px; margin: 0 auto; 
         input {
-            margin: 5px;
-            padding: 5px;
-            &[type=text] {
-                width: 600px;
-            }
-            &[type=submit] {
-                display: block;
-                margin: 10px auto;
-                text-align: center;
-            }
+            margin: 5px; padding: 5px; 
+            &[type=text] { width: 600px; }
+            &[type=password] { width: 600px; } 
+            &[type=submit] { display: block; margin: 10px auto; text-align: center; }
         }
-        textarea {
-            margin: 5px;
-            padding: 5px;
-            width: 600px;
-            height: 200px;
+        textarea {margin: 5px; padding: 5px; width: 600px; height: 200px; }
+        select { 
+            margin: 5px; padding: 5px; 
+            &[multiple=multiple] { height: 150px; }
         }
-        select {
-            margin: 5px;
-            padding: 5px;
-            &[multiple=multiple] {
-                height: 150px;
-            }
+        label { display: inline-block; margin: 5px; width: 200px; padding: 5px; vertical-align: top; }
+    } 
+    #growerDashboard {
+        .name { display: inline-block; float: left; margin-left: 50px; }
+        .productControls { display: inline-block; float: right; margin-right: 50px; }
+        .products { 
+            clear: both; margin: 10px auto; width: 1000px; 
+            td { padding: 5px; }
+            .columns { font-weight: bold; }
         }
-        label {
-            display: inline-block;
-            margin: 5px;
-            width: 200px;
-            padding: 5px;
-            vertical-align: top;
-        }
-
-
+    }
+    #userLogin {
+        p { text-align: center; }
+    }
+    #cartView {
+        input[type=text] { width: 100px; }
     } 
 }

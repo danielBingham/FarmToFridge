@@ -1,6 +1,6 @@
-<div id="growerDashboard">
+<div id="growerDashboard" class="inner">
     <div class="controls">
-        <a href="/farm/edit">Add a Farm</a>
+        <a href="/farm/edit">Add a Farm</a> | 
         <a href="/grower/pending">View Pending Orders</a> ( <?php echo $this->ordersPending; ?> )
     </div>
     <div class="farms">
@@ -8,12 +8,13 @@
             <div class="farm">
                 <table class="products">
                     <tr class="header">
-                        <td colspan="2"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></a></th>
-                        <td colspan="2"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></th>
+                        <td colspan="3"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></a></th>
+                        <td colspan="3"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></th>
                     </tr>
-                    <tr class="columns"><td>Name</td><td>Amount Available</td><td>Price</td><td>Tags</td><td></td></tr>
+                    <tr class="columns"><td></td><td>Name</td><td>Amount Available</td><td>Price</td><td>Tags</td><td></td></tr>
                     <?php foreach($farm->getProducts() as $product) { ?>
                         <tr>
+                            <td><img src="<?php echo $product->getPrimaryProductImage()->getImageURL('small'); ?>" /></td>
                             <td><?php echo $product->name; ?></td>
                             <td><?php echo $product->amount; ?> <?php echo ($product->getUnit()->abbreviation == 'ea' ? '' : $product->getUnit()->abbreviation); ?></td>
                             <td><?php echo sprintf('%.2f / %s', $product->price, $product->getUnit()->abbreviation); ?></td>
@@ -25,8 +26,9 @@
                                     }
                                     echo $tags;
                                 ?>
+                            </td>
                             <td>
-                                <a href="/product/edit/id/<?php echo $product->id; ?>">Edit</a> 
+                                <a href="/product/edit/id/<?php echo $product->id; ?>">Edit</a>  |
                                 <a href="/product/delete/id/<?php echo $product->id; ?>">Delete</a> 
                             </td>
                         </tr>
