@@ -6,12 +6,19 @@
 */
 class Application_Service_Payment_Paypal {
     private $APIEndpoint = 'https://api-3t.sandbox.paypal.com/nvp';
-    private $APIUsername = ''; // Removed for commitment purposes.
+    private $APIUsername = ''; // Set from the configuration.
     private $APIPassword = ''; // Removed to commit
     private $APISignature = ''; // Removed to commit
     private $APIVersion = '86.0';
 
     private $response;
+
+    public function __construct() {
+        $config = new Application_Service_Configuration();
+        $this->_APIUsername = $config->get('paypal_username');
+        $this->APIPassword = $config->get('paypal_password'); 
+        $this->APISignature = $config->get('paypal_signature');
+    }
 
     // {{{ setExpressCheckout($amount, $successURL, $failureURL):           public void
 
@@ -42,6 +49,8 @@ class Application_Service_Payment_Paypal {
         curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $queryString);
 
         $this->response = $this->parseResponse(curl_exec($curlHandle));
+        var_dump($this->response);
+        die();
 
         curl_close($curlHandle);
     }
