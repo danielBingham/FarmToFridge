@@ -32,7 +32,7 @@ class PaypalController extends Zend_Controller_Action {
 
         $paypalService = new Application_Service_Payment_Paypal();
         $paypalService->setExpressCheckout($amount, '/paypal/success', '/paypal/cancel');
- 
+
         header('Location: https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . $paypalService->getToken());
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true); 
@@ -71,6 +71,7 @@ class PaypalController extends Zend_Controller_Action {
     }
 
     // }}}
+
 }
 
 ?>

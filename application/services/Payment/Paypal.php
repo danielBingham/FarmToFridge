@@ -13,12 +13,16 @@ class Application_Service_Payment_Paypal {
 
     private $response;
 
+    // {{{ __construct()
+
     public function __construct() {
         $config = new Application_Service_Configuration();
-        $this->_APIUsername = $config->get('paypal_username');
+        $this->APIUsername = $config->get('paypal_username');
         $this->APIPassword = $config->get('paypal_password'); 
         $this->APISignature = $config->get('paypal_signature');
     }
+
+    // }}}
 
     // {{{ setExpressCheckout($amount, $successURL, $failureURL):           public void
 
@@ -34,7 +38,6 @@ class Application_Service_Payment_Paypal {
                         . '&RETURNURL=' . urlencode('http://farmtofridge.test' . $successURL)
                         . '&CANCELURL=' . urlencode('http://farmtofridge.test' . $failureURL);
 
-
         $curlHandle = curl_init();
 
         curl_setopt($curlHandle, CURLOPT_URL, $this->APIEndpoint);
@@ -49,9 +52,6 @@ class Application_Service_Payment_Paypal {
         curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $queryString);
 
         $this->response = $this->parseResponse(curl_exec($curlHandle));
-        var_dump($this->response);
-        die();
-
         curl_close($curlHandle);
     }
 
