@@ -34,7 +34,6 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
 
     // }}}
 
-    // TODO: Delete needs to be rewritten to delete associations.
     // {{{ delete(Application_Model_Image $image):                        public void
 
     public function delete(Application_Model_Image $image) {
@@ -58,7 +57,6 @@ class Application_Model_Persistor_Image extends Application_Model_Persistor_Abst
     }
 
     // }}}
-
 
 }
 

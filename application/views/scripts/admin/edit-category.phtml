@@ -1,0 +1,13 @@
+<div id="adminEditCategory" class="inner formWrapper">
+
+    <form enctype="multipart/form-data" method="POST" action="/admin/edit-category">
+        <?PHP if($this->category->id) { ?>
+            <input type="hidden" name="id" value="<?PHP echo $this->category->id; ?>" /><br />
+        <?PHP } ?>
+        <label for="name">Name</label><input type="text" name="name" value="<?PHP echo $this->category->name; ?>" /><br />
+        <label for="image">Image</label><input type="file" name="image" /><br />
+        <input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
+        <input type="submit" value="Edit Category" />
+    </form>
+
+</div>

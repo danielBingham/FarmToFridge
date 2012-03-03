@@ -1,0 +1,15 @@
+<div id="adminCategories" class="inner formWrapper">
+    <table>
+        <?PHP foreach($this->categories as $category) { ?>
+            <tr>
+                <td><img src="<?PHP echo ($category->getPrimaryImage() ? $category->getPrimaryImage()->getImageURL('small') : ''); ?>" /></td>
+                <td><?PHP echo $category->name; ?></td>
+                <td><?PHP echo count($category->getProducts()); ?></td>
+                <td>
+                    <a href="/admin/edit-category/id/<?php echo $category->id; ?>">Edit</a>
+                    <a href="/admin/delete-category/id/<?php echo $category->id; ?>">Delete</a>
+                </tr>
+            </tr> 
+        <?PHP } ?>
+    </table>
+</div>
