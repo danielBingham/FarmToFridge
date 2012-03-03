@@ -93,8 +93,10 @@ INSERT INTO `users`
 				(3,'dbingham@theroadgoeson.com','340511c3c30e3e06e28257e6980af6e9',1);
 
 INSERT INTO `configurations`
-        VALUES (1, 'paypal_username', ''), /* blank for commitment purposes */
-                (2, 'paypal_password', ''), /* blank for commitment purposes */
-                (3, 'paypal_signature', ''), /* blank for commitment purposes */
-                (4, 'paypal_version', '86.0'),
-                (5, 'paypal_test', 'true');
+        VALUES (1, 'paypal_username', '', 'string'), /* blank for commitment purposes */
+                (2, 'paypal_password', '', 'string'), /* blank for commitment purposes */
+                (3, 'paypal_signature', '', 'string'), /* blank for commitment purposes */
+                (4, 'paypal_version', '86.0', 'string'),
+                (5, 'paypal_test', 'true', 'boolean'),
+                (6, 'register_customerRequreMembershipFee', 'true', 'boolean'),
+                (7, 'register_customerMembershipFee', '', 'float');

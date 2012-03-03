@@ -96,6 +96,16 @@ CREATE TABLE `product_images` (
     KEY `productID` (`productID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+CREATE TABLE `category_images` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `imageID` int unsigned,
+    `categoryID` int unsigned,
+    `main` tinyint,
+    PRIMARY KEY (`id`),
+    KEY `imageID` (`imageID`),
+    KEY `categoryID` (`categoryID`) 
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
+
 CREATE TABLE `tags` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255),
@@ -116,7 +126,9 @@ CREATE TABLE `product_tags` (
 CREATE TABLE `configurations` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255),
+    `displayName` varchar(255),
     `value` varchar(1024),
+    `type` varchar(255),
     PRIMARY KEY (`id`),
     KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
