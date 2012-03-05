@@ -7,6 +7,7 @@
  
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.Jcrop.js"></script>
+    <script tytpe="text/javascript" src="/js/main.js"></script>
     <?php if(isset($this->js)) { ?>
          <?php foreach($this->js as $script) { ?>
                 <script type="text/javascript" src="/js/<?php echo $script; ?>.js"></script>
@@ -56,8 +57,26 @@
     </div>
 
     <div id="navigation"> 
-        <a href="/product/browse">Browse Products</a> |
-        <a href="/farm/browse">Browse Farms</a>
+        <div id="js-fail"> 
+            <a href="/">Home</a> | 
+            <a href="/product/browse">Browse Products</a> |
+            <a href="/farm/browse">Browse Farms</a>
+        </div>
+        <!-- This will default to hidden and only be shown if the user has javascript enabled. -->
+        <div id="openmenu"><a href="" id="browse-button" >Browse By <img src="/img/arrow_down.png" /></a></div>
+        <div id="closemenu"><a href="" id="browse-button" >Browse By <img src="/img/arrow_up_white.png" /></a></div>
+        <div id="menu">
+            <div id="menu-top">
+                <a href="/">Browse Categories</a><br />
+                <a href="/product/browse">Browse Products</a><br />
+                <a href="/farm/browse">Browse Farms</a><br />
+            </div>
+            <div id="menu-categories">
+                <?PHP foreach(Application_Model_Query_Category::getInstance()->fetchAll() as $category) { ?>
+                    <a href="/product/browse/category/<?PHP echo $category->id; ?>"><?PHP echo $category->name; ?></a><br />
+                <?PHP } ?>
+            </div>
+        </div>
     </div>
     
     <div id="search">
@@ -75,6 +94,7 @@
 </div>
 <div id="main">
     <?php echo $this->layout()->content; ?>
+    <div class="clear"></div>
 </div>
 <div id="footer" >
 </div>

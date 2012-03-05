@@ -1,5 +1,5 @@
 
-
+body { min-width: 1024px; }
 a { color: #317500; text-decoration: none; }
 
 table { margin: 0 auto; }
@@ -11,7 +11,27 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
 
 #header {
     #titles { float: left; }
-    #navigation { float: left; }
+    #navigation { 
+        float: left; margin-top: 3px; 
+
+        #openmenu { display: none; padding: 10px; }
+        #closemenu {
+            display: none; padding: 10px; z-index: 99; background-color: #317500; color: white; 
+            -moz-border-radius-topleft: 10px; -khtml-border-top-left-radius: 10px;
+            -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px;
+            -moz-border-radius-topright: 10px; -khtml-border-top-right-radius: 10px;
+            -webkit-border-top-right-radius: 10px; border-top-right-radius: 10px;
+            a { color: white; }
+        }
+        #menu {
+            display: none; position: absolute; padding: 10px; z-index: 100;
+            top: 63px; left: 3px; background-color: white;
+            -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5); -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5); -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            #menu-top { padding: 10px; border-bottom: thin solid #C0C0C0; }
+            #menu-categories { padding: 10px; }
+        }
+    }
     #information { float: right; }
     #userControls { float: right; }
     #search { 
@@ -26,8 +46,9 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
 }
 
 #main {
-    margin: 50px auto; font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif; #tagLegend { margin: 10px auto; text-align: center; }
-
+   margin-top: 50px; font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif;  width: 110%;
+    
+    #tagLegend { margin: 10px auto; text-align: center; }
     .inner { 
         width: 1024px; margin: 0 auto;        
         .product {
@@ -77,6 +98,9 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
         }
         label { display: inline-block; margin: 5px; width: 200px; padding: 5px; vertical-align: top; }
     } 
+    #cartView {
+        input[type=text] { width: 100px; }
+    } 
     #growerDashboard {
         .name { display: inline-block; float: left; margin-left: 50px; }
         .productControls { display: inline-block; float: right; margin-right: 50px; }
@@ -86,10 +110,12 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
             .columns { font-weight: bold; }
         }
     }
+    #growerPending {
+        .order {
+            padding: 10px; border-top: thin solid #C0C0C0;
+        }         
+    }
     #userLogin {
         p { text-align: center; }
     }
-    #cartView {
-        input[type=text] { width: 100px; }
-    } 
 }
