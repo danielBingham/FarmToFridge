@@ -43,5 +43,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			Zend_Registry::set('config', $config);
 	}
 
+    // Explicitly start the session.
+    public function _initSession() {
+        Zend_Session::start();
+    }
+
 }
 

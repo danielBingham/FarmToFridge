@@ -31,7 +31,7 @@ class Application_Service_Translator_Product {
         $product->amount = $post['amount'];
         $product->unitID = $post['unit'];
 
-        if(!$this->parseTags($product, $post['tags'])) {
+        if(!empty($post['tags']) && !$this->parseTags($product, $post['tags'])) {
             return false; 
         }
         return true;

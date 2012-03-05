@@ -17,7 +17,11 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
     // {{{ clear(Application_Model_Category $category):                            protected void
 
     protected function clear(Application_Model_Category $category) {
-       // TODO: write me? 
+        $persistor = new Application_Model_Persistor_CategoryImage(); 
+
+        foreach($category->getCategoryImages() as $categoryImage) {
+            $persistor->delete($categoryImage); 
+        } 
     }
 
     // }}}
@@ -38,6 +42,8 @@ class Application_Model_Persistor_Category extends Application_Model_Persistor_A
     // {{{ delete(Application_Model_Category $category):                        public void
 
     public function delete(Application_Model_Category $category) {
+        $this->clear($category); 
+
         parent::deleteRaw($category->id);
     }
 

@@ -2,27 +2,33 @@
     <div class="controls">
         <a href="/grower/dashboard">Back to Dashboard</a>
     </div>
-    <?php foreach($this->orders as $order) { ?>
+    <?PHP $totalSalesPending = 0; ?>
+    <?PHP foreach($this->orders as $order) { ?>
     <div class="order">
         <div class="customer">
-            <div class="email"><?php echo $order->getUser()->email; ?></div>
+            <div class="name"><?PHP echo $order->getUser()->name; ?></div> 
+            <div class="email"><?PHP echo $order->getUser()->email; ?></div>
+            <div class="phone"><?PHP echo $order->getUser()->phone; ?></div> 
         </div>
         <table class="products">
             <tr><td>Product Name</td><td>Amount Ordered</td><td>Price</td><td>Total Sale for this Product</td></tr>
-        <?php 
+        <?PHP 
             foreach($order->getOrderProducts() as $orderProduct) { 
                 if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
                     continue;
                 }
         ?>
                 <tr>
-                    <td><?php echo $orderProduct->getProduct()->name; ?></td>
-                    <td><?php echo $orderProduct->amount; ?></td>
+                    <td><?PHP echo $orderProduct->getProduct()->name; ?></td>
+                    <td><?PHP echo $orderProduct->amount; ?></td>
                     <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
                     <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price*$orderProduct->amount); ?></td>
                 </tr>
-        <?php } ?>
+        <?PHP } ?>
+            <?PHP $totalSalesPending += $order->getTotal(); ?>
             <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $order->getTotal()); ?></td></tr>
         </table>
-    <?php } ?>
+    </div>
+    <?PHP } ?>
+    <div id="totalSold">Total Sales for this Cycle: <?PHP echo sprintf('$%.2f', $totalSalesPending); ?></div>
 </div>
