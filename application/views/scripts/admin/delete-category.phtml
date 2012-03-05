@@ -1,0 +1,13 @@
+<div id="adminDeleteCategory" class="inner formWrapper">
+    <p>Please select a new category for the deleted category's products.</p>
+    <form method="POST" action="/admin/delete-category/id/<?PHP echo $this->category->id; ?>">
+        <select name="category">
+            <?PHP foreach($this->categories as $category) { ?>
+                <option value="<?PHP echo $category->id; ?>"><?PHP echo $category->name; ?></option>
+            <?PHP } ?>
+        </select><br />
+        <input type="submit" value="Delete Category" />
+    </form>
+
+
+</div>

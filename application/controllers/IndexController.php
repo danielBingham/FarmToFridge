@@ -3,16 +3,14 @@
 class IndexController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
-        
+    // {{{ indexAction()
+
+    public function indexAction()  {
+        $this->view->categories = Application_Model_Query_Category::getInstance()->fetchAll(); 
+
     }
 
-    public function indexAction()
-    {
-        $this->_forward('browse', 'product'); 
-    }
-
+    // }}}
 
 }
 

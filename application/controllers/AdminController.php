@@ -74,7 +74,7 @@ class AdminController extends Zend_Controller_Action {
                     return $this->_helper->redirector('crop-category', 'admin', null, 
                         array('image'=>$imageUploader->getImage()->id, 'category'=>$category->id));
                 } else {
-                    //return $this->_helper->redirector('categories');
+                    return $this->_helper->redirector('categories');
                 }
             }
         } 
@@ -137,7 +137,36 @@ class AdminController extends Zend_Controller_Action {
         if(empty($id)) {
             throw new RuntimeException('You must provide the id of the category you wish to delete.');
         }
-    }
+        
+        $category = Application_Model_Query_Category::getInstance()->get($id);
+        if($category === null) {
+            throw new RuntimeException('You must provide the id of a valid category to delete.');
+        } 
+
+        if($this->getRequest()->isPost()) { 
+            // FIXME This is going to be a ton of DB hits, but we
+            // could easily do this with a single DB hit and a single
+            // 'update' statement.
+            // TODO Wrap this in a service that calls SQL to update
+            // this more directly.  Where should the SQL be?  Persistor?
+            // Mapper?
+            $post = $this->getRequest()->getPost();
+            $persistor = new Application_Model_Persistor_Product(); 
+            foreach($category->getProducts() as $product) {
+                $product->categoryID = $post['category']; 
+                $persistor->save($product);
+            }
+            unset($persistor);
+
+            $persistor = new Application_Model_Persistor_Category();
+            $persistor->delete($category);
+
+            $this->_helper->redirector('categories');
+        }
+        
+        $this->view->category = $category;
+        $this->view->categories = Application_Model_Query_Category::getInstance()->fetchAll();
+     }
 
     // }}}
 }

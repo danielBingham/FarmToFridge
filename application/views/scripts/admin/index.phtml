@@ -1,11 +1,16 @@
-<div id="adminIndex">
+
+<?PHP echo $this->partial('admin_controls.phtml'); ?>
+<div id="adminIndex" class="inner formWrapper">
     <form method="POST" action="/admin"> 
-    <table id="configuration">
-    <?php foreach($this->configurations as $config) { ?>
-        <tr><td><?php echo $config->name; ?></td><td><input type="text" name="<?php echo $config->name; ?>" value="<?php echo $config->value; ?>"</td></tr>
-    <?php } ?>
-    </table>
-    <input type="submit" value="Change Configuration" />
+        <table id="configuration">
+        <?php foreach($this->configurations as $config) { ?>
+            <tr>
+                <td><?php echo $config->name; ?></td>
+                <td><input type="text" name="<?php echo $config->name; ?>" value="<?php echo $config->value; ?>"</td>
+            </tr>
+        <?php } ?>
+        </table>
+        <input type="submit" value="Change Configuration" />
     </form>
 
 

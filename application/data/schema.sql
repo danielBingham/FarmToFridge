@@ -11,7 +11,10 @@ CREATE TABLE `farms` (
 CREATE TABLE `users` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `email` varchar(255),
-    `password` varchar(32),
+    `password` varchar(64),
+    `name` varchar(255),
+    `address` varchar(1024),
+    `phone` varchar(16),
     `isGrower` tinyint,
     `isAdmin` tinyint,
     PRIMARY KEY (`id`),

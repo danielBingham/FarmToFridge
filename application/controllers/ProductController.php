@@ -6,10 +6,15 @@ class ProductController extends Zend_Controller_Action {
     // {{{ browseAction()
 
     public function browseAction() {
+        $category = $this->getRequest()->getParam('category', null);
         $page = $this->getRequest()->getParam('page', 1);
         $order = $this->getRequest()->getParam('order', 'name');
-        
-        $paginator = new Zend_Paginator(new Application_Service_Paginator_Adapter_Product_All($order));
+       
+        if($category === null) { 
+            $paginator = new Zend_Paginator(new Application_Service_Paginator_Adapter_Product_All($order));
+        } else {
+            $paginator = new Zend_Paginator(new Application_Service_Paginator_Adapter_Product_ByCategory($category, $order));
+        }
         $paginator->setCurrentPageNumber($page);
         $paginator->setItemCountPerPage(8); 
 

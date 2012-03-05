@@ -1,33 +1,28 @@
-<div id="tagLegend">
-    <?php foreach(Application_Model_Query_Tag::getInstance()->fetchAll() as $tag) { ?>
-        <span class="tag"><?php echo $tag->name; ?> = <?php echo $tag->symbol; ?></span>,
-    <?php } ?>
-</div>
-
 <div id="indexIndex" class="inner">
-
-    <?php foreach($this->products as $product) { ?>
-        <div class="product" 
-            style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $product->getPrimaryProductImage()->id . '.jpg'; ?>);
-                    background-repeat: no-repeat;
-                    background-position: 0px 40px;"> 
-            <div class="name"><a href="/product/view/id/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></div>
-            <div class="farm">from <a href="/farm/view/id/<?php echo $product->getFarm()->id; ?>"><?php echo $product->getFarm()->name; ?></a></div>
-            <div class="tags">
-                <?php foreach($product->getProductTags() as $productTag) { ?>
-                <span class="tag"><?php echo $productTag->getTag()->symbol; ?></span>
-                <?php } ?>
-            </div> 
-            <div class="left">
-                <p class="text"><?php printf("$%.2f", $product->price); ?></p>
+    <div class="browser">
+        <?php foreach($this->categories as $category) { ?>
+            <div class="product" 
+                <?PHP if($category->getPrimaryImage()) { ?>
+                style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $category->getPrimaryImage()->id . '.jpg'; ?>);
+                        background-repeat: no-repeat;
+                        background-position: 0px 40px;"
+                <?PHP } ?>
+                > 
+                <div class="name"><a href="/product/browse/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></div>
+                <div class="farm"></div>
+                <div class="tags">
+                </div> 
+                <div class="left">
+                    <p class="text"></p>
+                </div>
+                <div class="center">
+                    <p class="text"><?php echo count($category->getProducts()); ?> products</p>
+                </div>
+                <div class="right">
+                    <p class="text"></a>
+                </div>
             </div>
-            <div class="center">
-                <p class="text"><?php echo $product->amount; ?></p>
-            </div>
-            <div class="right">
-                <p class="text"><a href="/buyer/addtocart"><img src="/img/addtocart.png" width="24" height="24" /></a>
-            </div>
-        </div>
-    <?php } ?>
-
+        <?php } ?>
+    </div>
+    <div class="clear"></div>
 </div>

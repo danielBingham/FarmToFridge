@@ -11,10 +11,12 @@
             foreach($this->paginator as $product) {
                 echo $this->partial('product_partial.phtml', array('product'=>$product));
             }
+        ?>
+        <div class="clear"></div>
+        <?PHP 
             echo $this->paginationControl($this->paginator,
                                     'Sliding',
                                     'pagination_controls.phtml');
         ?>
-        <div class="clear"></div>
     </div>
 </div>
