@@ -1,0 +1,57 @@
+<div id="growerControls">
+    <ul>
+    <li><a href="/grower/dashboard">Dashboard</a></li>
+    <li><a href="/farm/edit">Add a New Farm</a></li>
+    <li>
+        <a href="/grower/orders">View Orders</a>
+        <ul>
+            <li><a href="/grower/orders/state/confirmed">Confirmed</a></li>
+            <li><a href="/grower/orders/state/paid">Paid</a></li>
+            <li><a href="/grower/orders/state/assembled">Assembled</a></li>
+            <li><a href="/grower/orders/state/filled">Filled</a></li>
+        </ul>
+    </li>
+    </ul> 
+</div>
+<div id="growerOrders">
+    <?PHP if(!isset($this->state)) { ?>
+        <table>
+        <tr><td>State</td><td>Order Count</td></tr>
+        <tr><td>Pending</td><td><?PHP echo $this->pending; ?></td></tr>
+        <tr><td>Assembled</td><td><?PHP echo $this->assembled; ?></td></tr>
+        <tr><td>Filled</td><td><?PHP echo $this->filled; ?></td></tr>
+        </table>
+    <?PHP } else  { ?>
+        <?PHP $totalSales = 0; ?>
+        <?PHP foreach($this->orders as $order) { ?>
+        <div class="order">
+            <div class="customer">
+                <div class="name"><?PHP echo $order->getUser()->name; ?></div> 
+                <div class="email"><?PHP echo $order->getUser()->email; ?></div>
+                <div class="phone"><?PHP echo $order->getUser()->phone; ?></div> 
+            </div>
+            <table class="products">
+                <tr><td>Product Name</td><td>Amount Ordered</td><td>Price</td><td>Total Sale for this Product</td></tr>
+            <?PHP 
+                foreach($order->getOrderProducts() as $orderProduct) { 
+                    if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
+                        continue;
+                    }
+            ?>
+                    <tr>
+                        <td><?PHP echo $orderProduct->getProduct()->name; ?></td>
+                        <td><?PHP echo $orderProduct->amount; ?></td>
+                        <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
+                        <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price*$orderProduct->amount); ?></td>
+                    </tr>
+            <?PHP } ?>
+                <?PHP $totalSales += $order->getTotal(); ?>
+                <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $order->getTotal()); ?></td></tr>
+            </table>
+        </div>
+        <?PHP } ?>
+        <div id="totalSold">Total sales <?PHP echo $this->state; ?>: <?PHP echo sprintf('$%.2f', $totalSales); ?></div>
+    <?PHP } ?> 
+
+
+</div>
