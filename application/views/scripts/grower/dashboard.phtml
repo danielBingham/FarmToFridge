@@ -1,8 +1,21 @@
+<div id="growerControls">
+    <ul>
+    <li><a href="/grower/dashboard">Dashboard</a></li>
+    <li><a href="/farm/edit">Add a New Farm</a></li>
+    <li>
+        <a href="/grower/orders">View Orders</a>
+        <ul>
+            <li><a href="/grower/orders/state/confirmed">Confirmed</a></li>
+            <li><a href="/grower/orders/state/paid">Paid</a></li>
+            <li><a href="/grower/orders/state/assembled">Assembled</a></li>
+            <li><a href="/grower/orders/state/filled">Filled</a></li>
+        </ul>
+    </li>
+    </ul> 
+</div>
+
+
 <div id="growerDashboard" class="inner">
-    <div class="controls">
-        <a href="/farm/edit">Add a Farm</a> | 
-        <a href="/grower/pending">View Pending Orders</a> ( <?php echo $this->ordersPending; ?> )
-    </div>
     <div class="farms">
         <?php foreach($this->farms as $farm) { ?>
             <div class="farm">

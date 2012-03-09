@@ -14,16 +14,18 @@ class Application_Model_Query_Order extends Application_Model_Query_Abstract {
     protected $_model='Order';
     protected static $_instance;
 
-    // {{{ getPendingOrdersForGrower(Application_Model_User $grower):            array(Application_Model_Order)
+    // {{{ getOrdersForGrowerInState(Application_Model_User $grower, $state=null):            array(Application_Model_Order)
 
     /**
-    * Get orders that contain products that are offered by the grower
-    * passed as a parameter.  Returns a list of orders.
+    * Get an array of orders that contain a product of the grower.  An optional state
+    * may be passed (as either a single state or an array) to limit the orders to 
+    * only those in a certain state.
     *
     * @param Application_Model_Grower $grower The grower who's orders we want to find.
+    * @param string|array $state The state, or states, of the orders you wish returned.
     * @return array(Application_Model_Order) The orders that contain $grower's products.
     */
-    public function getPendingOrdersForGrower(Application_Model_User $grower) {
+    public function getOrdersForGrower(Application_Model_User $grower, $state=null) {
         $db = Zend_Db_Table::getDefaultAdapter();
         
         $sql = 'SELECT DISTINCT orders.*
@@ -31,9 +33,20 @@ class Application_Model_Query_Order extends Application_Model_Query_Abstract {
                         JOIN (order_products, products, farms)
                             ON (orders.id = order_products.orderID 
                                 AND order_products.productID = products.id
-                                AND products.farmID = farms.id)
-                    WHERE farms.userID = ? AND orders.confirmed=1 AND orders.filled=0';
-        $results = $db->fetchAll($db->quoteInto($sql, $grower->id));
+                                AND products.farmID = farms.id) '
+                    . $db->quoteInto('WHERE farms.userID = ?', $grower->id);
+        if(!is_array($state)) { 
+            $sql .= ' AND ' . $db->quoteInto('orders.state = ?', $state);
+        } else {
+            $stateConditions = '(';
+            foreach($state as $s) {
+                 $stateConditions .= ($stateConditions == '(' ? '' : ' OR ') . $db->quoteInto('orders.state=?', $s);
+            }  
+            $stateConditions .= ')';
+            $sql .= ' AND ' . $stateConditions;
+        }
+
+        $results = $db->fetchAll($sql);
         
         $orders = array();
         foreach($results as $orderRow) {

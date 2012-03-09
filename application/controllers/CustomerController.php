@@ -58,8 +58,7 @@ class CustomerController extends Zend_Controller_Action {
         
         $this->view->pendingOrder = Application_Model_Query_Order::getInstance()->findOne(array(
                                                         'userID'=>Zend_Auth::getInstance()->getIdentity()->id,
-                                                        'confirmed'=>1,
-                                                        'filled'=>0));
+                                                        'state'=>Application_Model_Order::STATE_PAID));
     }
 
     // }}}

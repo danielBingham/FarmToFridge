@@ -56,8 +56,7 @@ CREATE TABLE `orders` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `userID` int unsigned,
     `orderedOn` datetime,
-    `confirmed` tinyint DEFAULT 0,
-    `filled` tinyint DEFAULT 0,
+    `state` ENUM('unconfirmed', 'confirmed', 'paid', 'assembled', 'filled'), 
     PRIMARY KEY (`id`),
     KEY `userID` (`userID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;

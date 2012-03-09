@@ -6,6 +6,12 @@ class Application_Model_Order extends Application_Model_Abstract {
     private $_orderProducts;
     private $_user;
 
+    const STATE_UNCONFIRMED = 'unconfirmed';
+    const STATE_CONFIRMED = 'confirmed';
+    const STATE_PAID = 'paid';
+    const STATE_ASSEMBLED = 'assembled';
+    const STATE_FILLED = 'filled';
+
     // {{{ getTotal():                                                      public float
 
     /**
@@ -24,7 +30,7 @@ class Application_Model_Order extends Application_Model_Abstract {
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('Order', array('id', 'userID', 'orderedOn', 'confirmed', 'filled'), $lazy); 
+        parent::__construct('Order', array('id', 'userID', 'orderedOn', 'state'), $lazy); 
     }
 
     // }}}
@@ -34,6 +40,11 @@ class Application_Model_Order extends Application_Model_Abstract {
         if($name == 'orderedOn') {
             if(!($value instanceof Zend_Date)) {
                 throw new RuntimeException('OrderedOn must be an instance of Zend_Date!');
+            }
+        }
+        if($name == 'state') {
+            if(!in_array($value, array(self::STATE_UNCONFIRMED, self::STATE_CONFIRMED, self::STATE_PAID, self::STATE_ASSEMBLED, self::STATE_FILLED))) {
+                throw new RuntimeException('That is not a valid order state!');
             }
         }
         parent::__set($name, $value);
