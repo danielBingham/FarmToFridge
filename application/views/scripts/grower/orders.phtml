@@ -50,6 +50,11 @@
             </table>
         </div>
         <?PHP } ?>
+        <?PHP 
+            echo $this->paginationControl($this->orders,
+                                    'Sliding',
+                                    'pagination_controls.phtml');
+        ?>
         <div id="totalSold">Total sales <?PHP echo $this->state; ?>: <?PHP echo sprintf('$%.2f', $totalSales); ?></div>
     <?PHP } ?> 
 
