@@ -14,7 +14,7 @@ class Application_Model_Query_Product extends Application_Model_Query_Abstract {
                     FROM order_products
                         JOIN orders
                             ON order_products.orderID = orders.id
-                    WHERE orders.filled = 0 AND orders.confirmed = 1 AND order_products.productID = ?';
+                    WHERE (orders.state="confirmed" OR orders.state="paid") AND order_products.productID = ?';
 
         $amountOrdered = $db->fetchOne($db->quoteInto($sql, $product->id));
         return $product->amount - $amountOrdered;
