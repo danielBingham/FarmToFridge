@@ -7,15 +7,20 @@ td { padding: 5px 25px; text-align: center; }
 img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
 
 .clear { clear: both; }
-.browser {  width: 960px; margin: 0 auto; padding: 0; }
 
 #header {
-    #titles { float: left; }
-    #navigation { 
-        float: left; margin-top: 3px; 
-
-        #openmenu { display: none; padding: 10px; }
-        #closemenu {
+    #upperHeader { 
+        clear: both; 
+        
+        #title { float: left; padding: 50px; }
+        #description { float: right; width: 500px; }
+    }
+   
+    #lowerHeader {
+        clear: both; 
+ 
+        .open-menu { display: none;  padding: 10px; }
+        .close-menu {
             display: none; padding: 10px; z-index: 99; background-color: #317500; color: white; 
             -moz-border-radius-topleft: 10px; -khtml-border-top-left-radius: 10px;
             -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px;
@@ -23,17 +28,19 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
             -webkit-border-top-right-radius: 10px; border-top-right-radius: 10px;
             a { color: white; }
         }
-        #menu {
+        .menu {
             display: none; position: absolute; padding: 10px; z-index: 100;
             top: 63px; left: 3px; background-color: white;
             -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
             box-shadow: 5px 5px 10px rgba(0,0,0,0.5); -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5); -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-            #menu-top { padding: 10px; border-bottom: thin solid #C0C0C0; }
-            #menu-categories { padding: 10px; }
+            .menu-section { padding: 10px; border-bottom: thin solid #C0C0C0; }
+            .menu-bottom { padding: 10px; }
         }
+        #navigation { float: left; margin-top: 3px; }
+        #cart { float: right; }
+        #grower { float: right; }
+        #account { float: right; }
     }
-    #information { float: right; }
-    #userControls { float: right; }
     #search { 
         clear: both; padding: 10px; text-align: center;  
         input {
@@ -46,11 +53,12 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
 }
 
 #main {
-   margin-top: 50px; font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif;  width: 110%;
+   width: 1024px; margin: 50px auto; font: normal 14px 'Lucida Grande',Verdana,Arial,sans-serif;  
+
     
     #tagLegend { margin: 10px auto; text-align: center; }
-    .inner { 
-        width: 1024px; margin: 0 auto;        
+    .browser { 
+        width: 960px; margin: 0 auto;  padding: 0;       
         .product {
             float: left; position: relative; width: 200px; height: 290px; padding: 0; margin: 20px; text-align: center;
             -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
@@ -84,7 +92,6 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
         }
     }
     .formWrapper {
-        width: 1000px; margin: 0 auto; 
         input {
             margin: 5px; padding: 5px; 
             &[type=text] { width: 600px; }
@@ -98,19 +105,32 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
         }
         label { display: inline-block; margin: 5px; width: 200px; padding: 5px; vertical-align: top; }
     } 
+    .viewPanel {
+        float: left; width: 800px;
+        &.formWrapper {
+            input { 
+                &[type=text] { width: 500px; }
+                &[type=password] { width: 500px; } 
+            }
+            textarea { width: 500px; }
+        }
+    }
     #cartView {
         input[type=text] { width: 100px; }
     } 
+    #growerControls { float: left; width: 200px; }
+    #adminControls { float: left; width: 200px; }
     #growerDashboard {
         .name { display: inline-block; float: left; margin-left: 50px; }
         .productControls { display: inline-block; float: right; margin-right: 50px; }
         .products { 
-            clear: both; margin: 10px auto; width: 1000px; 
+            clear: both; margin: 10px auto; width: 750px; 
             td { padding: 5px; }
             .columns { font-weight: bold; }
         }
     }
-    #growerPending {
+    #growerOrders {
+        float: left; width: 800px;
         .order {
             padding: 10px; border-top: thin solid #C0C0C0;
         }         

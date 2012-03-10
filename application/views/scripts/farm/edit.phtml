@@ -1,4 +1,6 @@
-<div id="farmEdit" class="inner formWrapper">
+
+<?PHP echo $this->partial('grower_controls_partial.phtml'); ?>
+<div id="farmEdit" class="viewPanel formWrapper">
 
     <form method="POST" action="/farm/edit<?php echo ($this->farm->id ? '/id/' . $this->farm->id : ''); ?>">
         <label for="name">Farm Name</label><input type="text" name="name" value="<?php echo $this->farm->name; ?>" /><br />

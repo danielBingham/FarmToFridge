@@ -1,4 +1,6 @@
-<div id="productEdit" class="inner formWrapper">
+
+<?PHP echo $this->partial('grower_controls_partial.phtml'); ?>
+<div id="productEdit" class="viewPanel formWrapper">
     <form enctype="multipart/form-data" method="POST" action="/product/edit<?php echo ($this->product->id ? '/id/' . $this->product->id : '/farmID/' . $this->product->farmID); ?>">
         <label for="name">Name</label><input type="text" name="name" value="<?php echo $this->product->name; ?>" /><br />
         <label for="category">Category</label>

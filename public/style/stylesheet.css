@@ -21,23 +21,25 @@ img {
 .clear {
   clear: both;
 }
-.browser {
-  width: 960px;
-  margin: 0 auto;
-  padding: 0;
+#header #upperHeader {
+  clear: both;
 }
-#header #titles {
+#header #upperHeader #title {
   float: left;
+  padding: 50px;
 }
-#header #navigation {
-  float: left;
-  margin-top: 3px;
+#header #upperHeader #description {
+  float: right;
+  width: 500px;
 }
-#header #navigation #openmenu {
+#header #lowerHeader {
+  clear: both;
+}
+#header #lowerHeader .open-menu {
   display: none;
   padding: 10px;
 }
-#header #navigation #closemenu {
+#header #lowerHeader .close-menu {
   display: none;
   padding: 10px;
   z-index: 99;
@@ -52,10 +54,10 @@ img {
   -webkit-border-top-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-#header #navigation #closemenu a {
+#header #lowerHeader .close-menu a {
   color: white;
 }
-#header #navigation #menu {
+#header #lowerHeader .menu {
   display: none;
   position: absolute;
   padding: 10px;
@@ -71,17 +73,24 @@ img {
   -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
-#header #navigation #menu #menu-top {
+#header #lowerHeader .menu .menu-section {
   padding: 10px;
   border-bottom: thin solid #C0C0C0;
 }
-#header #navigation #menu #menu-categories {
+#header #lowerHeader .menu .menu-bottom {
   padding: 10px;
 }
-#header #information {
+#header #lowerHeader #navigation {
+  float: left;
+  margin-top: 3px;
+}
+#header #lowerHeader #cart {
   float: right;
 }
-#header #userControls {
+#header #lowerHeader #grower {
+  float: right;
+}
+#header #lowerHeader #account {
   float: right;
 }
 #header #search {
@@ -104,19 +113,20 @@ img {
   padding: 5px;
 }
 #main {
-  margin-top: 50px;
+  width: 1024px;
+  margin: 50px auto;
   font: normal 14px 'Lucida Grande', Verdana, Arial, sans-serif;
-  width: 110%;
 }
 #main #tagLegend {
   margin: 10px auto;
   text-align: center;
 }
-#main .inner {
-  width: 1024px;
+#main .browser {
+  width: 960px;
   margin: 0 auto;
+  padding: 0;
 }
-#main .inner .product {
+#main .browser .product {
   float: left;
   position: relative;
   width: 200px;
@@ -132,18 +142,18 @@ img {
   -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-#main .inner .product .name,
-#main .inner .product .farm,
-#main .inner .product .tags,
-#main .inner .product .left,
-#main .inner .product .right,
-#main .inner .product .center {
+#main .browser .product .name,
+#main .browser .product .farm,
+#main .browser .product .tags,
+#main .browser .product .left,
+#main .browser .product .right,
+#main .browser .product .center {
   background-color: white;
   margin: 0;
   color: #444444;
   opacity: 0.80;
 }
-#main .inner .product .name {
+#main .browser .product .name {
   clear: both;
   height: 14px;
   padding: 3px 0;
@@ -157,20 +167,20 @@ img {
   -webkit-border-top-left-radius: 10px;
   border-top-left-radius: 10px;
 }
-#main .inner .product .farm {
+#main .browser .product .farm {
   clear: both;
   font-size: 10px;
   height: 10px;
   padding: 5px 0;
 }
-#main .inner .product .tags {
+#main .browser .product .tags {
   clear: both;
   height: 12px;
   font-size: 12px;
   margin-top: 200px;
   padding: 4px 0;
 }
-#main .inner .product .left {
+#main .browser .product .left {
   position: absolute;
   bottom: 0;
   width: 66px;
@@ -181,11 +191,11 @@ img {
   -webkit-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-#main .inner .product .left .text {
+#main .browser .product .left .text {
   margin-top: 5px;
   font-size: 12px;
 }
-#main .inner .product .center {
+#main .browser .product .center {
   position: absolute;
   bottom: 0;
   left: 66px;
@@ -193,11 +203,11 @@ img {
   height: 30px;
   text-align: center;
 }
-#main .inner .product .center .text {
+#main .browser .product .center .text {
   margin-top: 5px;
   font-size: 12px;
 }
-#main .inner .product .right {
+#main .browser .product .right {
   position: absolute;
   bottom: 0;
   left: 134px;
@@ -209,13 +219,9 @@ img {
   -webkit-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-#main .inner .product .right .text {
+#main .browser .product .right .text {
   margin-top: 1px;
   font-size: 12px;
-}
-#main .formWrapper {
-  width: 1000px;
-  margin: 0 auto;
 }
 #main .formWrapper input {
   margin: 5px;
@@ -252,8 +258,29 @@ img {
   padding: 5px;
   vertical-align: top;
 }
+#main .viewPanel {
+  float: left;
+  width: 800px;
+}
+#main .viewPanel.formWrapper input[type=text] {
+  width: 500px;
+}
+#main .viewPanel.formWrapper input[type=password] {
+  width: 500px;
+}
+#main .viewPanel.formWrapper textarea {
+  width: 500px;
+}
 #main #cartView input[type=text] {
   width: 100px;
+}
+#main #growerControls {
+  float: left;
+  width: 200px;
+}
+#main #adminControls {
+  float: left;
+  width: 200px;
 }
 #main #growerDashboard .name {
   display: inline-block;
@@ -268,7 +295,7 @@ img {
 #main #growerDashboard .products {
   clear: both;
   margin: 10px auto;
-  width: 1000px;
+  width: 750px;
 }
 #main #growerDashboard .products td {
   padding: 5px;
@@ -276,7 +303,11 @@ img {
 #main #growerDashboard .products .columns {
   font-weight: bold;
 }
-#main #growerPending .order {
+#main #growerOrders {
+  float: left;
+  width: 800px;
+}
+#main #growerOrders .order {
   padding: 10px;
   border-top: thin solid #C0C0C0;
 }

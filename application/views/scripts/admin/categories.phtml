@@ -1,8 +1,8 @@
 
-<?PHP echo $this->partial('admin_controls.phtml'); ?>
-<div id="adminCategories" class="inner formWrapper">
+<?PHP echo $this->partial('admin_controls_partial.phtml'); ?>
+<div id="adminCategories" class="viewPanel formWrapper">
     <table>
-        <tr><td></td><td>Category Name</td><td>Number of Products</td><td></td></tr>
+        <tr><td></td><td>Category Name</td><td>Number of Products</td><td><a href="/admin/edit-category">Add Category</a></td></tr>
         <?PHP foreach($this->categories as $category) { ?>
             <tr>
                 <td><img src="<?PHP echo ($category->getPrimaryImage() ? $category->getPrimaryImage()->getImageURL('small') : ''); ?>" /></td>
@@ -14,6 +14,5 @@
                 </td>
             </tr> 
         <?PHP } ?>
-        <tr><td></td><td></td><td></td><td><a href="/admin/edit-category">Add Category</a></td></tr>
     </table>
 </div>

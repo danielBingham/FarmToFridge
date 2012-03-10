@@ -1,5 +1,4 @@
-<div id="indexIndex" class="inner">
-    <div class="browser">
+<div id="indexIndex" class="browser">
         <?php foreach($this->categories as $category) { ?>
             <div class="product" 
                 <?PHP if($category->getPrimaryImage()) { ?>
@@ -23,6 +22,11 @@
                 </div>
             </div>
         <?php } ?>
-    </div>
     <div class="clear"></div>
+    <?PHP 
+        echo $this->paginationControl($this->categories,
+                                'Sliding',
+                                'pagination_controls.phtml');
+    ?>
+
 </div>

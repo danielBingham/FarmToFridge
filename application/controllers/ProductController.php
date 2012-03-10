@@ -87,7 +87,7 @@ class ProductController extends Zend_Controller_Action {
                         return $this->_helper->redirector('crop', 'product', null, 
                             array('image'=>$imageUploader->getImage()->id, 'product'=>$product->id));
                     } else {
-                        return $this->_helper->redirector('view', 'product', null, array('id'=>$product->id));
+                        return $this->_helper->redirector('dashboard', 'grower');
                     }
                 }
             }

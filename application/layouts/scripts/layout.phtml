@@ -1,3 +1,4 @@
+<?PHP $session = new Zend_Session_Namespace('cart'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
@@ -15,69 +16,169 @@
     <?php } ?>
 </head>
 <body>
+<!-- {{{ <div id="header"> -->
 <div id="header">
-	<div id="userControls">
-        <?php
-            $session = new Zend_Session_Namespace('cart');
-        ?>
-        <?php if(!Zend_Auth::getInstance()->hasIdentity()) { ?>
-            <a href="/user/login">Sign in</a> |
-            <a href="/customer/register">Customer Signup</a> | 
-        <?php } else { ?>
-            <a href="/customer/dashboard">Customer Dashboard</a> |
-        <?php } ?>
-        <a href="/cart/view">View Cart</a> 
+    
+    <!-- {{{ <div id="upperHeader"> -->
+    <div id="upperHeader">
+        <div id="description"><p>The open source farm market is an online farmer's market that allows farmers to sell their produce
+        online to individuals and restaurants.  It provides an easy interface for farmer's to manage the products they have available
+        and for customers to order products from. <a href="/about">Learn More</a></p></div>
+        <div id="title">Open Source Farm Market</div>
+        <div class="clear"></div>
+    </div>
+    <!-- }}} -->
+    <!-- {{{ <div id="lowerHeader"> --> 
+    <div id="lowerHeader">
+        <!-- {{{ <div id="grower"> --> 
+        <div id="grower" class="menu-parent menu-right">
+            <!-- {{{ <div class="js-fail"> -->
+            <div class="js-fail">
+                <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
+                    <a href="/grower/dashboard">Grower Dashboard</a> |
+                    <a href="/user/logout">Logout</a> | 
+                <?php } else if(Zend_Auth::getInstance()->hasIdentity()) { ?>
+                    <a href="/user/logout">Logout</a> |
+                <?php } else if(!Zend_Auth::getInstance()->hasIdentity()) { ?> 
+                    <a href="/grower/register">Growers Signup</a> |
+                <?php } ?>
+            </div>
+            <!-- }}} -->
+            <!-- This will default to hidden and only be shown if the user has javascript enabled. -->
+            <div class="open-menu"><a href="" class="open-button" >Growers <img src="/img/arrow_down.png" /></a></div>
+            <div class="close-menu"><a href="" class="close-button" >Growers <img src="/img/arrow_up_white.png" /></a></div>
+            <div class="menu">
+                <div class="menu-bottom">
+                    <?PHP if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
+                        <a href="/grower/dashboard">Dashboard</a><br />
+                        <a href="/user/logout">Logout</a><br /> 
+                    <?PHP } else { ?>
+                        <a href="/grower/register">Register as a Grower</a><br />
+                    <?PHP } ?> 
+                </div>
+            </div>
+        </div>
+        <!-- }}} -->
+        <!-- {{{ <div id="account"> -->
+        <div id="account" class="menu-parent menu-right">
+            <!-- {{{ <div class="js-fail"> -->
+            <div class="js-fail">
+                <?php if(!Zend_Auth::getInstance()->hasIdentity()) { ?>
+                    <a href="/user/login">Sign in</a> | 
+                    <a href="/customer/register">Customer Signup</a> | 
+                <?php } else { ?>
+                    <a href="/customer/dashboard">Customer Dashboard</a> | 
+                <?php } ?>
+            </div>
+            <!-- }}} -->
+            <!-- This will default to hidden and only be shown if the user has javascript enabled. -->
+            <div class="open-menu">
+                <?PHP if(Zend_Auth::getInstance()->hasIdentity()) { ?>
+                    <a href="" class="open-button" >Account <img src="/img/arrow_down.png" /></a>
+                <?PHP } else { ?>
+                    <a href="" class="open-button" >Sign in/Register <img src="/img/arrow_down.png" /></a>
+                <?PHP } ?>    
+            </div>
+            <div class="close-menu">
+                <?PHP if(Zend_Auth::getInstance()->hasIdentity()) { ?>
+                    <a href="" class="close-button" >Account <img src="/img/arrow_up_white.png" /></a>
+                <?PHP } else { ?>
+                    <a href="" class="close-button" >Sign in/Register <img src="/img/arrow_up_white.png" /></a>
+                <?PHP } ?>
+            </div>
+            <div class="menu">
+                <?PHP if(Zend_Auth::getInstance()->hasIdentity()) {?>
+                <div class="menu-section">
+                    Welcome back,<br /> <?PHP echo Zend_Auth::getInstance()->getIdentity()->name; ?>!
+                </div>
+                <?PHP } ?>
+                <div class="menu-bottom">
+                    <?PHP if(Zend_Auth::getInstance()->hasIdentity()) { ?>
+                        <a href="/customer/dashboard">Dashboard</a><br />
+                        <a href="/user/logout">Logout</a><br />
+                    <?PHP } else { ?>
+                        <a href="/user/login">Sign in</a><br />
+                        <a href="/customer/register">Register</a><br />
+                    <?PHP } ?>
+                </div>
+            </div>
+        </div>
+        <!-- }}} -->
+        <!-- {{{ <div id="cart"> --> 
+        <div id="cart" class="menu-parent menu-right">
             <?php
                 if($session->order) { 
                     $totalItems = 0;
                     foreach($session->order->getOrderProducts() as $orderProduct) {
                         $totalItems += $orderProduct->amount;
                     }
-                    echo '(' 
-                        . count($session->order->getOrderProducts()) . ' products, ' 
-                        . $totalItems . ' items, '
-                        . sprintf('$%.2f', $session->order->getTotal()) 
-                        . ')'; 
+                    $products = count($session->order->getOrderProducts()); 
+                    $totalCost = sprintf('$%.2f', $session->order->getTotal());
+                } else {
+                    $totalItems = 0;
+                    $products = 0;
+                    $totalCost = '$0.00';
                 }
             ?>  
-    </div>
-
-    <div id="title">Open Source Farm Market</div>
-
-    <div id="information">
-        <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
-            <a href="/grower/dashboard">Grower Dashboard</a> |
-            <a href="/user/logout">Logout</a> | 
-        <?php } else if(Zend_Auth::getInstance()->hasIdentity()) { ?>
-            <a href="/user/logout">Logout</a> |
-        <?php } else if(!Zend_Auth::getInstance()->hasIdentity()) { ?> 
-            <a href="/grower/register">Growers Signup</a> |
-        <?php } ?>
-        <a href="/about">About</a> 
-    </div>
-
-    <div id="navigation"> 
-        <div id="js-fail"> 
-            <a href="/">Home</a> | 
-            <a href="/product/browse">Browse Products</a> |
-            <a href="/farm/browse">Browse Farms</a>
-        </div>
-        <!-- This will default to hidden and only be shown if the user has javascript enabled. -->
-        <div id="openmenu"><a href="" id="browse-button" >Browse By <img src="/img/arrow_down.png" /></a></div>
-        <div id="closemenu"><a href="" id="browse-button" >Browse By <img src="/img/arrow_up_white.png" /></a></div>
-        <div id="menu">
-            <div id="menu-top">
-                <a href="/">Browse Categories</a><br />
-                <a href="/product/browse">Browse Products</a><br />
-                <a href="/farm/browse">Browse Farms</a><br />
+            <div class="js-fail">
+                <a href="/cart/view">View Cart</a> (<?PHP echo $totalItems . ' items, ' . $products . ' products, ' . $totalCost; ?>) 
             </div>
-            <div id="menu-categories">
-                <?PHP foreach(Application_Model_Query_Category::getInstance()->fetchAll() as $category) { ?>
-                    <a href="/product/browse/category/<?PHP echo $category->id; ?>"><?PHP echo $category->name; ?></a><br />
+            <div class="open-menu">
+                <?PHP if($totalCost !== '$0.00') { ?>
+                    <a href="" class="open-button" >Cart ( <?PHP echo $totalCost; ?> ) <img src="/img/arrow_down.png" /></a>
+                <?PHP } else { ?>
+                    <a href="" class="open-button" >Cart <img src="/img/arrow_down.png" /></a>
                 <?PHP } ?>
             </div>
+            <div class="close-menu">
+                <?PHP if($totalCost !== '$0.00') { ?>
+                    <a href="" class="close-button" >Cart ( <?PHP echo $totalCost; ?> ) <img src="/img/arrow_up_white.png" /></a>
+                <?PHP } else { ?>
+                    <a href="" class="close-button" >Cart <img src="/img/arrow_up_white.png" /></a>
+                <?PHP } ?>
+                    
+            </div>
+            <div class="menu">
+                <div class="menu-section">
+                    Items: <?PHP echo $totalItems; ?><br />
+                    Products: <?PHP echo $products; ?><br />
+                    Total: <?PHP echo $totalCost; ?><br />
+                </div>
+                <div class="menu-bottom">
+                    <a href="/cart/view">View</a><br />
+                </div>
+            </div>
         </div>
+        <!-- }}} -->
+        <!-- {{{ <div id="navigation"> -->
+        <div id="navigation" class="menu-parent menu-left"> 
+            <!-- {{{ <div class="js-fail"> -->
+            <div class="js-fail"> 
+                <a href="/">Home</a> | 
+                <a href="/product/browse">Browse Products</a> |
+                <a href="/farm/browse">Browse Farms</a>
+            </div>
+            <!-- }}} -->
+            <!-- This will default to hidden and only be shown if the user has javascript enabled. -->
+            <div class="open-menu"><a href="" class="open-button" >Browse By <img src="/img/arrow_down.png" /></a></div>
+            <div class="close-menu"><a href="" class="close-button" >Browse By <img src="/img/arrow_up_white.png" /></a></div>
+            <div class="menu">
+                <div class="menu-section">
+                    <a href="/">Browse Categories</a><br />
+                    <a href="/product/browse">Browse Products</a><br />
+                    <a href="/farm/browse">Browse Farms</a><br />
+                </div>
+                <div class="menu-bottom">
+                    <?PHP foreach(Application_Model_Query_Category::getInstance()->fetchAll() as $category) { ?>
+                        <a href="/product/browse/category/<?PHP echo $category->id; ?>"><?PHP echo $category->name; ?></a><br />
+                    <?PHP } ?>
+                </div>
+            </div>
+        </div>
+        <!-- }}} -->
+        <div class="clear"></div>
     </div>
+    <!-- }}} -->
     
     <div id="search">
         <form method="GET" action="/search/">
@@ -92,6 +193,7 @@
         </form>
     </div>	
 </div>
+<!-- }}} -->
 <div id="main">
     <?php echo $this->layout()->content; ?>
     <div class="clear"></div>

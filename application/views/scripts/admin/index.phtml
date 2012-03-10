@@ -1,6 +1,6 @@
 
-<?PHP echo $this->partial('admin_controls.phtml'); ?>
-<div id="adminIndex" class="inner formWrapper">
+<?PHP echo $this->partial('admin_controls_partial.phtml'); ?>
+<div id="adminIndex" class="viewPanel formWrapper">
     <form method="POST" action="/admin"> 
         <table id="configuration">
         <?php foreach($this->configurations as $config) { ?>

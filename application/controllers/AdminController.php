@@ -26,6 +26,14 @@ class AdminController extends Zend_Controller_Action {
     }
 
     // }}}
+    // {{{ dashboardAction() 
+    
+    public function dashboardAction() {
+
+    }
+
+    // }}}
+
     // {{{ categoriesAction() 
 
     /**

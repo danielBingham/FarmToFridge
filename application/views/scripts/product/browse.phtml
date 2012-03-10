@@ -3,10 +3,7 @@
         <span class="tag"><?php echo $tag->name; ?> = <?php echo $tag->symbol; ?></span>,
     <?php } ?>
 </div>
-
-
-<div id="productBrowse" class="inner">
-    <div class="browser">
+<div id="productBrowse" class="browser">
         <?php 
             foreach($this->paginator as $product) {
                 echo $this->partial('product_partial.phtml', array('product'=>$product));
@@ -18,5 +15,4 @@
                                     'Sliding',
                                     'pagination_controls.phtml');
         ?>
-    </div>
 </div>
