@@ -23,7 +23,9 @@
         </table>
     <?PHP } else  { ?>
         <?PHP $totalSales = 0; ?>
+        <?PHP $totalOrder = 0; ?>
         <?PHP foreach($this->orders as $order) { ?>
+            <?PHP $orderTotal = 0; ?>
         <div class="order">
             <div class="customer">
                 <div class="name"><?PHP echo $order->getUser()->name; ?></div> 
@@ -37,6 +39,7 @@
                     if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
                         continue;
                     }
+                    $orderTotal += $orderProduct->getProduct()->price * $orderProduct->amount;
             ?>
                     <tr>
                         <td><?PHP echo $orderProduct->getProduct()->name; ?></td>
@@ -45,8 +48,8 @@
                         <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price*$orderProduct->amount); ?></td>
                     </tr>
             <?PHP } ?>
-                <?PHP $totalSales += $order->getTotal(); ?>
-                <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $order->getTotal()); ?></td></tr>
+                <?PHP $totalSales += $orderTotal; ?>
+                <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $orderTotal); ?></td></tr>
             </table>
         </div>
         <?PHP } ?>

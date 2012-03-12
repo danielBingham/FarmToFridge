@@ -18,6 +18,33 @@ img {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
+.header {
+  clear: both;
+  margin: 0 auto;
+  width: 1004px;
+  padding: 0 10px;
+  height: 42px;
+  border-bottom: thin solid #C0C0C0;
+}
+.header .title {
+  float: left;
+  padding: 11px 3px;
+}
+.header .controls {
+  float: right;
+}
+.header .controls a {
+  display: inline-block;
+  padding: 15px 7px 0 7px;
+  text-decoration: none;
+  color: #317500;
+}
+.header .controls a:hover {
+  text-decoration: underline;
+}
+.header .controls a.highlight {
+  text-decoration: underline;
+}
 .clear {
   clear: both;
 }
@@ -310,6 +337,38 @@ img {
 #main #growerOrders .order {
   padding: 10px;
   border-top: thin solid #C0C0C0;
+}
+#main #productView {
+  padding: 20px 0;
+}
+#main #productView .description {
+  padding: 10px;
+}
+#main #productView .image {
+  float: right;
+  margin: 10px;
+}
+#main #productView .tags {
+  padding: 10px;
+}
+#main #productView .tags .tag {
+  display: inline-block;
+  padding: 5px;
+  margin: 10px 5px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: white;
+  border: thin solid #C0C0C0;
+}
+#main #productView .farm {
+  clear: both;
+  padding: 10px;
+}
+#main #productView label {
+  display: inline-block;
+  width: 150px;
 }
 #main #userLogin p {
   text-align: center;

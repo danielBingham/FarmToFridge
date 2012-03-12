@@ -6,6 +6,20 @@ table { margin: 0 auto; }
 td { padding: 5px 25px; text-align: center; }
 img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
 
+.header { 
+	clear: both; margin: 0 auto; width: 1004px; padding: 0 10px; height: 42px;
+	border-bottom: thin solid #C0C0C0; 
+
+    .title { float: left; padding: 11px 3px; }
+    .controls {
+         float: right; 
+    
+        a { display: inline-block;  padding: 15px 7px 0 7px;  text-decoration: none; color: #317500;  }
+        a:hover { text-decoration: underline; }
+        a.highlight { text-decoration: underline; }
+    }
+}
+
 .clear { clear: both; }
 
 #header {
@@ -135,7 +149,24 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
             padding: 10px; border-top: thin solid #C0C0C0;
         }         
     }
+    #productView {
+        padding: 20px 0;
+        .description { padding: 10px; }
+        .image { float: right; margin: 10px; }
+        .tags { 
+            padding: 10px;  
+
+            .tag { 
+                display: inline-block; padding: 5px; margin: 10px 5px; 
+                -moz-border-radius: 6px;  -khtml-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
+                 background-color: white; border: thin solid #C0C0C0;
+            }
+        }
+        .farm { clear: both; padding: 10px; }
+        label { display: inline-block; width: 150px; }
+    }
     #userLogin {
         p { text-align: center; }
     }
+    
 }

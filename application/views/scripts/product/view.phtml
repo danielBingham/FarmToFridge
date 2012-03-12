@@ -1,25 +1,25 @@
-<div id="productView" class="inner">
+
+<div class="header">
+    <div class="title"><?PHP echo $this->product->name; ?></div>
     <div class="controls">
         <a href="/cart/add/id/<?php echo $this->product->id; ?>">Add to your Cart</a>
     </div>
+</div>
+<div id="productView" class="inner">
     <div id="product">
+        <div class="image">
+            <?PHP if($this->product->getPrimaryProductImage()) { ?>
+                <img src="<?PHP echo Zend_Registry::get('config')->hosts->images; ?>/medium/<?PHP echo $this->product->getPrimaryProductImage()->id; ?>.jpg" />
+            <?PHP } ?>
+        </div>
         <div class="tags">
             <?php foreach($this->product->getProductTags() as $productTag) { ?>
-                <div class="tag"><?php echo $productTag->getTag()->symbol; ?></div>
+                <div class="tag"><?php echo $productTag->getTag()->symbol; ?> - <?PHP echo $productTag->getTag()->name; ?></div>
             <?php } ?>
         </div> 
-        <div class="price">$<?php echo sprintf('%.2f/%s', $this->product->price, ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation)); ?></div>
-        <div class="amount"><?php echo $this->product->amount; ?> <?php echo $this->product->getUnit()->abbreviation; ?></div>
-        <div class="category"><?php echo $this->product->getCategory()->name; ?></div>
-        <div class="name"><?php echo $this->product->name; ?></div>
         <div class="description"><?php echo $this->product->description; ?></div> 
-        <div class="images"> 
-           <?php foreach($this->product->getProductImages() as $productImage) { ?>
-                <div class="image">
-                    <img src="<?php echo Zend_Registry::get('config')->hosts->images; ?>/medium/<?php echo $productImage->getImage()->id; ?>.jpg" />
-                </div>
-            <?php } ?>
-        </div>
+        <div class="price"><label>Price</label> $<?php echo sprintf('%.2f/%s', $this->product->price, ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation)); ?></div>
+        <div class="amount"><label>Amount Available</label> <?php echo $this->product->amount; ?> <?php echo $this->product->getUnit()->abbreviation; ?></div>
         <div class="farm">
             <div class="name">
                 <a href="/farm/view/id/<?php echo $this->product->getFarm()->id; ?>"><?php echo $this->product->getFarm()->name; ?></a>

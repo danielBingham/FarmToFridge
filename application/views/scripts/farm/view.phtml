@@ -3,7 +3,7 @@
         <div class="name"><?php echo $this->farm->name; ?></div>
         <div class="description"><?php echo $this->farm->description; ?></div>
     </div>
-    <div class="products">
+    <div class="browser">
         <?php 
             foreach($this->farm->getProducts() as $product) {
                echo $this->partial('product_partial.phtml', array('product'=>$product));
