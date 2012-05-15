@@ -35,7 +35,7 @@ class ProductController extends Zend_Controller_Action {
     // {{{ editAction()
 
     public function editAction() {
-        if(!Zend_Auth::getInstance()->hasIdentity() || false == Zend_Auth::getInstance()->getIdentity()->isGrower) {
+        if(!Zend_Auth::getInstance()->hasIdentity() || !Zend_Auth::getInstance()->getIdentity()->isGrower()) {
             throw new RuntimeException('Only logged in growers may edit products.');
         }
 

@@ -4,7 +4,7 @@
 *
 * TODO: Error handling, better security.
 */
-class Application_Service_Payment_Paypal {
+class Application_Service_Payment_Paypal extends Application_Service_Payment_Abstract {
     private $APIEndpoint = 'https://api-3t.sandbox.paypal.com/nvp';
     private $APIUsername = ''; // Set from the configuration.
     private $APIPassword = ''; // Removed to commit
@@ -12,6 +12,59 @@ class Application_Service_Payment_Paypal {
     private $APIVersion = '86.0';
 
     private $response;
+
+    // {{{ initialize(array $parameters=array()):                           public void
+
+    public function initialize(array $parameters=array()) {
+        if(!isset($parameters['amount']) || !isset($parameters['successURL']) || !isset($parameters['cancelURL'])) {
+            throw new RuntimeException('Paypal initialize() is missing parameters.');
+        }
+        $this->setExpressCheckout($parameters['amount'], $parameters['successURL'], $parameters['cancelURL']);
+    }
+
+    // }}}
+    // {{{ confirm(array $parameters=array()):                              public void
+
+    public function confirm(array $parameters=array()) {
+        if(!isset($parameters['amount']) || !isset($parameters['token'])) {
+            throw new RuntimeException('Paypal confirm() is missing parameters!');
+        }
+        $this->getExpressCheckoutDetails($parameters['amount'], $parameters['token']);
+    }
+
+    // }}}
+    // {{{ handleSuccess(array $parameters=array()):                        public void
+
+    public function handleSuccess(array $parameters=array()) {
+        if(!isset($parameters['total']) || !isset($parameters['token']) || !isset($parameters['payerID'])) {
+            throw new RuntimeException('Paypal handleSuccess() is missing a parameter.');
+        }
+        $this->doExpressCheckoutPayment($parameters['total'], $parameters['token'], $parameters['payerID']);
+    }
+
+    // }}}
+    // {{{ handleFailure(array $parameters=array()):                        public void
+
+    public function handleFailure(array $parameters=array()) {
+
+    }
+
+    // }}}
+    // {{{ handleCancel():                                                  public void
+
+    public function handleCancel() {
+
+    }
+
+    // }}}
+    // {{{ getForwardURL():                                                 public string(url)
+
+    public function getForwardURL() {
+        return 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . $this->getToken();
+    }
+
+    // }}}
+
 
     // {{{ __construct()
 

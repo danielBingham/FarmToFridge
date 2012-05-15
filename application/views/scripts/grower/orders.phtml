@@ -27,13 +27,15 @@
         <?PHP foreach($this->orders as $order) { ?>
             <?PHP $orderTotal = 0; ?>
         <div class="order">
+            <div class="controls"><?PHP echo $order->orderedOn; ?><br /><a href="">Mark Assembled</a></div>
             <div class="customer">
                 <div class="name"><?PHP echo $order->getUser()->name; ?></div> 
                 <div class="email"><?PHP echo $order->getUser()->email; ?></div>
                 <div class="phone"><?PHP echo $order->getUser()->phone; ?></div> 
             </div>
+            <div class="clear"></div>
             <table class="products">
-                <tr><td>Product Name</td><td>Amount Ordered</td><td>Price</td><td>Total Sale for this Product</td></tr>
+                <tr class="order-table-header"><td>Product Name</td><td>Amount Ordered</td><td>Price</td><td>Total Sale for this Product</td></tr>
             <?PHP 
                 foreach($order->getOrderProducts() as $orderProduct) { 
                     if($orderProduct->getProduct()->getFarm()->userID != $this->grower->id) {
@@ -43,13 +45,13 @@
             ?>
                     <tr>
                         <td><?PHP echo $orderProduct->getProduct()->name; ?></td>
-                        <td><?PHP echo $orderProduct->amount; ?></td>
+                        <td><?PHP echo $orderProduct->amount . ' ' . $orderProduct->getProduct()->getUnit()->abbreviation; ?></td>
                         <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price); ?></td>
                         <td><?PHP echo sprintf('$%.2f', $orderProduct->getProduct()->price*$orderProduct->amount); ?></td>
                     </tr>
             <?PHP } ?>
                 <?PHP $totalSales += $orderTotal; ?>
-                <tr><td>Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $orderTotal); ?></td></tr>
+                <tr class="order-table-total"><td class="label">Order Total</td><td></td><td></td><td><?PHP echo sprintf('$%.2f', $orderTotal); ?></td></tr>
             </table>
         </div>
         <?PHP } ?>

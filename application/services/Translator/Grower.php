@@ -21,7 +21,7 @@ class Application_Service_Translator_Grower {
          
         $grower->email = $post['email']; 
         $grower->password = $post['password'];
-        $grower->isGrower = true; 
+        $grower->type = Application_Model_User::TYPE_GROWER; 
         return $success;
      }
 

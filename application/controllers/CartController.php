@@ -66,6 +66,7 @@ class CartController extends Zend_Controller_Action {
             $order = new Application_Model_Order();
             $order->userID = $this->getSession()->customer->id;
             $order->orderedOn = Zend_Date::Now();
+            $order->state = Application_Model_Order::STATE_UNCONFIRMED;
             $this->getSession()->order = $order; 
         } 
         
@@ -205,10 +206,12 @@ class CartController extends Zend_Controller_Action {
     // {{{ confirmAction()
 
     public function confirmAction() {
-        $this->getSession()->order->confirmed = true;
-        
-        $persistor = new Application_Model_Persistor_Order();
-        $persistor->save($this->getSession()->order);
+        if($this->getSession()->order->state == Application_Model_Order::STATE_UNCONFIRMED) {
+            $this->getSession()->order->state = Application_Model_Order::STATE_CONFIRMED;      
+ 
+            $persistor = new Application_Model_Persistor_Order();
+            $persistor->save($this->getSession()->order);
+        }
 
         // Clear the cart.
         unset($this->getSession()->customer);

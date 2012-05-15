@@ -28,7 +28,6 @@ class Application_Model_Mapper_User extends Application_Model_Mapper_Abstract {
     
     public function fromDbArray($model, array $data) {
         parent::fromDbArray($model, $data);
-        $model->isGrower = ($model->isGrower == 1 ? true : false); 
         if($model->password !== false) {
             $model->password = false;
         }

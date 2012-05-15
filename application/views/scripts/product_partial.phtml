@@ -4,6 +4,7 @@
             background-repeat: no-repeat;
             background-position: 0px 40px;" 
         <?php } ?>>
+    <a href="/product/view/id/<?PHP echo $this->product->id; ?>" class="boxlink"></a>
     <div class="name"><a href="/product/view/id/<?php echo $this->product->id; ?>"><?php echo $this->product->name; ?></a></div>
     <div class="farm">from <a href="/farm/view/id/<?php echo $this->product->getFarm()->id; ?>"><?php echo $this->product->getFarm()->name; ?></a></div>
     <div class="tags">

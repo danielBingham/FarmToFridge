@@ -1,9 +1,13 @@
-<div id="farmBrowse" class="inner">
+<div id="farmBrowse" class="browser">
     <?php foreach($this->farms as $farm) { ?>
-        <div class="farm">
-            <div class="name"><?php echo $farm->name; ?></div>
-            <div class="description"><?php echo $farm->description; ?></div>
-            <div class="products"><?php echo count($farm->getProducts()); ?></div>
+        <div class="farmBadge"
+            <?php if($farm->getPrimaryImage() !== false) { ?> 
+        style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $farm->getPrimaryImage()->id . '.jpg'; ?>);
+            background-repeat: no-repeat;
+            background-position: 0px 40px;" 
+        <?php } ?>>
+            <div class="name"><a href="/farm/view/id/<?PHP echo $farm->id;  ?>"><?PHP echo $farm->name; ?></a></div>
+            <div class="center"><?php echo count($farm->getProducts()); ?></div>
         </div>
     <?php } ?>
 

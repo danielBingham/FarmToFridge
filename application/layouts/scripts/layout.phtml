@@ -34,7 +34,7 @@
         <div id="grower" class="menu-parent menu-right">
             <!-- {{{ <div class="js-fail"> -->
             <div class="js-fail">
-                <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
+                <?php if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower()) { ?>
                     <a href="/grower/dashboard">Grower Dashboard</a> |
                     <a href="/user/logout">Logout</a> | 
                 <?php } else if(Zend_Auth::getInstance()->hasIdentity()) { ?>
@@ -49,7 +49,7 @@
             <div class="close-menu"><a href="" class="close-button" >Growers <img src="/img/arrow_up_white.png" /></a></div>
             <div class="menu">
                 <div class="menu-bottom">
-                    <?PHP if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower == true) { ?>
+                    <?PHP if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isGrower()) { ?>
                         <a href="/grower/dashboard">Dashboard</a><br />
                         <a href="/user/logout">Logout</a><br /> 
                     <?PHP } else { ?>

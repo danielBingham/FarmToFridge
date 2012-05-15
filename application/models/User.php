@@ -5,13 +5,47 @@ class Application_Model_User extends Application_Model_Abstract {
     private $_orders;
     private $_farms;
 
-    // {{{ __construct($lazy=true)
+    const TYPE_INACTIVE = 'INACTIVE';
+    const TYPE_CUSTOMER = 'CUSTOMER';
+    const TYPE_GROWER = 'GROWER';
+    const TYPE_ADMIN = 'ADMIN';
 
-    public function __construct($lazy=true) {
-        parent::__construct('User', array('id', 'email','password', 'name', 'address', 'phone', 'isGrower', 'isAdmin'), $lazy); 
+   
+    // {{{ isGrower():                      public boolean
+
+    public function isGrower() {
+        return ($this->type === self::TYPE_GROWER || $this->type === self::TYPE_ADMIN);
     }
 
     // }}}
+    // {{{ isAdmin():                       public boolean
+    
+    public function isAdmin() {
+        return ($this->type === self::TYPE_ADMIN);
+    }
+
+    // }}}
+
+    // Base Model Methods
+    // {{{ __construct($lazy=true)
+
+    public function __construct($lazy=true) {
+        parent::__construct('User', array('id', 'email','password', 'name', 'address', 'phone', 'type'), $lazy); 
+    }
+
+    // }}}
+    // {{{ __set($name, $value)
+
+    public function __set($name, $value) {
+        $validTypes = array(self::TYPE_INACTIVE, self::TYPE_CUSTOMER, self::TYPE_GROWER, self::TYPE_ADMIN);
+        if($name == 'type' && !in_array($value, $valueTypes)) {
+            throw new RuntimeException('That is not a valid type!');
+        }
+        parent::__set($name, $value);
+    }
+
+    // }}}
+
 
     // Association Methods
     // {{{ getFarms():                                                      public array(Application_Model_Farm)

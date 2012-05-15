@@ -5,8 +5,8 @@
                 style="background-image: url(<?php echo Zend_Registry::get('config')->hosts->images . '/medium/' . $category->getPrimaryImage()->id . '.jpg'; ?>);
                         background-repeat: no-repeat;
                         background-position: 0px 40px;"
-                <?PHP } ?>
-                > 
+                <?PHP } ?>> 
+                <a href="/product/browse/category/<?PHP echo $category->id; ?>" class="boxlink"></a>
                 <div class="name"><a href="/product/browse/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></div>
                 <div class="farm"></div>
                 <div class="tags">

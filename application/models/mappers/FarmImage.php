@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_Mapper_FarmImageImage extends Application_Model_Mapper_Abstract {
+class Application_Model_Mapper_FarmImage extends Application_Model_Mapper_Abstract {
 
     // Standard Mapper API
     // {{{ getDbTable():                                                    public Application_Model_DbTable_FarmImage

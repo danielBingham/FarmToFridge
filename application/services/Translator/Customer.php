@@ -23,7 +23,7 @@ class Application_Service_Translator_Customer {
         $customer->password = $post['password'];
         $customer->name = $post['name'];
         $customer->phone = $post['phone'];
-        $customer->isGrower = false; 
+        $customer->type = Application_Model_User::TYPE_INACTIVE; 
         return $success;
     }
 

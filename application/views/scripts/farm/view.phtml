@@ -1,13 +1,35 @@
 <div id="farmView" class="inner">
+    <div class="header">
+        <div class="title"><strong><?PHP echo $this->farm->name; ?></strong></div>
+    </div>
     <div class="farm">
-        <div class="name"><?php echo $this->farm->name; ?></div>
+        <div class="contact">
+            <div class="phone"><span class="label">Phone Number</span> <?PHP echo $this->farm->phone; ?></div>
+            <div class="email"><span class="label">Email</span> <?PHP echo $this->farm->email; ?></div>
+            <div class="website"><span class="label">Website</span> <?PHP echo $this->farm->website; ?></div>
+            <div class="address"><span class="label">Address</span> <?PHP echo $this->farm->address; ?></div>
+        </div>
         <div class="description"><?php echo $this->farm->description; ?></div>
+        <div class="clear"></div> 
+    </div>
+    <div class="header">
+        <div class="title">Products Currently Available</div>
     </div>
     <div class="browser">
         <?php 
-            foreach($this->farm->getProducts() as $product) {
+            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($this->farm->getProducts()));
+            $paginator->setCurrentPageNumber($this->page);
+            $paginator->setItemCountPerPage(8);
+            foreach($paginator as $product) {
                echo $this->partial('product_partial.phtml', array('product'=>$product));
             }
         ?>        
+        <div class="clear"></div>
+        <?PHP 
+            echo $this->paginationControl($paginator,
+                                'Sliding',
+                                'pagination_controls.phtml');
+        ?>
+
     </div>
 </div>

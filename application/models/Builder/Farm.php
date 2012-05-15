@@ -7,8 +7,9 @@ class Application_Model_Builder_Farm extends Application_Model_Builder_Abstract 
     public function __construct() {
         $this->_haveBuilt = array(
             'user'=>false,
-            'products'=>false 
-        );
+            'products'=>false, 
+            'farmImages'=>false
+         );
     }
 
     // }}}
@@ -33,7 +34,17 @@ class Application_Model_Builder_Farm extends Application_Model_Builder_Abstract 
     }
 
     // }}}
+    // {{{ buildFarmImages(Application_Model_Farm $farm):               public void
 
+    public function buildFarmImages(Application_Model_Farm $farm) {
+        if($farm->id === false) {
+            throw new RuntimeException('Farm->id must be set in order to load FarmImages.');
+        }
+        $farm->setFarmImages(Application_Model_Query_FarmImage::getInstance()->fetchAll(array('farmID'=>$farm->id)));
+    }
+
+    // {{{
+         
 
 }
 

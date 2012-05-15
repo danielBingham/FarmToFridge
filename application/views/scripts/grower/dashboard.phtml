@@ -21,8 +21,13 @@
             <div class="farm">
                 <table class="products">
                     <tr class="header">
-                        <td colspan="3"><a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></a></th>
-                        <td colspan="3"><a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a></th>
+                        <td colspan="3" class="farm">
+                            <a href="/farm/view/id/<?php echo $farm->id; ?>"><?php echo $farm->name; ?></a> 
+                                [<a href="/farm/edit/id/<?PHP echo $farm->id; ?>">edit</a>]
+                        </td>
+                        <td colspan="3" class="table-controls">
+                            <a href="/product/edit/farmID/<?php echo $farm->id; ?>">Add a Product</a>
+                        </td>
                     </tr>
                     <tr class="columns"><td></td><td>Name</td><td>Amount Available</td><td>Price</td><td>Tags</td><td></td></tr>
                     <?php foreach($farm->getProducts() as $product) { ?>

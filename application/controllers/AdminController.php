@@ -9,7 +9,7 @@ class AdminController extends Zend_Controller_Action {
             return $this->_helper->redirector('login', 'user');
         }
 
-        if(Zend_Auth::getInstance()->getIdentity()->isAdmin == false) {
+        if(Zend_Auth::getInstance()->getIdentity()->isAdmin() == false) {
             throw new RuntimeException('Only admin may view this page.');
         }
    

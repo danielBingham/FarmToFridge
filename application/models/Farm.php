@@ -7,11 +7,12 @@ class Application_Model_Farm extends Application_Model_Abstract {
     // Associations
     private $_user;
     private $_products;
+    private $_images;
 
     // {{{ __construct($lazy=true)
 
     public function __construct($lazy=true) {
-        parent::__construct('Farm', array('id', 'name', 'description', 'userID'), $lazy); 
+        parent::__construct('Farm', array('id', 'name', 'description', 'phone', 'email', 'address', 'website', 'userID'), $lazy); 
     }
 
     // }}}
@@ -54,7 +55,40 @@ class Application_Model_Farm extends Application_Model_Abstract {
     }
     
     // }}}
-     
+    // {{{ getFarmImages():                                                     public array(Application_Model_Image)
+
+    public function getFarmImages() {
+        if(empty($this->_images) && $this->loadLazy()) {
+            $this->getBuilder()->build('farmImages', $this);
+        }
+        return $this->_images;
+    }
+
+    // }}}
+    // {{{ setFarmImages(array $images):                                        public void
+
+    public function setFarmImages(array $images) {
+        $this->_images = $images;
+        return $this; 
+    }
+
+    // }}}     
+    // {{{ getPrimaryImage():                                               public Application_Model_Image
+   
+    public function getPrimaryImage() {
+        if($this->getFarmImages()) {
+            foreach($this->getFarmImages() as $farmImage) {
+                if($farmImage->main) {
+                    return $farmImage->getImage();
+                }
+            }
+        
+            return (isset($this->_images[0]) ? $this->_images[0] : false);
+        }
+        return false;
+    }
+    
+    // }}} 
 
 }
 

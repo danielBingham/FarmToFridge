@@ -32,7 +32,7 @@ class GrowerController extends Zend_Controller_Action {
     // {{{ dashboardAction()
 
     public function dashboardAction() {
-        if(!Zend_Auth::getInstance()->hasIdentity() || Zend_Auth::getInstance()->getIdentity()->isGrower === false) {
+        if(!Zend_Auth::getInstance()->hasIdentity() || !Zend_Auth::getInstance()->getIdentity()->isGrower()) {
             return $this->_helper->redirector('browse', 'product');
         }
 
@@ -45,7 +45,7 @@ class GrowerController extends Zend_Controller_Action {
     // {{{ ordersAction()
 
     public function ordersAction() {
-        if(!Zend_Auth::getInstance()->hasIdentity() || Zend_Auth::getInstance()->getIdentity()->isGrower === false) {
+        if(!Zend_Auth::getInstance()->hasIdentity() || !Zend_Auth::getInstance()->getIdentity()->isGrower()) {
             return $this->_helper->redirector('index', 'index');
         } 
         

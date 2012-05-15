@@ -169,6 +169,16 @@ img {
   -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+#main .browser .product .boxlink {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 290px;
+  border: none;
+  z-index: 0;
+}
 #main .browser .product .name,
 #main .browser .product .farm,
 #main .browser .product .tags,
@@ -250,6 +260,96 @@ img {
   margin-top: 1px;
   font-size: 12px;
 }
+#main .browser .farmBadge {
+  float: left;
+  position: relative;
+  width: 200px;
+  height: 290px;
+  padding: 0;
+  margin: 20px;
+  text-align: center;
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+#main .browser .farmBadge .name,
+#main .browser .farmBadge .tags,
+#main .browser .farmBadge .left,
+#main .browser .farmBadge .right,
+#main .browser .farmBadge .center {
+  background-color: white;
+  margin: 0;
+  color: #444444;
+  opacity: 0.80;
+}
+#main .browser .farmBadge .name {
+  clear: both;
+  height: 14px;
+  padding: 3px 0;
+  font-size: 13px;
+  -moz-border-radius-topright: 10px;
+  -khtml-border-top-right-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -khtml-border-top-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+#main .browser .farmBadge .tags {
+  clear: both;
+  height: 12px;
+  font-size: 12px;
+  margin-top: 200px;
+  padding: 4px 0;
+}
+#main .browser .farmBadge .left {
+  position: absolute;
+  bottom: 0;
+  width: 66px;
+  height: 30px;
+  text-align: center;
+  -moz-border-radius-bottomleft: 10px;
+  -khtml-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+#main .browser .farmBadge .left .text {
+  margin-top: 5px;
+  font-size: 12px;
+}
+#main .browser .farmBadge .center {
+  position: absolute;
+  bottom: 0;
+  left: 66px;
+  width: 68px;
+  height: 30px;
+  text-align: center;
+}
+#main .browser .farmBadge .center .text {
+  margin-top: 5px;
+  font-size: 12px;
+}
+#main .browser .farmBadge .right {
+  position: absolute;
+  bottom: 0;
+  left: 134px;
+  width: 66px;
+  height: 30px;
+  text-align: center;
+  -moz-border-radius-bottomright: 10px;
+  -khtml-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#main .browser .farmBadge .right .text {
+  margin-top: 1px;
+  font-size: 12px;
+}
 #main .formWrapper input {
   margin: 5px;
   padding: 5px;
@@ -301,6 +401,20 @@ img {
 #main #cartView input[type=text] {
   width: 100px;
 }
+#main #farmView .contact {
+  float: left;
+  width: 400px;
+  padding: 20px;
+}
+#main #farmView .contact .label {
+  font-style: italic;
+}
+#main #farmView .description {
+  padding: 20px 0;
+}
+#main #farmView .browser {
+  padding-top: 20px;
+}
 #main #growerControls {
   float: left;
   width: 200px;
@@ -308,6 +422,12 @@ img {
 #main #adminControls {
   float: left;
   width: 200px;
+}
+#main #growerDashboard .farm {
+  text-align: left;
+}
+#main #growerDashboard .table-controls {
+  text-align: right;
 }
 #main #growerDashboard .name {
   display: inline-block;
@@ -337,6 +457,24 @@ img {
 #main #growerOrders .order {
   padding: 10px;
   border-top: thin solid #C0C0C0;
+}
+#main #growerOrders .order .controls {
+  float: right;
+}
+#main #growerOrders .order .customer .name {
+  font-weight: bold;
+}
+#main #growerOrders .order .order-table-header td {
+  font-style: italic;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#main #growerOrders .order .order-table-total td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#main #growerOrders .order .order-table-total td.label {
+  font-weight: bold;
 }
 #main #productView {
   padding: 20px 0;

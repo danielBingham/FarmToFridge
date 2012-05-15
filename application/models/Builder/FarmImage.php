@@ -5,7 +5,7 @@ class Application_Model_Builder_FarmImage extends Application_Model_Builder_Abst
     // {{{ __construct()
     
     public function __construct() {
-        $this->haveBuilt = array(
+        $this->_haveBuilt = array(
             'farm'=>false,
             'image'=>false 
         );

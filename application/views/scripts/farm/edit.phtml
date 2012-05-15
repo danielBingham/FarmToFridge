@@ -2,9 +2,15 @@
 <?PHP echo $this->partial('grower_controls_partial.phtml'); ?>
 <div id="farmEdit" class="viewPanel formWrapper">
 
-    <form method="POST" action="/farm/edit<?php echo ($this->farm->id ? '/id/' . $this->farm->id : ''); ?>">
+    <form enctype="multipart/form-data" method="POST" action="/farm/edit<?php echo ($this->farm->id ? '/id/' . $this->farm->id : ''); ?>">
         <label for="name">Farm Name</label><input type="text" name="name" value="<?php echo $this->farm->name; ?>" /><br />
+        <label for="phone">Phone Number</label><input type="text" name="phone" value="<?PHP echo $this->farm->phone; ?>" /><br />
+        <label for="email">Email Address</label><input type="text" name="email" value="<?PHP echo $this->farm->email; ?>" /><br />
+        <label for="address">Address</label><textarea name="address"><?PHP echo $this->farm->address; ?></textarea><br />
+        <label for="website">Website</label><input type="text" name="website" value="<?PHP echo $this->farm->website; ?>" /><br />
         <label for="description">Description</label><textarea name="description"><?php echo $this->farm->description; ?></textarea><br />
+        <input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
+        <label for="image">Image</label> <input type="file" name="image" /><br />
         <input type="submit" value="<?php echo ($this->farm->id ? 'Edit Farm' : 'Add Farm'); ?>" />
     </form>
 </div>

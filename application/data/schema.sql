@@ -3,6 +3,10 @@ CREATE TABLE `farms` (
     `id` int unsigned AUTO_INCREMENT NOT NULL,
     `name` varchar(255),
     `description` text,
+    `phone` varchar(16),
+    `email` varchar(255),
+    `address` text,
+    `website` varchar(255),
     `userID` int unsigned,
     PRIMARY KEY (`id`),
     KEY `userID` (`userID`)
@@ -15,8 +19,7 @@ CREATE TABLE `users` (
     `name` varchar(255),
     `address` varchar(1024),
     `phone` varchar(16),
-    `isGrower` tinyint,
-    `isAdmin` tinyint,
+    `type` ENUM('INACTIVE', 'CUSTOMER', 'GROWER', 'ADMIN'),
     PRIMARY KEY (`id`),
     KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=UTF8;

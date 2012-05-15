@@ -31,9 +31,9 @@ class PaypalController extends Zend_Controller_Action {
         $amount = $this->getSession()->order->getTotal();
 
         $paypalService = new Application_Service_Payment_Paypal();
-        $paypalService->setExpressCheckout($amount, '/paypal/success', '/paypal/cancel');
-
-        header('Location: https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . $paypalService->getToken());
+        $paypalService->initialize(array('amount'=>$amount, 'successURL'=>'/paypal/success', 'cancelURL'=>'/paypal/cancel'));
+        header('Location: ' . $paypalService->getForwardURL());
+  
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true); 
     }
@@ -46,6 +46,11 @@ class PaypalController extends Zend_Controller_Action {
         if($this->getRequest()->isPost()) {
             $post = $this->getRequest()->getPost();
             $paypalService->doExpressCheckoutPayment($this->getSession()->order->getTotal(), $post['token'], $post['payerID']);
+            $this->getSession()->order->state = Application_Model_Order::STATE_PAID;
+            
+            $persistor = new Application_Model_Persistor_Order();
+            $persistor->save($this->getSession()->order); 
+
             return $this->_forward('confirm', 'cart'); 
         }
 
