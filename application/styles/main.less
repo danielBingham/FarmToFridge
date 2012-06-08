@@ -73,6 +73,13 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
     #tagLegend { margin: 10px auto; text-align: center; }
     .browser { 
         width: 960px; margin: 0 auto;  padding: 0;       
+        .amount-form { 
+            display: none; position: absolute; z-index: 900; width: 150px;
+            background-color: white; padding: 10px;
+            -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5); -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5); -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+            input { width: 75px; }
+        }
         .product {
             float: left; position: relative; width: 200px; height: 290px; padding: 0; margin: 20px; text-align: center;
             -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
@@ -173,6 +180,25 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
         .description { padding: 20px 0; }
         .browser { padding-top: 20px; }
     }
+    #productView {
+        .fields { 
+            float: left; width: 400px; padding: 20px;
+            .label { font-style: italic; }
+        }
+        .description { padding: 20px 0; }
+        .image { float: left; margin: 10px; }
+        .tags { 
+            padding: 10px;  
+
+            .tag { 
+                display: inline-block; padding: 5px; margin: 10px 5px; 
+                -moz-border-radius: 6px;  -khtml-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
+                 background-color: white; border: thin solid #C0C0C0;
+            }
+        }
+        .farm { clear: both; padding: 10px; }
+        label { display: inline-block; width: 150px; }
+    }
     #growerControls { float: left; width: 200px; }
     #adminControls { float: left; width: 200px; }
     #growerDashboard {
@@ -204,22 +230,6 @@ img { -moz-border-radius: 10px; -khtml-border-radius: 10px; -webkit-border-radiu
                 }
             } 
         }
-    }
-    #productView {
-        padding: 20px 0;
-        .description { padding: 10px; }
-        .image { float: right; margin: 10px; }
-        .tags { 
-            padding: 10px;  
-
-            .tag { 
-                display: inline-block; padding: 5px; margin: 10px 5px; 
-                -moz-border-radius: 6px;  -khtml-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
-                 background-color: white; border: thin solid #C0C0C0;
-            }
-        }
-        .farm { clear: both; padding: 10px; }
-        label { display: inline-block; width: 150px; }
     }
     #userLogin {
         p { text-align: center; }

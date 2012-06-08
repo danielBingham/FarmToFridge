@@ -125,24 +125,24 @@
             </div>
             <div class="open-menu">
                 <?PHP if($totalCost !== '$0.00') { ?>
-                    <a href="" class="open-button" >Cart ( <?PHP echo $totalCost; ?> ) <img src="/img/arrow_down.png" /></a>
+                    <a href="" class="open-button" >Cart <span id="display-total-open">( <?PHP echo $totalCost; ?> )</span> <img src="/img/arrow_down.png" /></a>
                 <?PHP } else { ?>
-                    <a href="" class="open-button" >Cart <img src="/img/arrow_down.png" /></a>
+                    <a href="" class="open-button" >Cart <span id="display-total-open"></span><img src="/img/arrow_down.png" /></a>
                 <?PHP } ?>
             </div>
             <div class="close-menu">
                 <?PHP if($totalCost !== '$0.00') { ?>
-                    <a href="" class="close-button" >Cart ( <?PHP echo $totalCost; ?> ) <img src="/img/arrow_up_white.png" /></a>
+                    <a href="" class="close-button" >Cart <span id="display-total-close">( <?PHP echo $totalCost; ?> )</span> <img src="/img/arrow_up_white.png" /></a>
                 <?PHP } else { ?>
-                    <a href="" class="close-button" >Cart <img src="/img/arrow_up_white.png" /></a>
+                    <a href="" class="close-button" >Cart <span id="display-total-close"></span><img src="/img/arrow_up_white.png" /></a>
                 <?PHP } ?>
                     
             </div>
             <div class="menu">
                 <div class="menu-section">
-                    Items: <?PHP echo $totalItems; ?><br />
-                    Products: <?PHP echo $products; ?><br />
-                    Total: <?PHP echo $totalCost; ?><br />
+                    Items: <span id="items"><?PHP echo $totalItems; ?></span><br />
+                    Products: <span id="products"><?PHP echo $products; ?></span><br />
+                    Total: <span id="total"><?PHP echo $totalCost; ?></span><br />
                 </div>
                 <div class="menu-bottom">
                     <a href="/cart/view">View</a><br />

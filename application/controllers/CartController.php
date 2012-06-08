@@ -34,15 +34,20 @@ class CartController extends Zend_Controller_Action {
     * @param id The product id that we're adding to the cart.
     */
     public function addAction() {
-        $id = $this->getRequest()->getParam('id', null);
-        $amount = 1; // The only time we're actually going to take this as a parameter is in an
-        // ajax call, which we will handle in a different action.
-
+        $id = $this->getRequest()->getParam('id', null); 
+        $amount = $this->getRequest()->getParam('amount', null); 
 
         if($id === null) {
             throw new RuntimeException('You cannot add something to your cart with out an id!');
         }
 
+        if($amount === null) {
+            $amount = 1;
+            $ajax = false;
+        } else {
+            $ajax = true;
+        } 
+        
         $product = Application_Model_Query_Product::getInstance()->get($id);
         if($product === null) {
             throw new RuntimeException('Attempt to add a non-existent product to cart.');
@@ -74,7 +79,13 @@ class CartController extends Zend_Controller_Action {
         $orderProduct->productID = $product->id;
         $orderProduct->amount = $amount;
         $this->getSession()->order->addOrderProduct($orderProduct); 
-        $this->_helper->redirector('browse', 'product');
+
+        if(!$ajax) {
+            $this->_helper->redirector('browse', 'product');
+        } else {
+            $this->_helper->layout->disableLayout(); 
+            $this->_helper->viewRenderer->setNoRender(true);
+        } 
     }
 
     // }}}
@@ -176,7 +187,7 @@ class CartController extends Zend_Controller_Action {
             $persistor = new Application_Model_Persistor_Order();
             $persistor->save($this->getSession()->order);
             if($this->getSession()->customer->email === false) {
-                return $this->_helper->redirector('register', 'customer', null, array('redirect'=>'checkout'));
+                return $this->_helper->redirector('login', 'user');
             } else {
                 return $this->_helper->redirector('payment');
             } 
@@ -221,7 +232,29 @@ class CartController extends Zend_Controller_Action {
     }
 
     // }}}
+    // {{{ refreshMenuAction()
 
+    public function refreshMenuAction() {
+        $this->_helper->viewRenderer->setNoRender(true);
+        $this->_helper->layout->disableLayout();
+
+        if($this->getSession()->order) { 
+            $totalItems = 0;
+            foreach($this->getSession()->order->getOrderProducts() as $orderProduct) {
+                $totalItems += $orderProduct->amount;
+            }
+            $products = count($this->getSession()->order->getOrderProducts()); 
+            $totalCost = sprintf('$%.2f', $this->getSession()->order->getTotal());
+        } else {
+            $totalItems = 0;
+            $products = 0;
+            $totalCost = '$0.00';
+        }
+
+        echo '{"order":[{"items":"' . $totalItems . '", "products":"' . $products . '", "total":"' . $totalCost . '"}]}';
+    }
+
+    // }}}
 
 }
 

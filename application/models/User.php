@@ -38,7 +38,7 @@ class Application_Model_User extends Application_Model_Abstract {
 
     public function __set($name, $value) {
         $validTypes = array(self::TYPE_INACTIVE, self::TYPE_CUSTOMER, self::TYPE_GROWER, self::TYPE_ADMIN);
-        if($name == 'type' && !in_array($value, $valueTypes)) {
+        if($name == 'type' && !in_array($value, $validTypes)) {
             throw new RuntimeException('That is not a valid type!');
         }
         parent::__set($name, $value);

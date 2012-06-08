@@ -1,0 +1,12 @@
+<div id="farmCrop" class="inner" >
+    <img id="cropbox" src="<?php echo Zend_Registry::get('config')->hosts->images; ?>/large/<?php echo $this->image->id; ?>.jpg" />
+    <form method="POST" action="/farm/crop/image/<?php echo $this->image->id; ?>/farm/<?php echo $this->farm->id; ?>/">
+        <input type="hidden" name="x" value="0" />
+        <input type="hidden" name="y" value="0" />
+        <input type="hidden" name="width"  value="<?php echo $this->image->width; ?>" />
+        <input type="hidden" name="height" value="<?php echo $this->image->height; ?>" />
+        <input type="submit" value="Crop Image" />
+    </form> 
+
+</div>
+

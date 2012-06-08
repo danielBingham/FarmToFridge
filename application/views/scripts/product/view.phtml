@@ -1,29 +1,41 @@
-
-<div class="header">
-    <div class="title"><?PHP echo $this->product->name; ?></div>
-    <div class="controls">
-        <a href="/cart/add/id/<?php echo $this->product->id; ?>">Add to your Cart</a>
-    </div>
-</div>
 <div id="productView" class="inner">
+    <div class="header">
+        <div class="title"><strong><?PHP echo $this->product->name; ?></strong></div>
+        <div class="controls"><a href="/cart/add/id/<?PHP echo $this->product->id; ?>" class="add-to-cart-link"><img src="/img/addtocart.png" height="24" width="24"/></a></div>
+    </div>
     <div id="product">
-        <div class="image">
-            <?PHP if($this->product->getPrimaryProductImage()) { ?>
-                <img src="<?PHP echo Zend_Registry::get('config')->hosts->images; ?>/medium/<?PHP echo $this->product->getPrimaryProductImage()->id; ?>.jpg" />
-            <?PHP } ?>
+        <div class="fields">
+            <div class="price">
+                <span class="label">Price</span> 
+                $<?php echo sprintf('%.2f/%s', $this->product->price, ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation)); ?>
+            </div>
+            <div class="amount">
+                <span class="label">Amount Available</span> 
+                <?php echo $this->product->amount; ?> <?php echo $this->product->getUnit()->abbreviation; ?>
+            </div>
+       </div> 
+        <div class="description"><?php echo $this->product->description; ?></div> 
+        <div class="clear"></div> 
+        <div class="images">
+            <div class="image">
+                <?PHP if($this->product->getPrimaryProductImage()) { ?>
+                    <img src="<?PHP echo Zend_Registry::get('config')->hosts->images; ?>/medium/<?PHP echo $this->product->getPrimaryProductImage()->id; ?>.jpg" />
+                <?PHP } ?>
+            </div>
         </div>
+        <div class="header">
+            <div class="title">Tagged</div>
+        </div> 
         <div class="tags">
             <?php foreach($this->product->getProductTags() as $productTag) { ?>
                 <div class="tag"><?php echo $productTag->getTag()->symbol; ?> - <?PHP echo $productTag->getTag()->name; ?></div>
             <?php } ?>
         </div> 
-        <div class="description"><?php echo $this->product->description; ?></div> 
-        <div class="price"><label>Price</label> $<?php echo sprintf('%.2f/%s', $this->product->price, ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation)); ?></div>
-        <div class="amount"><label>Amount Available</label> <?php echo $this->product->amount; ?> <?php echo $this->product->getUnit()->abbreviation; ?></div>
+        <div class="header">
+            <div class="title">from <strong><?PHP echo $this->product->getFarm()->name; ?></strong></div>
+            <div class="controls"><a href="/farm/view/id/<?PHP echo $this->product->getFarm()->id; ?>">View Farm</a></div>
+        </div>
         <div class="farm">
-            <div class="name">
-                <a href="/farm/view/id/<?php echo $this->product->getFarm()->id; ?>"><?php echo $this->product->getFarm()->name; ?></a>
-            </div>
             <div class="description"><?php echo $this->product->getFarm()->description ?></div>
         </div>
     </div>

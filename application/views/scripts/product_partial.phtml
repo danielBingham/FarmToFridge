@@ -19,7 +19,13 @@
         <p class="text"><?php echo $this->product->getAmountCurrentlyAvailable() . ' ' . ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation); ?></p>
     </div>
     <div class="right">
-        <p class="text"><a href="/cart/add/id/<?php echo $this->product->id; ?>"><img src="/img/addtocart.png" width="24" height="24" /></a>
+        <p class="text"><a href="/cart/add/id/<?php echo $this->product->id; ?>" class="add-to-cart-link"><img src="/img/addtocart.png" width="24" height="24" /></a>
+    </div>
+    <div class="amount-form">
+        <input type="hidden" class="product-id" value="<?PHP echo $this->product->id; ?>" />
+        How much?<br /> <input type="text" class="amount" /> <?PHP echo ($this->product->getUnit()->abbreviation == 'ea' ? '' : $this->product->getUnit()->abbreviation); ?>
+        <a href="Javascript:;" class="add-to-cart-submit">Add</a>
     </div>
 </div>
+
 

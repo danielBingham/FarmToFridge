@@ -153,6 +153,24 @@ img {
   margin: 0 auto;
   padding: 0;
 }
+#main .browser .amount-form {
+  display: none;
+  position: absolute;
+  z-index: 900;
+  width: 150px;
+  background-color: white;
+  padding: 10px;
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+#main .browser .amount-form input {
+  width: 75px;
+}
 #main .browser .product {
   float: left;
   position: relative;
@@ -415,6 +433,43 @@ img {
 #main #farmView .browser {
   padding-top: 20px;
 }
+#main #productView .fields {
+  float: left;
+  width: 400px;
+  padding: 20px;
+}
+#main #productView .fields .label {
+  font-style: italic;
+}
+#main #productView .description {
+  padding: 20px 0;
+}
+#main #productView .image {
+  float: left;
+  margin: 10px;
+}
+#main #productView .tags {
+  padding: 10px;
+}
+#main #productView .tags .tag {
+  display: inline-block;
+  padding: 5px;
+  margin: 10px 5px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: white;
+  border: thin solid #C0C0C0;
+}
+#main #productView .farm {
+  clear: both;
+  padding: 10px;
+}
+#main #productView label {
+  display: inline-block;
+  width: 150px;
+}
 #main #growerControls {
   float: left;
   width: 200px;
@@ -475,38 +530,6 @@ img {
 }
 #main #growerOrders .order .order-table-total td.label {
   font-weight: bold;
-}
-#main #productView {
-  padding: 20px 0;
-}
-#main #productView .description {
-  padding: 10px;
-}
-#main #productView .image {
-  float: right;
-  margin: 10px;
-}
-#main #productView .tags {
-  padding: 10px;
-}
-#main #productView .tags .tag {
-  display: inline-block;
-  padding: 5px;
-  margin: 10px 5px;
-  -moz-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  background-color: white;
-  border: thin solid #C0C0C0;
-}
-#main #productView .farm {
-  clear: both;
-  padding: 10px;
-}
-#main #productView label {
-  display: inline-block;
-  width: 150px;
 }
 #main #userLogin p {
   text-align: center;
